@@ -8,6 +8,8 @@
 		nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 		# repo for nix-flatpak
 		nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
+
+		
 	};
 
 	outputs = { self, nixpkgs, nixos-hardware, nix-flatpak, ... }@inputs: {
@@ -17,9 +19,9 @@
 				nixos-hardware.nixosModules.framework-16-7040-amd
 				# declarative flatpak management
 				nix-flatpak.nixosModules.nix-flatpak
-				./config/flatpak.nix
+				.config/flatpak.nix
 				# plymouth config
-				./config/plymouth.nix
+				.config/plymouth.nix
 				# this is the old config method, importing it here so its settings are still applied
 				./configuration.nix
 			];
