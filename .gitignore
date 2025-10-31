@@ -1,5 +1,5 @@
 # hardware-configuration.nix is unique to each device and will be generated upon startup
-hardware-configuration.nix
+# hardware-configuration.nix # nvm apparently it must be tracked
 
 # ignore secrets dir, except for the readme file
 secrets/*
