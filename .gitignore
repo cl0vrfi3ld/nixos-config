@@ -1,0 +1,6 @@
+# hardware-configuration.nix is unique to each device and will be generated upon startup
+hardware-configuration.nix
+
+# ignore secrets dir, except for the readme file
+secrets/*
+!secrets/README.md
