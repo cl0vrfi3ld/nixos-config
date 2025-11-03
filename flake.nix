@@ -22,6 +22,8 @@
 				./config/flatpak.nix
 				# plymouth config
 				./config/plymouth.nix
+				# font config
+				./config/fonts.nix
 				# this is the old config method, importing it here so its settings are still applied
 				./configuration.nix
 			];
