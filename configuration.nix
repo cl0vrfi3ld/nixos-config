@@ -111,6 +111,7 @@
       "wheel"
       "kvm"
       "adbusers"
+      "podman"
     ];
     shell = pkgs.fish;
     packages = with pkgs; [
