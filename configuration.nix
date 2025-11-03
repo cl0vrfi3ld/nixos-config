@@ -151,6 +151,7 @@
     wget
     easyeffects
     ghostty
+    distrobox
   ];
 
   # Set default editor to `micro` (this is now done by Home Manager)
