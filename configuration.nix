@@ -153,6 +153,7 @@
     ghostty
     distrobox
     webkitgtk_4_1
+    ffmpeg
   ];
 
   virtualisation = {
