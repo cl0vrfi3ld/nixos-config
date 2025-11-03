@@ -152,6 +152,7 @@
     easyeffects
     ghostty
     distrobox
+    webkitgtk_4_1
   ];
 
   virtualisation = {
