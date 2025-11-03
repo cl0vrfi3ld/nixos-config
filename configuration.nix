@@ -154,6 +154,21 @@
     distrobox
   ];
 
+  virtualisation = {
+    containers.enable = true;
+    podman = {
+      enable = true;
+      dockerCompat = true;
+      defaultNetwork.settings.dns_enabled = true; # Required for containers under podman-compose to be able to talk to each other.
+    };
+  };
+
+  # Global `/etc/containers/registries.conf`
+  environment.etc."containers/registries.conf".text = pkgs.lib.mkDefault ''
+    [registries.search]
+    registries = ['docker.io']
+  '';
+
   # Set default editor to `micro` (this is now done by Home Manager)
   # environment.variables.EDITOR = "micro";
 
