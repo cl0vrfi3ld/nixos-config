@@ -8,15 +8,18 @@
 		nixos-hardware.url = "github:NixOS/nixos-hardware/master";
 		# repo for nix-flatpak
 		nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
-
+		# repo for nix-iwd-provisioning
+		# nix-iwd-provisioning.url = "github:cl0vrfi3ld/nix-iwd-provisioning/?ref=main";
 		
 	};
 
-	outputs = { self, nixpkgs, nixos-hardware, nix-flatpak, ... }@inputs: {
+	outputs = { self, nixpkgs, nixos-hardware, nix-flatpak,  ... }@inputs: {
 		nixosConfigurations.theseus = nixpkgs.lib.nixosSystem {
 			modules = [
 				# hardware config for the fw16
 				nixos-hardware.nixosModules.framework-16-7040-amd
+				# eduroam/general iwd provisioning
+				# nix-iwd-provisioning.nixosModules.nix-iwd-provisioning
 				# declarative flatpak management
 				nix-flatpak.nixosModules.nix-flatpak
 				./config/flatpak.nix

@@ -23,7 +23,7 @@
 
   boot.initrd.enable = true;
   # boot.initrd.luks.devices."luks-c781dcd3-48f1-4489-aa58-afe4d2ea3e8e".device =
-  #   "/dev/disk/by-uuid/c781dcd3-48f1-4489-aa58-afe4d2ea3e8e";
+  #   "/dev/disk/by-uuid/c781dcd3-48f1-4489-aa58-afe4d2ea3e8e";iwd-provisioning.ena
   networking.hostName = "theseus"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
@@ -35,6 +35,14 @@
   networking.networkmanager.enable = true;
   # networking.networkmanager.wifi.backend = "iwd";
   # networking.wireless.iwd.enable = true;
+  # iwd-provisioning.enable = true;
+  # iwd-provisioning.eduroam = {
+  #   enable = true;
+  #   domain = "uvm.edu";
+  #   username = "mlevens";
+  #   passwordHash = "1234";
+  #   serverDomainMask = "radius";
+  # };
   # networking.wireless.iwd.settings = {
   #   Network = {
   #     EnableIPv6 = true;
