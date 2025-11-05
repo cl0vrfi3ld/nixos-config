@@ -162,19 +162,6 @@
   # Enable flakes
   nix.settings.experimental-features = "nix-command flakes";
 
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    git
-    micro
-    direnv
-    wget
-    easyeffects
-    ghostty
-    distrobox
-    webkitgtk_4_1
-    ffmpeg
-  ];
 
   virtualisation = {
     containers.enable = true;
