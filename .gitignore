@@ -3,4 +3,6 @@
 
 # ignore secrets dir, except for the readme file
 secrets/*
+result
 !secrets/README.md
+config/iwd.nix

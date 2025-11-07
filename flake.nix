@@ -31,7 +31,7 @@
           # pkgs config
           ./config/pkgs.nix
           # eduroam/general iwd provisioning
-          nix-iwd-provisioning.nixosModules.iwd-eduroam
+          nix-iwd-provisioning.nixosModules.nix-iwd-provisioning
 		  ./config/iwd.nix
           # declarative flatpak management
           nix-flatpak.nixosModules.nix-flatpak
