@@ -31,28 +31,6 @@
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
-  # Enable networking with iwd
-  networking.networkmanager.enable = true;
-  # networking.networkmanager.wifi.backend = "iwd";
-  # networking.wireless.iwd.enable = true;
-  # iwd-provisioning.enable = true;
-  # iwd-provisioning.eduroam = {
-  #   enable = true;
-  #   domain = "uvm.edu";
-  #   username = "mlevens";
-  #   passwordHash = "1234";
-  #   serverDomainMask = "radius";
-  # };
-  # networking.wireless.iwd.settings = {
-  #   Network = {
-  #     EnableIPv6 = true;
-  #   };
-  #   Settings = {
-  #     AutoConnect = true;
-  #   };
-  # };
-
-
   # Set your time zone.
   time.timeZone = "America/New_York";
 
