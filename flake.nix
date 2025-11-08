@@ -10,7 +10,9 @@
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
     # repo for nix-iwd-provisioning
     nix-iwd-provisioning.url = "github:cl0vrfi3ld/nix-iwd-provisioning/?ref=main";
-
+    # secrets handling
+    sops-nix.url = "github:Mic92/sops-nix";
+    sops-nix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =
@@ -20,7 +22,7 @@
       nixos-hardware,
       nix-flatpak,
       nix-iwd-provisioning,
-
+      sops-nix,
       ...
     }@inputs:
     {
@@ -28,11 +30,14 @@
         modules = [
           # hardware config for the fw16
           nixos-hardware.nixosModules.framework-16-7040-amd
+          # sops cfg
+          sops-nix.nixosModules.sops
+          ./config/sops.nix
           # pkgs config
           ./config/pkgs.nix
           # eduroam/general iwd provisioning
           nix-iwd-provisioning.nixosModules.nix-iwd-provisioning
-		  ./config/iwd.nix
+          ./config/iwd.nix
           # declarative flatpak management
           nix-flatpak.nixosModules.nix-flatpak
           ./config/flatpak.nix
