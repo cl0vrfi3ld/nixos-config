@@ -1,0 +1,9 @@
+keys:
+  - &admin_clover age14h6tn3fu353yduculf8r86cl7rdwyagq466shjd7n2f0mhy9h4esh9xpgc # age-keygen -y ~/.config/sops/age/keys.txt
+  - &machine_theseus age19rq7zejeavw964z52f6xnqqfcr6pdutfq3zv6ewszw6k3j8pyvtsvqvppc # cat ~/.ssh/id_ed25519-age-system-theseus.pub | ssh-to-age
+creation_rules:
+  - path_regex: secrets/[^/]+\.(yaml|json|env|ini)$
+    key_groups:
+    - age:
+      - *admin_clover
+      - *machine_theseus

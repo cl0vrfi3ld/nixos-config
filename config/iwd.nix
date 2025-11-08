@@ -2,26 +2,25 @@
 { config, pkgs, ... }:
 
 {
-
+  
+ 
   # Enable networking with iwd
-  networking.networkmanager.enable = true;
-  # networking.networkmanager.wifi.backend = "iwd";
-  # networking.wireless.iwd.enable = true;
-  # iwd-provisioning.enable = true;
-  iwd-eduroam = {
-    enable = true;
+  networking.networkmanager.wifi.backend = "iwd";
+  networking.wireless.iwd.enable = true;
+  iwd-provisioning.enable = true;
+  iwd-provisioning.eduroam.enable = true;
+  iwd-provisioning.eduroam = {
     domain = "uvm.edu";
     username = "mlevens";
-    passwordHash = "1234";
-    serverDomainMask = "radius";
+    passwordPath = config.sops.secrets."iwd/eduroam/passwd".path;
+    # serverDomainMask = "radius";
   };
-  # networking.wireless.iwd.settings = {
-  #   Network = {
-  #     EnableIPv6 = true;
-  #   };
-  #   Settings = {
-  #     AutoConnect = true;
-  #   };
-  # };
-
+  networking.wireless.iwd.settings = {
+    Network = {
+      EnableIPv6 = true;
+    };
+    Settings = {
+      AutoConnect = true;
+    };
+  };
 }
