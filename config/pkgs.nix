@@ -7,6 +7,7 @@
   environment.systemPackages = with pkgs; [
     git
     micro
+    age
     direnv
     wget
     easyeffects
