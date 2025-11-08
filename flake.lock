@@ -18,11 +18,11 @@
     },
     "nix-iwd-provisioning": {
       "locked": {
-        "lastModified": 1762577306,
-        "narHash": "sha256-71dvcfnx5WQkOPY5ci8UypYrkrpna6HqFk158quX9wc=",
+        "lastModified": 1762619906,
+        "narHash": "sha256-NEIN7wwRIJvjHr5QvNBipGjjZBYRDnvZDGWMGnhqCxY=",
         "owner": "cl0vrfi3ld",
         "repo": "nix-iwd-provisioning",
-        "rev": "fcf741f281ed002806b6399e66d73781141a5283",
+        "rev": "b13786078ff08e3096ac35f7f153b9d9a2ad4132",
         "type": "github"
       },
       "original": {
