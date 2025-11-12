@@ -16,6 +16,7 @@
     webkitgtk_4_1
     ffmpeg
     bitwarden-desktop
+    cachix
   ];
 
 }
