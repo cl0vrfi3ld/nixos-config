@@ -9,7 +9,7 @@
     # repo for nix-flatpak
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
     # repo for nix-iwd-provisioning
-    nix-iwd-provisioning.url = "github:cl0vrfi3ld/nix-iwd-provisioning/?ref=main";
+    nix-iwd-provisioning.url = "git+https://git.cl0vr.co/cl0vr/nix-iwd-provisioning/?ref=main";
     # secrets handling
     sops-nix.url = "github:Mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
