@@ -9,7 +9,7 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     # include cachix
-    # ./cachix.nix
+    ./cachix.nix
   ];
 
   # Bootloader.
