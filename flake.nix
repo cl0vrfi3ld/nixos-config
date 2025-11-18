@@ -42,7 +42,7 @@
           nix-flatpak.nixosModules.nix-flatpak
           ./config/flatpak.nix
           # ollama config
-          ./config/ollama.nix
+          # ./config/ollama.nix
           # plymouth config
           ./config/plymouth.nix
           # font config
