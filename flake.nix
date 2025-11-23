@@ -47,6 +47,8 @@
           ./config/plymouth.nix
           # font config
           ./config/fonts.nix
+          # mullvad config
+          ./config/mullvad.nix
           # nix package manager config
           ./config/nix-config.nix
           # this is the old config method, importing it here so its settings are still applied
