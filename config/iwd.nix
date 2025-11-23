@@ -1,4 +1,4 @@
-# system-level fonts config
+# system-level iwd config
 { config, pkgs, ... }:
 
 {
