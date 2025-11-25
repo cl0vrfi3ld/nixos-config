@@ -51,6 +51,8 @@
           ./config/mullvad.nix
           # waydroid config
           ./config/waydroid.nix
+          # android dev config
+          ./config/android.nix
           # nix package manager config
           ./config/nix-config.nix
           # this is the old config method, importing it here so its settings are still applied

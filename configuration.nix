@@ -115,8 +115,6 @@
     extraGroups = [
       "networkmanager"
       "wheel"
-      "kvm"
-      "adbusers"
       "podman"
     ];
     shell = pkgs.fish;
@@ -139,8 +137,6 @@
     # enable appimage integrations
     appimage.enable = true;
     appimage.binfmt = true;
-    # Enable adb
-    adb.enable = true;
 
   };
   # Allow unfree packages
