@@ -8,10 +8,10 @@
     "kvm"
     "adbusers"
   ];
-  # setup android udev rules
-  services.udev.packages = [
-    pkgs.android-udev-rules
-  ];
+  # setup android udev rules (turns out we don't need this)
+  # services.udev.packages = [
+  #   pkgs.android-udev-rules
+  # ];
   # add android studio
   environment.systemPackages = [ pkgs.android-studio ];
 }
