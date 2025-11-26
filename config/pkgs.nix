@@ -18,6 +18,8 @@
     bitwarden-desktop
     unzip
     cachix
+
+    kdePackages.partitionmanager
   ];
 
 }
