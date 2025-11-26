@@ -42,7 +42,7 @@
           ./config/iwd.nix
           # declarative flatpak management
           nix-flatpak.nixosModules.nix-flatpak
-          ./config/flatpak.ni
+          ./config/flatpak.nix
           # ollama config
           # ./config/ollama.nix
           # plymouth config
