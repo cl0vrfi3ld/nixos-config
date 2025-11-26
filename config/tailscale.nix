@@ -1,5 +1,8 @@
 { config, pkgs, ... }:
 {
-    # enable tailscale
+  # enable tailscale
   services.tailscale.enable = true;
+  # disable dhcp on the tailscale interface
+  networking.interfaces.tailscale0.useDHCP = pkgs.lib.mkDefault false;
+
 }
