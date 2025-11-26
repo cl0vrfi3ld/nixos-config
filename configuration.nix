@@ -104,10 +104,10 @@
       "podman"
     ];
     shell = pkgs.fish;
-    packages = with pkgs; [
-      kdePackages.kate
-      #  thunderbird
-    ];
+    # packages = with pkgs; [
+    #   kdePackages.kate
+    #   #  thunderbird
+    # ];
   };
   # Enable bluetooth
   hardware.bluetooth.enable = true;
