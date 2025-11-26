@@ -3,7 +3,7 @@
   networking.hostName = "theseus"; # Define your hostname.
 
   networking.networkmanager.enable = true;
-  networking.networkmanager.dns = "none";
+  # networking.networkmanager.dns = "none";
   networking.nameservers = [
     "1.1.1.1#one.one.one.one"
     "1.0.0.1#one.one.one.one"
