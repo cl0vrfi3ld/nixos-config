@@ -18,7 +18,6 @@
     bitwarden-desktop
     unzip
     cachix
-    mullvad-vpn
   ];
 
 }
