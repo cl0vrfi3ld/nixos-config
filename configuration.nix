@@ -26,20 +26,6 @@
   boot.initrd.enable = true;
   # boot.initrd.luks.devices."luks-c781dcd3-48f1-4489-aa58-afe4d2ea3e8e".device =
   #   "/dev/disk/by-uuid/c781dcd3-48f1-4489-aa58-afe4d2ea3e8e";iwd-provisioning.ena
-  networking.hostName = "theseus"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-
-  networking.networkmanager.enable = true;
-  networking.networkmanager.dns = "none";
-  networking.nameservers = [
-    "1.1.1.1"
-    "1.0.0.1"
-    "8.8.8.8"
-  ];
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
   # Set your time zone.
   time.timeZone = "America/New_York";
 

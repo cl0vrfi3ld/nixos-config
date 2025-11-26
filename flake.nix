@@ -35,12 +35,14 @@
           ./config/sops.nix
           # pkgs config
           ./config/pkgs.nix
+          # networking conf
+          ./config/networking.nix
           # eduroam/general iwd provisioning
           nix-iwd-provisioning.nixosModules.nix-iwd-provisioning
           ./config/iwd.nix
           # declarative flatpak management
           nix-flatpak.nixosModules.nix-flatpak
-          ./config/flatpak.nix
+          ./config/flatpak.ni
           # ollama config
           # ./config/ollama.nix
           # plymouth config
