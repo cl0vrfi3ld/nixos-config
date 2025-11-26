@@ -49,6 +49,8 @@
           ./config/plymouth.nix
           # font config
           ./config/fonts.nix
+          # tailscale config
+          ./config/tailscale.nix
           # mullvad config
           ./config/mullvad.nix
           # waydroid config
