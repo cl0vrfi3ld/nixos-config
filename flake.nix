@@ -53,6 +53,8 @@
           ./config/tailscale.nix
           # mullvad config
           ./config/mullvad.nix
+          # steam config
+          ./config/steam.nix
           # waydroid config
           ./config/waydroid.nix
           # android dev config
