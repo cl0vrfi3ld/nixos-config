@@ -143,6 +143,8 @@
     registries = ['docker.io']
   '';
 
+  programs.nix-ld.enable = true;
+
   # Set default editor to `micro` (this is now done by Home Manager)
   # environment.variables.EDITOR = "micro";
 
