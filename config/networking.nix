@@ -24,5 +24,5 @@
     ];
     dnsovertls = "true";
   };
-
+  networking.nftables.enable = true;
 }
