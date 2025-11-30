@@ -61,6 +61,8 @@
           ./config/android.nix
           # system optimisation config
           ./config/optimisations.nix
+          # dualsense device config
+          ./config/dualsense.nix
           # this is the old config method, importing it here so its settings are still applied
           ./configuration.nix
         ];
