@@ -45,6 +45,8 @@
           ./config/flatpak.nix
           # ollama config
           ./config/ollama.nix
+          # proxy config
+          ./config/proxies.nix
           # plymouth config
           ./config/plymouth.nix
           # font config
