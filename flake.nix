@@ -59,8 +59,8 @@
           ./config/waydroid.nix
           # android dev config
           ./config/android.nix
-          # nix package manager config
-          ./config/nix-config.nix
+          # system optimisation config
+          ./config/optimisations.nix
           # this is the old config method, importing it here so its settings are still applied
           ./configuration.nix
         ];
