@@ -1,6 +1,8 @@
 # android dev config
 { config, pkgs, ... }:
-{
+{ 
+  # accept sdk license
+  nixpkgs.config.android_sdk.accept_license = true;
   # Enable adb
   programs.adb.enable = true;
   # setup user groups
@@ -13,5 +15,5 @@
   #   pkgs.android-udev-rules
   # ];
   # add android studio
-  environment.systemPackages = [ pkgs.android-studio ];
+  environment.systemPackages = [ pkgs.android-studio-full ];
 }
