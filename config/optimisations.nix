@@ -9,7 +9,6 @@
   };
   nix.settings = {
     sandbox = true;
-    # sandbox-paths = [ "/bin/sh=${pkgs.busybox-sandbox-shell.out}/bin/busybox" ];
     
     show-trace = true;
     auto-optimise-store = true;
@@ -21,8 +20,7 @@
   services.fstrim.enable = true;
 
   # Power management optimisations
-  services.power-profiles-daemon.enable = true;
-
+  
   # Use a RAM disk for /tmp to reduce wear on the SSD and improve speed
   boot.tmp.useTmpfs = true;
   boot.tmp.tmpfsSize = "75%";
