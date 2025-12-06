@@ -5,7 +5,7 @@
   nix.gc = {
     automatic = true;
     dates = "weekly"; # Or a specific time like "03:15"
-    options = "-d"; # Optional: Delete old generations
+    options = "--delete-older-than 7d"; # Optional: delete 7 days old generations
   };
 
   # various nix settings
