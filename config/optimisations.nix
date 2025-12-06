@@ -8,7 +8,7 @@
     options = "-d"; # Optional: Delete old generations
   };
   nix.settings = {
-    # use-sandbox = true;
+    sandbox = true;
     # sandbox-paths = [ "/bin/sh=${pkgs.busybox-sandbox-shell.out}/bin/busybox" ];
     
     show-trace = true;
