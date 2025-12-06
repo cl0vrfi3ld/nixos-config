@@ -65,6 +65,8 @@
           ./config/optimisations.nix
           # dualsense device config
           ./config/dualsense.nix
+          # nh cli config
+          ./config/nh.nix
           # this is the old config method, importing it here so its settings are still applied
           ./configuration.nix
         ];
