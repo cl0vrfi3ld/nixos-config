@@ -1,7 +1,7 @@
 # proxy config
 { config, pkgs, ... }:
 {
-  programs.proxychains.enable = true;
+  programs.proxychains.enable = false;
   programs.proxychains.proxies = {
     tetherfi-ethernet-socks5 = {
       type = "socks5";
