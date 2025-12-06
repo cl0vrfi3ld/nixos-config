@@ -65,7 +65,7 @@ This is a comprehensive NixOS system configuration for a Framework 16 laptop, le
   - `sops.nix`: Secrets management with SOPS
   
   #### Performance
-  - `optomizations.nix`: System performance tuning and optimizations
+  - `optimisations.nix`: System performance tuning and optimizations
 
 - `secrets/`: Encrypted secrets management
 - `cachix/`: Nix binary cache configurations
