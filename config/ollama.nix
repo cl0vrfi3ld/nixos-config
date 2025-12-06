@@ -2,9 +2,9 @@
 { config, pkgs, ... }:
 
 {
-  services.ollama.enable = true;
-  services.ollama.acceleration = "rocm";
   hardware.amdgpu.opencl.enable = true;
+  services.ollama.enable = true;
+  services.ollama.package = pkgs.ollama-rocm;
   services.ollama.environmentVariables = {
     OLLAMA_DEBUG = "1";
     HIP_VISIBLE_DEVICES = "0";
