@@ -1,121 +1,107 @@
-# Project Guide: Clover's NixOS Configuration
-
+# NixOS Configuration for Framework 16
 ## 1. Project Overview
-This is a comprehensive NixOS system configuration for a Framework 16 laptop, leveraging Nix's declarative and reproducible system management approach. The configuration provides a flexible, customizable setup for development, productivity, and personal computing.
 
+### Purpose
+A comprehensive, modular NixOS system configuration for a Framework 16 laptop, designed to provide a reproducible, customizable, and efficient development environment.
 ### Key Technologies
-- NixOS (Linux distribution)
-- Nix Package Manager
-- Flakes for dependency and configuration management
-- SOPS for secrets management
-- Various system and application configurations
+- **Operating System**: NixOS (Linux)
+- **Package Management**: Nix Package Manager
+- **Configuration Management**: Nix Flakes
+- **Secrets Management**: SOPS (Secrets OPerationS)
+- **Infrastructure as Code**: Declarative system configuration
 
-## 2. Getting Started
+### Hardware Configuration
+- **Device**: Framework 16 Laptop
+- **Processor**: AMD 7040 Series
+- **GPU**: AMD Radeon RX 7700S
+- **Operating System Channel**: NixOS Unstable
+
+## 2. Project Structure
+
+### Main Directories
+- `config/`: Modular system configuration files
+- `secrets/`: Encrypted secrets management
+- `cachix/`: Nix binary cache configurations
+
+### Configuration Modules
+Each `.nix` file in the `config/` directory represents a specific system aspect:
+
+#### Networking
+- `networking.nix`: Core network configuration
+- `iwd.nix`: Internet wireless daemon setup
+- `tailscale.nix`: Tailscale VPN configuration
+- `mullvad.nix`: Mullvad VPN settings
+- `proxies.nix`: Network proxy configurations
+
+#### System Management
+- `pkgs.nix`: System-wide package installations
+- `flatpak.nix`: Declarative Flatpak management
+- `optimisations.nix`: System performance tuning
+- `nh.nix`: Nix helper CLI configuration
+
+#### Development & Platforms
+- `android.nix`: Android development environment
+- `waydroid.nix`: Android container support
+- `steam.nix`: Gaming platform configuration
+
+#### User Experience
+- `fonts.nix`: System font configurations
+- `plymouth.nix`: Boot screen settings
+- `dualsense.nix`: DualSense device configuration
+
+#### Specialized Tools
+- `ollama.nix`: AI model management
+- `sops.nix`: Secrets encryption and management
+
+## 3. Getting Started
 
 ### Prerequisites
-- A Linux-compatible system (optimized for Framework 16)
-- Nix package manager installed
-- Git for cloning the repository
+- NixOS (Unstable channel recommended)
+- Git
+- Nix package manager with Flakes support
 
 ### Installation
-1. Clone the repository:
+1. Clone the repository
    ```bash
    git clone https://github.com/your-username/nixos-config.git
    cd nixos-config
    ```
 
-2. Ensure you have Nix with Flakes support enabled
-
-3. Build and switch to the configuration:
+2. Build and switch to the configuration
    ```bash
    sudo nixos-rebuild switch --flake .#theseus
    ```
 
-### System Requirements
-- Framework 16 laptop (AMD 7040 series)
-- Compatible with NixOS unstable channel
-
-## 3. Project Structure
-
-### Key Directories
-- `config/`: Modular NixOS configuration files
-  #### Networking and Connectivity
-  - `networking.nix`: Core network configuration (hostname, DNS, firewall)
-  - `iwd.nix`: Internet wireless daemon configuration
-  - `tailscale.nix`: Tailscale VPN configuration
-  - `mullvad.nix`: Mullvad VPN configuration
-  
-  #### System and Package Management
-  - `pkgs.nix`: System-wide package installations
-  - `flatpak.nix`: Declarative Flatpak management
-  
-  #### Development and Platforms
-  - `android.nix`: Android development environment setup
-  - `waydroid.nix`: Android container support (Waydroid)
-  - `steam.nix`: Gaming platform configuration
-  
-  #### User Experience and Aesthetics
-  - `fonts.nix`: System font configurations
-  - `plymouth.nix`: Boot screen and animation settings
-  
-  #### AI and Machine Learning
-  - `ollama.nix`: Ollama AI model management and inference
-  
-  #### Security and Secrets
-  - `sops.nix`: Secrets management with SOPS
-  
-  #### Performance
-  - `optimisations.nix`: System performance tuning and optimizations
-
-- `secrets/`: Encrypted secrets management
-- `cachix/`: Nix binary cache configurations
-
-### Configuration Files
-- `flake.nix`: Primary Nix Flake configuration
-- `configuration.nix`: Legacy NixOS configuration
-- `.sops.yaml`: SOPS (Secrets OPerationS) configuration
-
 ## 4. Development Workflow
 
 ### Configuration Management
-- Use `config/` directory for modular system configurations
-- Modify specific `.nix` files for targeted changes
+- Modify specific `.nix` files in the `config/` directory for targeted changes
 - Use SOPS for managing encrypted secrets
+- Leverage Nix Flakes for reproducible builds
 
 ### Testing Changes
-1. Validate configuration:
+1. Validate configuration
    ```bash
    nix flake check
    ```
 
-2. Build without switching:
+2. Build without switching
    ```bash
    sudo nixos-rebuild build --flake .#theseus
    ```
 
-3. Switch to new configuration:
+3. Switch to new configuration
    ```bash
    sudo nixos-rebuild switch --flake .#theseus
    ```
 
 ### Secrets Management
-- Use SOPS for encrypting and managing sensitive information
-- Refer to `secrets/README.md` for specific guidance
+- Utilize SOPS for encrypting sensitive information
+- Refer to `secrets/README.md` for detailed guidance
 
-## 5. Key Concepts
+## 5. Common Tasks
 
-### Nix Flakes
-- Provides reproducible, declarative system configurations
-- Locks dependencies to specific versions
-- Enables easy sharing and reproduction of system state
-
-### Modular Configuration
-- Each `.nix` file in `config/` represents a specific system aspect
-- Allows for easy customization and maintenance
-
-## 6. Common Tasks
-
-### Adding New Packages
+### Adding Packages
 1. Edit `config/pkgs.nix`
 2. Add package to `environment.systemPackages`
 
@@ -123,29 +109,35 @@ This is a comprehensive NixOS system configuration for a Framework 16 laptop, le
 - Configure in `config/flatpak.nix`
 - Use declarative Flatpak management
 
-### VPN and Networking
-- Tailscale configured in `config/tailscale.nix`
-- Wireless configuration in `config/iwd.nix`
+### VPN Configuration
+- Configure Tailscale in `config/tailscale.nix`
+- Set up wireless networks in `config/iwd.nix`
 
-## 7. Troubleshooting
+## 6. Troubleshooting
 
 ### Common Issues
 - Ensure Nix Flakes are enabled
-- Check hardware compatibility
-- Validate configuration syntax
+- Verify hardware compatibility
+- Check configuration syntax
 
 ### Debugging
-- Use `nixos-rebuild build --flake .#theseus --show-trace` for detailed build logs
+- Use `nixos-rebuild build --flake .#theseus --show-trace` for detailed logs
 - Consult NixOS documentation for specific error resolution
 
-## 8. References
+## 7. References
 - [NixOS Documentation](https://nixos.org/manual/nixos/stable/)
-- [Nix Flakes Documentation](https://nixos.wiki/wiki/Flakes)
-- [SOPS-NIKS Documentation](https://github.com/Mic92/sops-nix)
+- [Nix Flakes Guide](https://nixos.wiki/wiki/Flakes)
+- [sops-nix Repository](https://github.com/Mic92/sops-nix)
+- [Framework 16 NixOS Support](https://github.com/NixOS/nixos-hardware)
 
-## 9. Contributing
+## 8. Contributing
 - Fork the repository
 - Create a feature branch
 - Submit pull requests with clear descriptions
 
-**Note:** Always test configurations thoroughly before applying system-wide changes.
+**Note:** Always test configurations thoroughly before system-wide application.
+
+## 9. Deployment Notes
+- This configuration is specifically tailored for a Framework 16 laptop
+- Modifications may be required for different hardware
+- Follow NixOS best practices for system updates and maintenance
