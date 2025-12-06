@@ -19,7 +19,8 @@
   # Filesystem optimisations for SSDs
   services.fstrim.enable = true;
 
-  # Power management optimisations
+  # speed up boot (don't wait for wifi)
+  systemd.services.NetworkManager-wait-online.enable = false;
   
   # Use a RAM disk for /tmp to reduce wear on the SSD and improve speed
   boot.tmp.useTmpfs = true;
