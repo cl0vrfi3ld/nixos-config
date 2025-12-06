@@ -13,7 +13,6 @@
     
     show-trace = true;
     auto-optimise-store = true;
-    experimental-features = [ "nix-command" "flakes" ];
     max-jobs = "auto"; # Allow Nix to build multiple packages in parallel
     builders-use-substitutes = true; # Use binary caches during builds
     };
