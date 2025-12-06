@@ -10,4 +10,7 @@
     ];
   };
   hardware.steam-hardware.enable = true;
+  programs.gamescope.enable = true;
+  programs.gamemode.enable = true;
+
 }
