@@ -13,6 +13,18 @@
     
     show-trace = true;
     auto-optimise-store = true;
-  }
-  ;
+    experimental-features = [ "nix-command" "flakes" ];
+    max-jobs = "auto"; # Allow Nix to build multiple packages in parallel
+    builders-use-substitutes = true; # Use binary caches during builds
+    };
+
+  # Filesystem optimisations for SSDs
+  services.fstrim.enable = true;
+
+  # Power management optimisations
+  services.power-profiles-daemon.enable = true;
+
+  # Use a RAM disk for /tmp to reduce wear on the SSD and improve speed
+  boot.tmp.useTmpfs = true;
 }
+
