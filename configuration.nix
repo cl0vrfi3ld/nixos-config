@@ -45,8 +45,8 @@
   };
 
   # Enable the X11 windowing system.
-  # You can disable this if you're only using the Wayland session.
-  services.xserver.enable = false;
+  # You can disable this if you're only using the Wayland session. (now configured in config/wayland.nix)
+  # services.xserver.enable = false;
 
   # Enable the KDE Plasma Desktop Environment.
   services.displayManager.sddm.enable = true;
@@ -57,9 +57,6 @@
     layout = "us";
     variant = "";
   };
-
-  # Enable power profiles daemon
-  services.power-profiles-daemon.enable = true;
 
   # Enable CUPS to print documents.
   services.printing.enable = true;

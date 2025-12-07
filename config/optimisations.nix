@@ -24,7 +24,8 @@
   systemd.services.NetworkManager-wait-online.enable = false;
   
   # power management optimisations
-
+  services.power-profiles-daemon.enable = true;
+  
   # use a RAM disk for /tmp to reduce wear on the SSD and improve speed
   boot.tmp.useTmpfs = true;
   # boot.tmp.tmpfsSize = "75%";
