@@ -53,6 +53,10 @@
           ./config/fonts.nix
           # wayland config
           ./config/wayland.nix
+          # display manager config
+          ./config/display-manager.nix
+          # desktop manager config
+          ./config/desktop-manager.nix
           # tailscale config
           ./config/tailscale.nix
           # mullvad config
