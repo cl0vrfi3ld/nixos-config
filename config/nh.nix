@@ -2,7 +2,7 @@
 { config, pkgs, ... }:
 {
   environment.sessionVariables = {
-    FLAKE = "/home/coucoucl0vr/nixos-config"; 
+    NH_FLAKE = "/home/coucoucl0vr/nixos-config"; 
   };
   programs.nh = {
     enable = true;
