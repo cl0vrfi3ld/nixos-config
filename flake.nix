@@ -51,6 +51,8 @@
           ./config/plymouth.nix
           # font config
           ./config/fonts.nix
+          # wayland config
+          ./config/wayland.nix
           # tailscale config
           ./config/tailscale.nix
           # mullvad config
@@ -73,3 +75,4 @@
       };
     };
 }
+
