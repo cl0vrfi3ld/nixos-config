@@ -9,10 +9,4 @@
     # Wayland support for SDDM
     wayland.enable = true;
   };
-
-  # Enable KDE Plasma 6 with Wayland
-  services.desktopManager.plasma6 = {
-    # Ensure Wayland session is used
-    waylandSession = true;
-  };
 }
