@@ -15,5 +15,5 @@
   #   pkgs.android-udev-rules
   # ];
   # add android studio
-  environment.systemPackages = [ pkgs.android-studio-full ];
+  environment.systemPackages = [ pkgs.android-studio ];
 }

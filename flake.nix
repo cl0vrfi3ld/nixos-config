@@ -63,6 +63,8 @@
           ./config/mullvad.nix
           # steam config
           ./config/steam.nix
+          # graphics config
+          ./config/graphics.nix
           # waydroid config
           ./config/waydroid.nix
           # android dev config
