@@ -8,6 +8,7 @@ let
   # disable certain advanced features to improve network compatibility.
   # useful if captive portals aren't resolving
   networkCompatibilityMode = false;
+  
   nameservers = [
     "1.1.1.1#one.one.one.one"
     "1.0.0.1#one.one.one.one"
@@ -24,7 +25,7 @@ lib.mkMerge [
   }
   # disable the following features in compat mode
   (lib.mkIf (!networkCompatibilityMode) {
-    # networking.nameservers = nameservers;
+    networking.nameservers = nameservers;
 
     services.resolved = {
       enable = true;
