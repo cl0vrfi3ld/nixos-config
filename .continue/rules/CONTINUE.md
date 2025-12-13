@@ -50,7 +50,7 @@ Each `.nix` file in the `config/` directory represents a specific system aspect:
 - `dualsense.nix`: DualSense device configuration
 
 #### Specialized Tools
-- `ollama.nix`: Locally hosted AI configuration via Ollama
+- `ai.nix`: Locally hosted AI configurations
 - `sops.nix`: Secrets encryption and management
 
 ## 3. Getting Started

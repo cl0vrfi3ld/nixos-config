@@ -1,4 +1,4 @@
-# system-level ollama config
+# system-level ai config
 { config, pkgs, ... }:
 
 {
