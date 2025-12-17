@@ -43,8 +43,8 @@
           # declarative flatpak management
           nix-flatpak.nixosModules.nix-flatpak
           ./config/flatpak.nix
-          # ollama config
-          ./config/ollama.nix
+          # ai config
+          ./config/ai.nix
           # proxy config
           ./config/proxies.nix
           # plymouth config
