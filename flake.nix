@@ -63,6 +63,8 @@
           ./config/mullvad.nix
           # steam config
           ./config/steam.nix
+          # vr config
+          ./config/vr.nix
           # graphics config
           ./config/graphics.nix
           # waydroid config
