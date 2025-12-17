@@ -26,15 +26,23 @@
   boot.kernelModules = [ "kvm-amd" ];
   boot.extraModulePackages = [ ];
 
-  fileSystems."/" = {
-    device = "/dev/disk/by-uuid/423e0974-fb4f-4e4d-8e61-78213584088b";
-    fsType = "ext4";
+  fileSystems = {
+    "/" = {
+      device = "/dev/disk/by-uuid/423e0974-fb4f-4e4d-8e61-78213584088b";
+      fsType = "ext4";
+    };
+
+    "/too" = {
+      device = "/dev/mapper/data_too";
+      fsType = "btrfs";
+    };
   };
 
-  boot.initrd.luks.devices."luks-1f1eff14-7736-4c3f-be41-027a7a2bab3c".device =
-    "/dev/disk/by-uuid/1f1eff14-7736-4c3f-be41-027a7a2bab3c";
-  boot.initrd.luks.devices."luks-c781dcd3-48f1-4489-aa58-afe4d2ea3e8e".device =
-    "/dev/disk/by-uuid/c781dcd3-48f1-4489-aa58-afe4d2ea3e8e";
+  boot.initrd.luks.devices = {
+    "luks-1f1eff14-7736-4c3f-be41-027a7a2bab3c".device = "/dev/disk/by-uuid/1f1eff14-7736-4c3f-be41-027a7a2bab3c";
+    "luks-c781dcd3-48f1-4489-aa58-afe4d2ea3e8e".device = "/dev/disk/by-uuid/c781dcd3-48f1-4489-aa58-afe4d2ea3e8e";
+    "data_too".device = "/dev/disk/by-uuid/d60fb91e-ccc6-4818-90d5-063389df2d4e";
+  };
 
   fileSystems."/boot" = {
     device = "/dev/disk/by-uuid/EFCA-BC36";
@@ -60,7 +68,7 @@
   networking.interfaces.wlan0.useDHCP = lib.mkDefault true;
 
   nixpkgs.hostPlatform = lib.mkDefault "x86_64-linux";
-  
+
   hardware.enableRedistributableFirmware = true;
   hardware.cpu.amd.updateMicrocode = lib.mkDefault config.hardware.enableRedistributableFirmware;
 }
