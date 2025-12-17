@@ -6,7 +6,7 @@ index 8322ea0..4e20262 100644
        /* Keep only the required capabilities for setup */
        set_required_caps ();
      }
--  else if (real_uid != 0 && has_caps ())
+-  else if (real_uid != 0 && has_caps ())
 -    {
 -      /* We have some capabilities in the non-setuid case, which should not happen.
 -         Probably caused by the binary being setcap instead of setuid which we
