@@ -39,7 +39,7 @@ To edit a secrets file, run:
 sops secrets/default.yaml
 ```
 
-**Note:** The `sops` command is available in the Nix shell when you are in the project directory.
+**Note:** The `sops` command is NOT available in the Nix shell by default. You may open a shell with the required cli tool using `nix shell nixpkgs#sops`
 
 ## 5. Adding New Secrets
 
