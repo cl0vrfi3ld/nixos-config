@@ -56,7 +56,7 @@ Each `.nix` file in the `config/` directory represents a specific system aspect:
 ## 3. Getting Started
 
 ### Prerequisites
-- NixOS (Unstable channel recommended)
+- NixOS (Unstable channel)
 - Git
 - Nix package manager with Flakes support
 
