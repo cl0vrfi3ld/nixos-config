@@ -13,6 +13,11 @@
     # secrets handling
     sops-nix.url = "github:Mic92/sops-nix";
     sops-nix.inputs.nixpkgs.follows = "nixpkgs";
+    # secure boot management
+    lanzaboote = {
+      url = "github:nix-community/lanzaboote/v0.4.2";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
@@ -23,6 +28,7 @@
       nix-flatpak,
       nix-iwd-provisioning,
       sops-nix,
+      lanzaboote,
       ...
     }@inputs:
     {
@@ -33,6 +39,9 @@
           # sops cfg
           sops-nix.nixosModules.sops
           ./config/sops.nix
+          # lanzaboote config
+          lanzaboote.nixosModules.lanzaboote
+          ./config/secure-boot.nix
           # pkgs config
           ./config/pkgs.nix
           # networking conf
