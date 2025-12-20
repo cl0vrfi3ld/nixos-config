@@ -10,6 +10,6 @@
 
   boot.lanzaboote = {
     enable = true;
-    pkiBundle = "/etc/secureboot"; # where keys will live
+    pkiBundle = "/var/lib/sbctl"; # where keys will live
   };
 }
