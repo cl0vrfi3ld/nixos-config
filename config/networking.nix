@@ -18,10 +18,16 @@ in
 lib.mkMerge [
   {
     networking.hostName = "theseus"; # Define your hostname.
-
+  
     networking.networkmanager.enable = true;
 
+    # Prevent boot delay by not waiting for network connection
+    systemd.services.NetworkManager-wait-online.enable = false;
+
     networking.nftables.enable = true;
+
+    # enable dhcp for wlan0
+    networking.interfaces.wlan0.useDHCP = lib.mkDefault true;
   }
   # disable the following features in compat mode
   (lib.mkIf (!networkCompatibilityMode) {

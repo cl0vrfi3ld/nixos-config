@@ -19,9 +19,6 @@
 
   # filesystem optimisations for SSDs
   services.fstrim.enable = true;
-
-  # speed up boot (don't wait for wifi)
-  # systemd.services.NetworkManager-wait-online.enable = false;
   
   # power management optimisations
   services.power-profiles-daemon.enable = true;
