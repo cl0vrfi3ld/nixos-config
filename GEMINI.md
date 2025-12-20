@@ -1,20 +1,23 @@
 # NixOS Configuration for Framework 16
+
 ## 1. Project Overview
 
 ### Purpose
 A comprehensive, modular NixOS system configuration for a Framework 16 laptop, designed to provide a reproducible, customizable, and efficient development environment.
+
 ### Key Technologies
-- **Operating System**: NixOS (Linux)
+- **Operating System**: NixOS (Unstable Channel)
 - **Package Management**: Nix Package Manager
 - **Configuration Management**: Nix Flakes
 - **Secrets Management**: SOPS (Secrets OPerationS)
+- **Desktop Environment**: KDE Plasma 6 (Wayland)
 - **Infrastructure as Code**: Declarative system configuration
 
 ### Hardware Configuration
 - **Device**: Framework 16 Laptop
 - **Processor**: AMD 7040 Series
 - **GPU**: AMD Radeon RX 7700S
-- **Operating System Channel**: NixOS Unstable
+- **Display**: 2560x1600 165Hz
 
 ## 2. Project Structure
 
@@ -25,6 +28,14 @@ A comprehensive, modular NixOS system configuration for a Framework 16 laptop, d
 
 ### Configuration Modules
 Each `.nix` file in the `config/` directory represents a specific system aspect:
+
+#### Graphical Environment
+- `graphics.nix`: Hardware graphics acceleration & drivers
+- `wayland.nix`: Wayland display protocol enforcement (X11 disabled)
+- `display-manager.nix`: SDDM login manager configuration
+- `desktop-manager.nix`: KDE Plasma 6 desktop environment
+- `fonts.nix`: System font configurations
+- `plymouth.nix`: Boot screen settings
 
 #### Networking
 - `networking.nix`: Core network configuration
@@ -38,20 +49,17 @@ Each `.nix` file in the `config/` directory represents a specific system aspect:
 - `flatpak.nix`: Declarative Flatpak management
 - `optimisations.nix`: System performance tuning
 - `nh.nix`: Nix helper CLI configuration
+- `sops.nix`: Secrets encryption and management
 
 #### Development & Platforms
 - `android.nix`: Android development environment
 - `waydroid.nix`: Android container support
-- `steam.nix`: Gaming platform configuration
-
-#### User Experience
-- `fonts.nix`: System font configurations
-- `plymouth.nix`: Boot screen settings
-- `dualsense.nix`: DualSense device configuration
-
-#### Specialized Tools
+- `steam.nix`: Steam gaming platform configuration
+- `vr.nix`: VR configuration (ALVR)
 - `ai.nix`: Locally hosted AI configurations
-- `sops.nix`: Secrets encryption and management
+
+#### Hardware & Peripherals
+- `dualsense.nix`: DualSense controller support
 
 ## 3. Getting Started
 
