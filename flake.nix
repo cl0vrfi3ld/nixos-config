@@ -32,7 +32,7 @@
       ...
     }@inputs:
     {
-      nixosConfigurations.theseus = nixpkgs.lib.nixosSystem {
+      nixosConfigurations.TheUnreliable = nixpkgs.lib.nixosSystem {
         modules = [
           # hardware config for the fw16
           nixos-hardware.nixosModules.framework-16-7040-amd
