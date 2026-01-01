@@ -70,8 +70,8 @@
           ./config/tailscale.nix
           # mullvad config
           ./config/mullvad.nix
-          # steam config
-          ./config/steam.nix
+          # gaming config
+          ./config/gaming.nix
           # vr config
           ./config/vr.nix
           # graphics config
@@ -82,8 +82,7 @@
           ./config/android.nix
           # system optimisation config
           ./config/optimisations.nix
-          # dualsense device config
-          ./config/dualsense.nix
+
           # nh cli config
           ./config/nh.nix
           # shortcuts config
