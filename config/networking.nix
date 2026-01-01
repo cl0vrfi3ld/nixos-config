@@ -17,7 +17,7 @@ let
 in
 lib.mkMerge [
   {
-    networking.hostName = "theseus"; # Define your hostname.
+    networking.hostName = "TheUnreliable"; # Define your hostname.
   
     networking.networkmanager.enable = true;
 
