@@ -8,6 +8,8 @@
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     # repo for nix-flatpak
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
+    # gaming utilities
+    nix-gaming.url = "github:fufexan/nix-gaming";
     # repo for nix-iwd-provisioning
     nix-iwd-provisioning.url = "git+https://git.cl0vr.co/cl0vr/nix-iwd-provisioning/?ref=main";
     # secrets handling
@@ -26,6 +28,7 @@
       nixpkgs,
       nixos-hardware,
       nix-flatpak,
+      nix-gaming,
       nix-iwd-provisioning,
       sops-nix,
       lanzaboote,
@@ -33,6 +36,7 @@
     }@inputs:
     {
       nixosConfigurations.TheUnreliable = nixpkgs.lib.nixosSystem {
+        specialArgs = {inherit inputs;};
         modules = [
           # hardware config for the fw16
           nixos-hardware.nixosModules.framework-16-7040-amd
@@ -71,6 +75,7 @@
           # mullvad config
           ./config/mullvad.nix
           # gaming config
+          nix-gaming.nixosModules.platformOptimizations
           ./config/gaming.nix
           # vr config
           ./config/vr.nix
