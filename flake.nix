@@ -87,7 +87,8 @@
           ./config/android.nix
           # system optimisation config
           ./config/optimisations.nix
-
+          # power management config
+          ./config/power.nix
           # nh cli config
           ./config/nh.nix
           # shortcuts config
