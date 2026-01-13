@@ -40,6 +40,7 @@
         modules = [
           # hardware config for the fw16
           nixos-hardware.nixosModules.framework-16-7040-amd
+          ./config/framework.nix
           # sops cfg
           sops-nix.nixosModules.sops
           ./config/sops.nix
