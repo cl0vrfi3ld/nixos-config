@@ -4,7 +4,7 @@
   # accept sdk license
   nixpkgs.config.android_sdk.accept_license = true;
   # Enable adb
-  programs.adb.enable = true;
+  # programs.adb.enable = true;
   # setup user groups
   users.users.coucoucl0vr.extraGroups = [
     "kvm"
@@ -15,5 +15,5 @@
   #   pkgs.android-udev-rules
   # ];
   # add android studio
-  environment.systemPackages = [ pkgs.android-studio ];
+  environment.systemPackages = [ pkgs.android-studio pkgs.android-tools ];
 }
