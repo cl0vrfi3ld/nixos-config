@@ -24,7 +24,7 @@
     "pcie_aspm.policy=powersupersave"
     
     # for whatever reason, my drives aren't sleeping at all, this gives them some headroom to ensure that they do
-    "nvme_core.default_ps_max_latency_us=65000"
+    # "nvme_core.default_ps_max_latency_us=65000"
     
     # force usb autosuspend
     "usbcore.autosuspend=1"
