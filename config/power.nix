@@ -13,6 +13,9 @@
   environment.systemPackages = with pkgs; [
     powertop
   ];
+  
+  # enable auto backlight management
+  hardware.acpilight.enable = true;
 
   # device tweaks
   boot.kernelParams = [
