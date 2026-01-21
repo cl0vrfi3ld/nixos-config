@@ -32,12 +32,16 @@ lib.mkMerge [
   # disable the following features in compat mode
   (lib.mkIf (!networkCompatibilityMode) {
     networking.nameservers = nameservers;
-
-    services.resolved = {
-      enable = true;
-      dnssec = "true";
-      domains = nameservers;
-      dnsovertls = "true";
+    /*
+      evaluation warning: The option `services.resolved.dnsovertls' has been renamed to `services.resolved.settings.Resolve.DNSOverTLS'.
+      evaluation warning: The option `services.resolved.dnssec' has been renamed to `services.resolved.settings.Resolve.DNSSEC'.
+      evaluation warning: The option `services.resolved.domains'has been renamed to `services.resolved.settings.Resolve.Domains'.
+     */
+    services.resolved.enable = true;
+    services.resolved.settings.Resolve = {
+      DNSSEC = "true";
+      Domains = nameservers;
+      DNSOverTLS = "true";
     };
   })
 ]
