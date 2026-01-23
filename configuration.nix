@@ -20,8 +20,8 @@
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  # Disable active backlight management as it fucks with colours
-  # boot.kernelParams = [ "amdgpu.abmlevel=0" ];
+  # Set abm to a decent level to ensure efficiency
+  boot.kernelParams = [ "amdgpu.abmlevel=3" ];
 
   boot.initrd.enable = true;
   # boot.initrd.luks.devices."luks-c781dcd3-48f1-4489-aa58-afe4d2ea3e8e".device =
