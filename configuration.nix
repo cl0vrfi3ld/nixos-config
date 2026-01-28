@@ -11,6 +11,8 @@
     # include cachix
     ./cachix.nix
   ];
+  # trust memememeeee
+  nix.settings.trusted-users = [ "root" "coucoucl0vr" ];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
