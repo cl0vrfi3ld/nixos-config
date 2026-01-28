@@ -10,6 +10,6 @@
     HIP_VISIBLE_DEVICES = "0";
     ROCR_VISIBLE_DEVICES = "0";
   };
-  services.open-webui.enable = true;
+  services.open-webui.enable = false;
   services.open-webui.port = 12121;
 }
