@@ -72,9 +72,9 @@
   };
 
   # prevent wakeup in backpack
-  services.udev.extraRules = ''
-    SUBSYSTEM=="usb", DRIVERS=="usb", ATTRS{idVendor}=="32ac", ATTRS{idProduct}=="0012", ATTR{power/wakeup}="disabled", ATTR{driver/1-1.1.1.4/power/wakeup}="disabled"
-  '';
+  # services.udev.extraRules = ''
+  #   SUBSYSTEM=="usb", DRIVERS=="usb", ATTRS{idVendor}=="32ac", ATTRS{idProduct}=="0012", ATTR{power/wakeup}="disabled", ATTR{driver/1-1.1.1.4/power/wakeup}="disabled"
+  # '';
 
   # enable flatpak
   services.flatpak.enable = true;
