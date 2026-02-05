@@ -9,9 +9,10 @@
   services.tlp.enable = false;
   powerManagement.powertop.enable = false;
 
-  # add powertop analysis tool to system packages
+  # add power analysis tools to system packages
   environment.systemPackages = with pkgs; [
     powertop
+    upower
   ];
   
   # enable auto backlight management
