@@ -6,7 +6,7 @@
     services.flatpak.packages = [
       "io.github.kolunmi.Bazaar"
       # "com.bitwarden.desktop" # handled by native nixos pkg for better compatibility
-      "app.zen_browser.zen"
+      # "app.zen_browser.zen" # handled by native nixos pkg (via home-manager) for better compatibility
       "app.devsuite.Ptyxis"
       "dev.deedles.Trayscale"
       # "it.mijorus.gearlever" # handled by native nixos pkg for better compatibility
