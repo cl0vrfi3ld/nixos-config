@@ -19,6 +19,9 @@
 
   # device tweaks
   boot.kernelParams = [
+    # enable adaptive backlight management (ABM)
+    "amdgpu.abmlevel=3"
+
     # allow power profile control of gpu while keeping overdrive and other troublemakers disabled
     "amdgpu.ppfeaturemask=0xffffbfff"
 
