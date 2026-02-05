@@ -8,6 +8,10 @@
   #   options = "--delete-older-than 7d"; # Optional: delete 7 days old generations
   # };
 
+  # Enable ZRAM swap (compressed RAM)
+  zramSwap.enable = true;
+  zramSwap.memoryPercent = 50;
+
   # various nix settings
   nix.settings = {
     sandbox = true;
