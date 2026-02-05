@@ -32,7 +32,11 @@
 
     # force usb autosuspend
     "usbcore.autosuspend=1"
+
+    # explicitly enable amd p-state active mode
+    "amd_pstate=active"
   ];
+
   services.udev.extraRules = ''
     # force my current dgpu (RX 7700S) to auto shutoff when not in use
     ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x1002", ATTR{device}=="0x7480", ATTR{power/control}="auto"
