@@ -1,13 +1,6 @@
 # various system optimisations
 { config, pkgs,  ... }:
-{ 
-  # automatically collect garbage each week
-  # nix.gc = {
-  #   automatic = true;
-  #   dates = "weekly"; # Or a specific time like "03:15"
-  #   options = "--delete-older-than 7d"; # Optional: delete 7 days old generations
-  # };
-  
+{  
   # Enable ZRAM swap (compressed RAM)
   zramSwap.enable = true;
   zramSwap.memoryPercent = 50;
