@@ -2,8 +2,8 @@
 { config, pkgs, ... }:
 {
   # Enable ZRAM swap (compressed RAM)
-  zramSwap.enable = true;
-  zramSwap.memoryPercent = 50;
+  # zramSwap.enable = true;
+  # zramSwap.memoryPercent = 50;
 
   # various nix settings
   nix.settings = {
