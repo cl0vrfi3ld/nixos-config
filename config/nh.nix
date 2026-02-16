@@ -3,6 +3,7 @@
 {
   environment.sessionVariables = {
     NH_FLAKE = "/home/coucoucl0vr/nixos-config"; 
+    NH_ELEVATION_PROGRAM = "${pkgs.systemdUkify}/bin/run0";
   };
   programs.nh = {
     enable = true;
