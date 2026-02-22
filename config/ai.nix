@@ -3,7 +3,7 @@
 
 {
   hardware.amdgpu.opencl.enable = true;
-  services.ollama.enable = false;
+  services.ollama.enable = true;
   # Disable auto-start to keep dGPU dormant; start manually with 'systemctl start ollama'
   systemd.services.ollama.wantedBy = lib.mkForce [ ]; 
   services.ollama.package = pkgs.ollama-rocm;
