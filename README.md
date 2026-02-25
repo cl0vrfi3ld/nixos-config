@@ -12,7 +12,7 @@ Framework Laptop 16 (Ryzen 7040HS with RX 7700S dGPU)
 
 ### Desktop Environment
 
-DankMaterialShell (via Niri window manager)
+DankMaterialShell (via Niri compositor)
 
 ### Other Features
 
