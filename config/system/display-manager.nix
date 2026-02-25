@@ -1,9 +1,9 @@
 { config, pkgs, ... }:
 
 {
-  # Configure the Display Manager
-  services.displayManager.sddm = {
+  # enable dms greeter
+  services.displayManager.dms-greeter = {
     enable = true;
-    wayland.enable = true; # Enable Wayland support for SDDM
+    compositor.name = "niri"; # Or "hyprland" or "sway"
   };
 }
