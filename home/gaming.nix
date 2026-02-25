@@ -1,0 +1,14 @@
+{ pkgs, ... }:
+
+{
+  home.packages = with pkgs; [
+    bottles
+    prismlauncher
+    (heroic.override {
+      extraPkgs = pkgs: [
+        pkgs.gamescope
+        pkgs.proton-ge-bin
+      ];
+    })
+  ];
+}
