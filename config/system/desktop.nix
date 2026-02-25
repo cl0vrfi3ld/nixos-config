@@ -21,5 +21,7 @@
     enableClipboardPaste = true; # Pasting from the clipboard history (wtype)
   };
   # include Niri and DankMaterialShell packages
-  environment.systemPackages = with pkgs; [xwayland-satellite dgop];  
+  environment.systemPackages = with pkgs; [xwayland-satellite dgop];
+  # enable accounts daemon
+  services.accounts-daemon.enable = true;
 }
