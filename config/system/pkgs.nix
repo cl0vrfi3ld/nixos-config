@@ -2,6 +2,7 @@
 { config, pkgs, ... }:
 
 {
+  # TODO: organize these into the proper config files
   # List of packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
