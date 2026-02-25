@@ -1,8 +1,12 @@
 # user-level fish shell config
 { config, pkgs, ... }:
 let
-  home-flake = "/home/coucoucl0vr/.config/home-manager";
   system-flake = "/home/coucoucl0vr/nixos-config";
+  sudo-command = "run0";
+
+  sysbld-cmd = "nh os switch ${system-flake}";
+  sysupg-cmd = "nh os switch --update --commit-lock-file ${system-flake}";
+  sysrollback-cmd = "${sudo-command} nixos-rebuild switch --rollback";
 in
 {
   programs.fish = {
@@ -11,24 +15,22 @@ in
     shellAbbrs = {
       # "sup" -> apply changes for the whole system (including home config)
       # This just rebuilds. It does NOT pull new versions from the internet.
-      sup = "nh os switch ${system-flake} && nh home switch ${home-flake}";
+      sup = sysbld-cmd;
       # "sug" -> update flake inputs and apply for the whole system (including home config)
-      sug = "nh os switch --update --commit-lock-file ${system-flake} && nh home switch --update --commit-lock-file ${home-flake}";
+      sug = sysupg-cmd;
+      # "soops"/"sback" -> rollback system config
+      soops = sysrollback-cmd;
+      sback = sysrollback-cmd;
       # "sclean" -> deep clean the system
       sclean = "nh clean all --keep 1";
 
-      # "nup" -> apply nixos flake config
-      nup = "nh os switch ${system-flake}";
-      # "nug" -> update nixos flake inputs and apply
-      nug = "nh os switch --update --commit-lock-file ${system-flake}";
-      # "noops"/"nback" -> rollback config
-      noops = "run0 nixos-rebuild switch --rollback";
-      nback = "run0 nixos-rebuild switch --rollback";
-
-      # "hmup" -> apply home-manager config
-      hmup = "nh home switch ${home-flake}";
-      # "hmug" -> update home-manager inputs and apply
-      hmug = "nh home switch --update --commit-lock-file ${home-flake}";
+      # "nup" -> alias for "sup"
+      nup = sysbld-cmd;
+      # "nug" -> alias for "sug"
+      nug = sysupg-cmd;
+      # "noops"/"nback" -> alias for "soops"/"sback"
+      noops = sysrollback-cmd;
+      nback = sysrollback-cmd;
 
       # git forge stuff
       cgit = "fj --host git.cl0vr.co";
