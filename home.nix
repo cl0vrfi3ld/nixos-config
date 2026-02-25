@@ -15,24 +15,24 @@
     # zen browser module
     inputs.zen-browser.homeModules.twilight
     # --- home config ---
-    ./home/env.nix
-    ./home/flatpak.nix
-    ./home/nixpkgs.nix
-    ./home/fish.nix
-    ./home/git.nix
-    ./home/vscode.nix
-    ./home/containers.nix
-    ./home/gaming.nix
-    ./home/music.nix
-    ./home/media.nix
-    ./home/chat.nix
-    ./home/email.nix
-    ./home/internet.nix
-    ./home/dev.nix
-    ./home/ai.nix
-    ./home/utils.nix
-    ./home/math-junk.nix
-    ./home/ssh.nix
+    ./config/home/env.nix
+    ./config/home/flatpak.nix
+    ./config/home/nixpkgs.nix
+    ./config/home/fish.nix
+    ./config/home/git.nix
+    ./config/home/vscode.nix
+    ./config/home/containers.nix
+    ./config/home/gaming.nix
+    ./config/home/music.nix
+    ./config/home/media.nix
+    ./config/home/chat.nix
+    ./config/home/email.nix
+    ./config/home/internet.nix
+    ./config/home/dev.nix
+    ./config/home/ai.nix
+    ./config/home/utils.nix
+    ./config/home/math-junk.nix
+    ./config/home/ssh.nix
   ];
   # Home Manager needs a bit of information about you and the paths it should
   # manage.

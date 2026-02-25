@@ -62,10 +62,10 @@
         modules = [
           # hardware config for the fw16
           nixos-hardware.nixosModules.framework-16-7040-amd
-          ./config/framework.nix
+          ./config/system/framework.nix
           # sops cfg
           sops-nix.nixosModules.sops
-          ./config/sops.nix
+          ./config/system/sops.nix
           # home manager config
           home-manager.nixosModules.home-manager
           {
@@ -84,54 +84,54 @@
           }
           # lanzaboote config
           lanzaboote.nixosModules.lanzaboote
-          ./config/secure-boot.nix
+          ./config/system/secure-boot.nix
           # pkgs config
-          ./config/pkgs.nix
+          ./config/system/pkgs.nix
           # networking conf
-          ./config/networking.nix
+          ./config/system/networking.nix
           # eduroam/general iwd provisioning
           nix-iwd-provisioning.nixosModules.nix-iwd-provisioning
-          ./config/iwd.nix
+          ./config/system/iwd.nix
           # declarative flatpak management
           nix-flatpak.nixosModules.nix-flatpak
-          ./config/flatpak.nix
+          ./config/system/flatpak.nix
           # ai config
-          ./config/ai.nix
+          ./config/system/ai.nix
           # proxy config
-          ./config/proxies.nix
+          ./config/system/proxies.nix
           # plymouth config
-          ./config/plymouth.nix
+          ./config/system/plymouth.nix
           # font config
-          ./config/fonts.nix
+          ./config/system/fonts.nix
           # wayland config
-          ./config/wayland.nix
+          ./config/system/wayland.nix
           # display manager config
-          ./config/display-manager.nix
+          ./config/system/display-manager.nix
           # desktop manager config
-          ./config/desktop-manager.nix
+          ./config/system/desktop-manager.nix
           # tailscale config
-          ./config/tailscale.nix
+          ./config/system/tailscale.nix
           # mullvad config
-          ./config/mullvad.nix
+          ./config/system/mullvad.nix
           # gaming config
           nix-gaming.nixosModules.platformOptimizations
-          ./config/gaming.nix
+          ./config/system/gaming.nix
           # vr config
-          ./config/vr.nix
+          ./config/system/vr.nix
           # graphics config
-          ./config/graphics.nix
+          ./config/system/graphics.nix
           # waydroid config
-          ./config/waydroid.nix
+          ./config/system/waydroid.nix
           # android dev config
-          ./config/android.nix
+          ./config/system/android.nix
           # system optimisation config
-          ./config/optimisations.nix
+          ./config/system/optimisations.nix
           # power management config
-          ./config/power.nix
+          ./config/system/power.nix
           # nh cli config
-          ./config/nh.nix
+          ./config/system/nh.nix
           # shortcuts config
-          ./config/shortcuts.nix
+          ./config/system/shortcuts.nix
           # this is the old config method, importing it here so its settings are still applied
           ./configuration.nix
         ];
