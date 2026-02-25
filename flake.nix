@@ -107,8 +107,8 @@
           ./config/system/wayland.nix
           # display manager config
           ./config/system/display-manager.nix
-          # desktop manager config
-          ./config/system/desktop-manager.nix
+          # desktop interface config
+          ./config/system/desktop.nix
           # tailscale config
           ./config/system/tailscale.nix
           # mullvad config
