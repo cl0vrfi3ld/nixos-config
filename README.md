@@ -12,7 +12,7 @@ Framework Laptop 16 (Ryzen 7040HS with RX 7700S dGPU)
 
 ### Desktop Environment
 
-KDE Plasma
+DankMaterialShell (via Niri window manager)
 
 ### Other Features
 
