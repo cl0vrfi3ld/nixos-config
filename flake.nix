@@ -87,6 +87,8 @@
           ./config/system/secure-boot.nix
           # pkgs config
           ./config/system/pkgs.nix
+          # security config
+          ./config/system/security.nix
           # networking conf
           ./config/system/networking.nix
           # eduroam/general iwd provisioning
