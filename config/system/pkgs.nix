@@ -24,5 +24,12 @@
     lact
     kdePackages.partitionmanager
   ];
-
+  # allow certain unfree packages
+  nixpkgs.config.allowUnfreePredicate =
+    pkg:
+    builtins.elem (pkgs.lib.getName pkg) [
+      "castlabs-electron"
+      "antigravity"
+      "mathematica"
+    ];
 }
