@@ -14,4 +14,8 @@
     package = pkgs.adwaita-icon-theme;
     name = "Adwaita";
   };
+  home.packages = with pkgs; [
+    adwaita-icon-theme
+    kdePackages.breeze-icons
+  ];
 }
