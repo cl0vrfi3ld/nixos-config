@@ -23,7 +23,7 @@
   # enable DankSearch
   programs.dsearch.enable = true;
   # include Niri and DankMaterialShell packages
-  environment.systemPackages = with pkgs; [xwayland-satellite dgop];
+  environment.systemPackages = with pkgs; [xwayland-satellite dgop kdePackages.kimageformats];
   # enable accounts daemon
   services.accounts-daemon.enable = true;
 }
