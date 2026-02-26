@@ -2,6 +2,9 @@
 { inputs, pkgs, system, ... }:
 
 {
+  # import DankMaterialShell plugin registry
+  imports = [ inputs.dms-plugin-registry.modules.default ];
+  
   # enable niri
   programs.niri.enable = true;
   # enable Dank Material Shell

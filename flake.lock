@@ -15,6 +15,26 @@
         "type": "github"
       }
     },
+    "dms-plugin-registry": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1772068819,
+        "narHash": "sha256-sLkPdHdb0G0CorHqGD9xMmfloSYYDEvoTFWEwYFLKKQ=",
+        "owner": "AvengeMedia",
+        "repo": "dms-plugin-registry",
+        "rev": "6a44df27c99af5fa579e0fc6706dc0c0212a9b0f",
+        "type": "github"
+      },
+      "original": {
+        "owner": "AvengeMedia",
+        "repo": "dms-plugin-registry",
+        "type": "github"
+      }
+    },
     "flake-compat": {
       "flake": false,
       "locked": {
@@ -316,6 +336,7 @@
     },
     "root": {
       "inputs": {
+        "dms-plugin-registry": "dms-plugin-registry",
         "home-manager": "home-manager",
         "lanzaboote": "lanzaboote",
         "nix-flatpak": "nix-flatpak",

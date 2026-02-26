@@ -19,6 +19,11 @@
       # url = "github:quickshell-mirror/quickshell"; # github mirror
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # DankMaterialShell plugin registry
+    dms-plugin-registry = {
+      url = "github:AvengeMedia/dms-plugin-registry";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # gaming utilities
     nix-gaming.url = "github:fufexan/nix-gaming";
     # repo for nix-iwd-provisioning
