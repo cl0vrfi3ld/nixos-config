@@ -5,7 +5,15 @@
   system,
   ...
 }:
-
+let
+  fileManagers = with pkgs; [
+    kdePackages.dolphin
+    yazi
+  ];
+  utilityApps = with pkgs; [
+    kdePackages.okular
+  ];
+in
 {
   # import DankMaterialShell plugin registry
   imports = [ inputs.dms-plugin-registry.modules.default ];
@@ -22,10 +30,7 @@
   environment.systemPackages = with pkgs; [
     xwayland-satellite
     dgop
-    # --- file managers ---
-    kdePackages.dolphin
-    yazi
-  ];
+  ] ++ fileManagers ++ utilityApps;
 
   # enable niri
   programs.niri.enable = true;
