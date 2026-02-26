@@ -1,12 +1,17 @@
 # aesthetic and theme configs
 { pkgs, ... }:
 
-{ 
+{
   # set cursor theme
   home.pointerCursor = {
     gtk.enable = true;
     package = pkgs.adwaita-icon-theme;
     name = "Adwaita";
     size = 24;
+  };
+  # set icon theme
+  gtk.iconTheme = {
+    package = pkgs.adwaita-icon-theme;
+    name = "Adwaita";
   };
 }
