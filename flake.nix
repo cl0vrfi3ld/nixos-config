@@ -13,6 +13,12 @@
     };
     # repo for nix-flatpak
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
+    # source builds of quickshell
+    quickshell = {
+      url = "git+https://git.outfoxxed.me/quickshell/quickshell";
+      # url = "github:quickshell-mirror/quickshell"; # github mirror
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # gaming utilities
     nix-gaming.url = "github:fufexan/nix-gaming";
     # repo for nix-iwd-provisioning

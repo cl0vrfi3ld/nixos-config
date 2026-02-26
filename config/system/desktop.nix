@@ -1,5 +1,5 @@
 # desktop interface config
-{ config, pkgs, ... }:
+{ inputs, pkgs, system, ... }:
 
 {
   # enable niri
@@ -7,7 +7,9 @@
   # enable Dank Material Shell
   programs.dms-shell = {
     enable = true;
-
+    
+    quickshell.package = inputs.quickshell.packages.${system}.quickshell;
+    
     systemd = {
       enable = true; # Systemd service for auto-start
       restartIfChanged = true; # Auto-restart dms.service when dms-shell changes
