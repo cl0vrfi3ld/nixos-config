@@ -16,6 +16,7 @@
     inputs.zen-browser.homeModules.twilight
     # --- home config ---
     ./config/home/env.nix
+    ./config/home/theme.nix
     ./config/home/niri.nix
     ./config/home/flatpak.nix
     ./config/home/nixpkgs.nix
