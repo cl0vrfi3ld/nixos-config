@@ -59,17 +59,19 @@
 
     serviceConfig = {
       Restart = "on-failure";
-      # The script monitors upower events instantly (no polling loop)
+      # The script monitors upower events instantly (no polling loop).
+      # Currently requires existing DMS-managed display profiles
+      # TODO: create display profiles declaratively
       ExecStart = pkgs.writeShellScript "rr-manager" ''
         
         # Function to apply refresh rate
         apply_rr() {
           if [ "$1" = "battery" ]; then
              echo "Switched to Battery: Setting 60Hz"
-             ${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor output.eDP-2.mode.2560x1600@60
+             ${pkgs.dms-shell}/bin/dms ipc call outputs setProfile "OnBattery"
           else
              echo "Switched to AC: Setting 165Hz"
-             ${pkgs.kdePackages.libkscreen}/bin/kscreen-doctor output.eDP-2.mode.2560x1600@165
+             ${pkgs.dms-shell}/bin/dms ipc call outputs setProfile "OnAC"
           fi
         }
 
