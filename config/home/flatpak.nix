@@ -24,6 +24,8 @@
         "!x11"
         "!fallback-x11" # remove the `!` if we want to allow a an x11 fallback
       ];
+      # allow access to the nix store
+      Context.filesystems = [ "/nix/store:ro" ];
     };
 
     # pika backup overrides
