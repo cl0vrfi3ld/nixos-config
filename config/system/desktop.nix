@@ -1,18 +1,40 @@
 # desktop interface config
-{ inputs, pkgs, system, ... }:
+{
+  inputs,
+  pkgs,
+  system,
+  ...
+}:
 
 {
   # import DankMaterialShell plugin registry
   imports = [ inputs.dms-plugin-registry.modules.default ];
-  
+
+  # Niri and DankMaterialShell dependencies
+  nixpkgs.overlays = [
+    # inject optional `kimageformats` dependency directly into `dms-shell`
+    (final: prev: {
+      dms-shell = prev.dms-shell.overrideAttrs (oldAttrs: {
+        buildInputs = (oldAttrs.buildInputs or [ ]) ++ [ prev.kdePackages.kimageformats ];
+      });
+    })
+  ];
+  environment.systemPackages = with pkgs; [
+    xwayland-satellite
+    dgop
+    # --- file managers ---
+    kdePackages.dolphin
+    yazi
+  ];
+
   # enable niri
   programs.niri.enable = true;
   # enable Dank Material Shell
   programs.dms-shell = {
     enable = true;
-    
+
     quickshell.package = inputs.quickshell.packages.${system}.quickshell;
-    
+
     systemd = {
       enable = true; # Systemd service for auto-start
       restartIfChanged = true; # Auto-restart dms.service when dms-shell changes
@@ -27,23 +49,14 @@
   };
   # dms plugins
   programs.dms-shell.plugins = {
-      dankBatteryAlerts.enable = true;
-      dankKDEConnect.enable = true;
-    };
+    dankBatteryAlerts.enable = true;
+    dankKDEConnect.enable = true;
+  };
+
   # enable DankSearch
   programs.dsearch.enable = true;
-  # include Niri and DankMaterialShell packages
-  environment.systemPackages = with pkgs; [
-    xwayland-satellite
-    dgop 
-    kdePackages.kimageformats
-    # file managers
-    kdePackages.dolphin
-    # nautilus
-    yazi
-    ];
+
   # enable accounts daemon
   services.accounts-daemon.enable = true;
-  
-  
+
 }
