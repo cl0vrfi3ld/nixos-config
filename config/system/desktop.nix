@@ -33,7 +33,17 @@
   # enable DankSearch
   programs.dsearch.enable = true;
   # include Niri and DankMaterialShell packages
-  environment.systemPackages = with pkgs; [xwayland-satellite dgop kdePackages.kimageformats];
+  environment.systemPackages = with pkgs; [
+    xwayland-satellite
+    dgop 
+    kdePackages.kimageformats
+    # file managers
+    # kdePackages.dolphin # nautilus is preferred for theme consistency
+    nautilus
+    yazi
+    ];
   # enable accounts daemon
   services.accounts-daemon.enable = true;
+  
+  
 }
