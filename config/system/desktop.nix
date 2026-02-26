@@ -38,8 +38,8 @@
     dgop 
     kdePackages.kimageformats
     # file managers
-    # kdePackages.dolphin # nautilus is preferred for theme consistency
-    nautilus
+    kdePackages.dolphin
+    # nautilus
     yazi
     ];
   # enable accounts daemon
