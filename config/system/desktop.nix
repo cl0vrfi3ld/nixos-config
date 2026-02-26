@@ -22,6 +22,11 @@
     enableCalendarEvents = true; # Calendar integration (khal)
     enableClipboardPaste = true; # Pasting from the clipboard history (wtype)
   };
+  # dms plugins
+  programs.dms-shell.plugins = {
+      dankBatteryAlerts.enable = true;
+      dankKDEConnect.enable = true;
+    };
   # enable DankSearch
   programs.dsearch.enable = true;
   # include Niri and DankMaterialShell packages
