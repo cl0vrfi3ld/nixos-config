@@ -1,67 +1,75 @@
-# desktop interface config
-{
-  inputs,
-  pkgs,
-  system,
-  ...
-}:
+{ inputs, pkgs, system, ... }:
 let
-  fileManagers = with pkgs; [
-    kdePackages.dolphin
-    yazi
-  ];
-  utilityApps = with pkgs; [
-    kdePackages.okular
-  ];
+  fileManagers = with pkgs; [ kdePackages.dolphin yazi ];
+  utilityApps = with pkgs; [ kdePackages.okular ];
 in
 {
-  # import DankMaterialShell plugin registry
   imports = [ inputs.dms-plugin-registry.modules.default ];
 
-  # Niri and DankMaterialShell dependencies
+  # Wayland Config
+  services.xserver.enable = false;
+
+  # Display Manager
+  services.displayManager.dms-greeter = {
+    enable = true;
+    compositor.name = "niri";
+  };
+
+  # Niri and DMS Shell dependencies
   nixpkgs.overlays = [
-    # inject optional `kimageformats` dependency directly into `dms-shell`
     (final: prev: {
       dms-shell = prev.dms-shell.overrideAttrs (oldAttrs: {
         buildInputs = (oldAttrs.buildInputs or [ ]) ++ [ prev.kdePackages.kimageformats ];
       });
     })
   ];
+  
   environment.systemPackages = with pkgs; [
     xwayland-satellite
     dgop
   ] ++ fileManagers ++ utilityApps;
 
-  # enable niri
   programs.niri.enable = true;
-  # enable Dank Material Shell
   programs.dms-shell = {
     enable = true;
-
     quickshell.package = inputs.quickshell.packages.${system}.quickshell;
-
-    systemd = {
-      enable = true; # Systemd service for auto-start
-      restartIfChanged = true; # Auto-restart dms.service when dms-shell changes
+    systemd = { enable = true; restartIfChanged = true; };
+    enableSystemMonitoring = true;
+    enableVPN = true;
+    enableDynamicTheming = true;
+    enableCalendarEvents = true;
+    enableClipboardPaste = true;
+    plugins = {
+      dankBatteryAlerts.enable = true;
+      dankKDEConnect.enable = true;
     };
-
-    # Core features
-    enableSystemMonitoring = true; # System monitoring widgets (dgop)
-    enableVPN = true; # VPN management widget
-    enableDynamicTheming = true; # Wallpaper-based theming (matugen)
-    enableCalendarEvents = true; # Calendar integration (khal)
-    enableClipboardPaste = true; # Pasting from the clipboard history (wtype)
-  };
-  # dms plugins
-  programs.dms-shell.plugins = {
-    dankBatteryAlerts.enable = true;
-    dankKDEConnect.enable = true;
   };
 
-  # enable DankSearch
   programs.dsearch.enable = true;
-
-  # enable accounts daemon
   services.accounts-daemon.enable = true;
 
+  # Fonts
+  fonts.packages = with pkgs; [
+    nerd-fonts.droid-sans-mono
+    nerd-fonts.fira-code
+    nerd-fonts.roboto-mono
+    roboto
+    nerd-fonts.open-dyslexic
+    noto-fonts
+    noto-fonts-color-emoji
+  ];
+
+  # Shortcuts and Aliases
+  environment.shellAliases = {
+    # System
+    # rebuild = "sudo nixos-rebuild switch --flake .#default";
+    # clean = "nix-collect-garbage -d";
+
+    # Navigation
+    # ".." = "cd ..";
+    
+    # Utilities
+    # ll = "ls -lha";
+    # grep = "grep --color=auto";
+  };
 }

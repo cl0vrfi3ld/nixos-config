@@ -1,7 +1,8 @@
-# security services config
 { config, pkgs, lib, ... }:
 
 {
-  security.polkit.enable = true; # enable polkit
-  services.gnome.gnome-keyring.enable = true; # use gnome-keyring as secrets backend
+  # Enable polkit
+  security.polkit.enable = true;
+  # Enable gnome-keyring
+  services.gnome.gnome-keyring.enable = true;
 }
