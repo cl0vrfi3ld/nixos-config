@@ -21,6 +21,11 @@ in
     package = pkgs.adwaita-icon-theme;
     name = "Adwaita";
   };
+  # set theming env vars
+  home.sessionVariables = {
+    QT_QPA_PLATFORMTHEME = "qt6ct";
+    QT_QPA_PLATFORMTHEME_QT6 = "qt6ct";
+  };
   # add dependencies to home package env
   home.packages = iconPacks ++ themingDeps ++ utilityApps;
 
