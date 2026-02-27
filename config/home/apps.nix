@@ -147,6 +147,7 @@ in
   services.flatpak.enable = true;
   services.flatpak.packages = [
     "org.gnome.World.PikaBackup"
+    "io.anytype.anytype"
     "com.github.zocker_160.SyncThingy"
     "com.toolstack.Folio"
     "re.sonny.Eloquent"
