@@ -1,5 +1,10 @@
 # System-level boot, initrd, and plymouth configuration
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
   # Bootloader setup
@@ -28,7 +33,10 @@
     theme = "deus_ex";
     themePackages = with pkgs; [
       (adi1090x-plymouth-themes.override {
-        selected_themes = [ "rings" "deus_ex" ];
+        selected_themes = [
+          "rings"
+          "deus_ex"
+        ];
       })
     ];
   };
@@ -38,11 +46,11 @@
   boot.initrd.verbose = false;
   boot.initrd.systemd.enable = true;
   boot.kernelParams = [
-      "quiet"
-      "splash"
-      "boot.shell_on_fail"
-      "udev.log_priority=3"
-      "rd.systemd.show_status=auto"
+    "quiet"
+    "splash"
+    "boot.shell_on_fail"
+    "udev.log_priority=3"
+    "rd.systemd.show_status=auto"
   ];
 
   # Hide the OS choice for bootloaders

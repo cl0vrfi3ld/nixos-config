@@ -39,8 +39,10 @@
   };
 
   boot.initrd.luks.devices = {
-    "luks-1f1eff14-7736-4c3f-be41-027a7a2bab3c".device = "/dev/disk/by-uuid/1f1eff14-7736-4c3f-be41-027a7a2bab3c";
-    "luks-c781dcd3-48f1-4489-aa58-afe4d2ea3e8e".device = "/dev/disk/by-uuid/c781dcd3-48f1-4489-aa58-afe4d2ea3e8e";
+    "luks-1f1eff14-7736-4c3f-be41-027a7a2bab3c".device =
+      "/dev/disk/by-uuid/1f1eff14-7736-4c3f-be41-027a7a2bab3c";
+    "luks-c781dcd3-48f1-4489-aa58-afe4d2ea3e8e".device =
+      "/dev/disk/by-uuid/c781dcd3-48f1-4489-aa58-afe4d2ea3e8e";
     "data_too".device = "/dev/disk/by-uuid/d60fb91e-ccc6-4818-90d5-063389df2d4e";
   };
 

@@ -1,5 +1,10 @@
 # System-level application and virtualization configuration
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
   # AppImage support
@@ -49,12 +54,15 @@
   nixpkgs.config.android_sdk.accept_license = true;
   # programs.adb.enable = true;
   # services.udev.packages = [ pkgs.android-udev-rules ];
-  environment.systemPackages = [ pkgs.android-studio pkgs.android-tools ];
+  environment.systemPackages = [
+    pkgs.android-studio
+    pkgs.android-tools
+  ];
 
   # AI Tools
   hardware.amdgpu.opencl.enable = true;
   services.ollama.enable = false;
-  systemd.services.ollama.wantedBy = lib.mkForce [ ]; 
+  systemd.services.ollama.wantedBy = lib.mkForce [ ];
   services.ollama.package = pkgs.ollama-rocm;
   services.ollama.environmentVariables = {
     OLLAMA_DEBUG = "1";

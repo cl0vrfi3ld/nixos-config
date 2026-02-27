@@ -33,7 +33,10 @@
 
   # Nix configuration
   nix.settings = {
-    trusted-users = [ "root" "coucoucl0vr" ];
+    trusted-users = [
+      "root"
+      "coucoucl0vr"
+    ];
     experimental-features = "nix-command flakes";
     sandbox = true;
     show-trace = true;
@@ -75,7 +78,7 @@
 
   # nh cli stuff
   environment.sessionVariables = {
-    NH_FLAKE = "/home/coucoucl0vr/nixos-config"; 
+    NH_FLAKE = "/home/coucoucl0vr/nixos-config";
     NH_ELEVATION_PROGRAM = "${pkgs.systemdUkify}/bin/run0";
   };
   programs.nh = {

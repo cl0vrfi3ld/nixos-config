@@ -1,5 +1,10 @@
 # System-level network configuration (NetworkManager, iwd, VPNs, DNS)
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 let
   networkCompatibilityMode = false;
   nameservers = [
@@ -27,8 +32,12 @@ lib.mkMerge [
       passwordPath = config.sops.secrets."iwd/eduroam/passwd".path;
     };
     networking.wireless.iwd.settings = {
-      Network = { EnableIPv6 = true; };
-      Settings = { AutoConnect = true; };
+      Network = {
+        EnableIPv6 = true;
+      };
+      Settings = {
+        AutoConnect = true;
+      };
     };
 
     # Tailscale
@@ -43,8 +52,18 @@ lib.mkMerge [
     # Proxychains
     programs.proxychains.enable = false;
     programs.proxychains.proxies = {
-      tetherfi-ethernet-socks5 = { type = "socks5"; host = "172.26.115.147"; port = 8229; enable = true; };
-      tetherfi-ethernet-http = { type = "http"; host = "172.26.115.147"; port = 8228; enable = true; };
+      tetherfi-ethernet-socks5 = {
+        type = "socks5";
+        host = "172.26.115.147";
+        port = 8229;
+        enable = true;
+      };
+      tetherfi-ethernet-http = {
+        type = "http";
+        host = "172.26.115.147";
+        port = 8228;
+        enable = true;
+      };
     };
   }
   (lib.mkIf (!networkCompatibilityMode) {

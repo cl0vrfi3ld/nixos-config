@@ -104,7 +104,7 @@
             nix-flatpak.nixosModules.nix-flatpak
             # gaming config
             nix-gaming.nixosModules.platformOptimizations
-            
+
             # --- System Config Modules ---
             ./config/system/boot.nix
             ./config/system/core.nix
@@ -115,7 +115,7 @@
             ./config/system/gaming.nix
             ./config/system/security.nix
             ./config/system/secrets.nix
-            
+
             # this is the old config method, importing it here so its settings are still applied
             ./configuration.nix
           ];

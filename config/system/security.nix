@@ -1,5 +1,10 @@
 # System-level security and polkit configuration
-{ config, pkgs, lib, ... }:
+{
+  config,
+  pkgs,
+  lib,
+  ...
+}:
 
 {
   # Enable polkit

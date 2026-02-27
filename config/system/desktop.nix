@@ -1,7 +1,15 @@
 # System-level desktop environment and window manager configuration
-{ inputs, pkgs, system, ... }:
+{
+  inputs,
+  pkgs,
+  system,
+  ...
+}:
 let
-  fileManagers = with pkgs; [ kdePackages.dolphin yazi ];
+  fileManagers = with pkgs; [
+    kdePackages.dolphin
+    yazi
+  ];
   utilityApps = with pkgs; [ kdePackages.okular ];
 in
 {
@@ -24,17 +32,24 @@ in
       });
     })
   ];
-  
-  environment.systemPackages = with pkgs; [
-    xwayland-satellite
-    dgop
-  ] ++ fileManagers ++ utilityApps;
+
+  environment.systemPackages =
+    with pkgs;
+    [
+      xwayland-satellite
+      dgop
+    ]
+    ++ fileManagers
+    ++ utilityApps;
 
   programs.niri.enable = true;
   programs.dms-shell = {
     enable = true;
     quickshell.package = inputs.quickshell.packages.${system}.quickshell;
-    systemd = { enable = true; restartIfChanged = true; };
+    systemd = {
+      enable = true;
+      restartIfChanged = true;
+    };
     enableSystemMonitoring = true;
     enableVPN = true;
     enableDynamicTheming = true;
@@ -68,7 +83,7 @@ in
 
     # Navigation
     # ".." = "cd ..";
-    
+
     # Utilities
     # ll = "ls -lha";
     # grep = "grep --color=auto";

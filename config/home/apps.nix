@@ -1,5 +1,11 @@
 # User-level application configuration and flatpaks
-{ config, pkgs, inputs, system, ... }:
+{
+  config,
+  pkgs,
+  inputs,
+  system,
+  ...
+}:
 
 let
   selfprivacy-app = inputs.self-privacy.packages.${system}.release;
@@ -7,35 +13,87 @@ let
     name = "rstudio-fhs";
 
     # These packages will be available inside the FHS bubble
-    targetPkgs = pkgs: (with pkgs; [
-      # --- Core ---
-      R rstudio
-      # --- Toolchain ---
-      gcc gnumake gfortran binutils pkg-config cmake
-      # --- Libraries & Headers ---
-      openssl openssl.dev curl curl.dev libxml2 libxml2.dev zlib zlib.dev
-      freetype freetype.dev fontconfig fontconfig.dev harfbuzz harfbuzz.dev
-      fribidi fribidi.dev icu icu.dev libpng libpng.dev libjpeg libjpeg.dev
-      libtiff libtiff.dev libwebp cairo cairo.dev pango pango.dev rPackages.V8
-      udunits
-    ]);
+    targetPkgs =
+      pkgs:
+      (with pkgs; [
+        # --- Core ---
+        R
+        rstudio
+        # --- Toolchain ---
+        gcc
+        gnumake
+        gfortran
+        binutils
+        pkg-config
+        cmake
+        # --- Libraries & Headers ---
+        openssl
+        openssl.dev
+        curl
+        curl.dev
+        libxml2
+        libxml2.dev
+        zlib
+        zlib.dev
+        freetype
+        freetype.dev
+        fontconfig
+        fontconfig.dev
+        harfbuzz
+        harfbuzz.dev
+        fribidi
+        fribidi.dev
+        icu
+        icu.dev
+        libpng
+        libpng.dev
+        libjpeg
+        libjpeg.dev
+        libtiff
+        libtiff.dev
+        libwebp
+        cairo
+        cairo.dev
+        pango
+        pango.dev
+        rPackages.V8
+        udunits
+      ]);
     runScript = "rstudio";
   };
 in
 {
   home.packages = with pkgs; [
     # Utils
-    gearlever usbimager wl-clipboard selfprivacy-app btop-rocm
+    gearlever
+    usbimager
+    wl-clipboard
+    selfprivacy-app
+    btop-rocm
     # Chat
-    vesktop fluffychat signal-desktop flare
+    vesktop
+    fluffychat
+    signal-desktop
+    flare
     # Email
-    thunderbird protonmail-bridge-gui
+    thunderbird
+    protonmail-bridge-gui
     # Internet
-    mullvad-browser librewolf nextcloud-client
+    mullvad-browser
+    librewolf
+    nextcloud-client
     # Media
-    mpv krita
+    mpv
+    krita
     # Music
-    picard chromaprint lrcget mixxx ardour tidal-hifi feishin cavasik
+    picard
+    chromaprint
+    lrcget
+    mixxx
+    ardour
+    tidal-hifi
+    feishin
+    cavasik
     # AI
     gemini-cli
     # Math
@@ -73,8 +131,15 @@ in
       exec = "rstudio-fhs %F";
       icon = "${pkgs.rstudio}/share/icons/hicolor/256x256/apps/rstudio.png";
       terminal = false;
-      categories = [ "Development" "Science" "Education" ];
-      mimeType = [ "text/x-r-source" "application/x-r-data" ];
+      categories = [
+        "Development"
+        "Science"
+        "Education"
+      ];
+      mimeType = [
+        "text/x-r-source"
+        "application/x-r-data"
+      ];
     };
   };
 
@@ -92,7 +157,11 @@ in
   services.flatpak.overrides = {
     global = {
       # Force Wayland by default
-      Context.sockets = [ "wayland" "!x11" "!fallback-x11" ];
+      Context.sockets = [
+        "wayland"
+        "!x11"
+        "!fallback-x11"
+      ];
       # allow access to the nix store
       Context.filesystems = [ "/nix/store:ro" ];
     };

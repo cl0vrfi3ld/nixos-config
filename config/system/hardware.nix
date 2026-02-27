@@ -72,7 +72,10 @@
     after = [ "graphical-session.target" ];
     partOf = [ "graphical-session.target" ];
     wantedBy = [ "graphical-session.target" ];
-    path = [ inputs.quickshell.packages.${system}.quickshell pkgs.dms-shell ];
+    path = [
+      inputs.quickshell.packages.${system}.quickshell
+      pkgs.dms-shell
+    ];
     serviceConfig = {
       Restart = "on-failure";
       # Currently requires existing DMS-managed display profiles
@@ -87,7 +90,7 @@
              dms ipc call outputs setProfile OnAC
           fi
         }
-        
+
         STATUS=$(cat /sys/class/power_supply/ACAD/online)
         if [ "$STATUS" = "0" ]; then apply_rr "battery"; else apply_rr "ac"; fi
 
