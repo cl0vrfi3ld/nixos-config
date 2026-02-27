@@ -87,7 +87,7 @@
              dms ipc call outputs setProfile OnAC
           fi
         }
-        dms ipc call outputs listProfiles
+        
         STATUS=$(cat /sys/class/power_supply/ACAD/online)
         if [ "$STATUS" = "0" ]; then apply_rr "battery"; else apply_rr "ac"; fi
 
