@@ -1,4 +1,3 @@
-# aesthetic and theme configs
 { pkgs, ... }:
 
 {
@@ -18,4 +17,6 @@
     adwaita-icon-theme
     kdePackages.breeze-icons
   ];
+
+  # xdg.configFile."niri/config.kdl".source = ../../dotfiles/niri/config.kdl;
 }
