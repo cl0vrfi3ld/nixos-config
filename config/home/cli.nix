@@ -20,6 +20,8 @@ in
       # "soops"/"sback" -> rollback system config
       soops = sysrollback-cmd;
       sback = sysrollback-cmd;
+      # "sbld" -> build the system config (but don't switch!)
+      sbld = "cd ${system-flake} && nh os build .";
       # "sclean" -> deep clean the system
       sclean = "nh clean all --keep 1";
 
