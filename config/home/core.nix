@@ -1,3 +1,4 @@
+# User-level core session variables and environment config
 { ... }:
 
 {

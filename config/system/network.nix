@@ -1,3 +1,4 @@
+# System-level network configuration (NetworkManager, iwd, VPNs, DNS)
 { config, pkgs, lib, ... }:
 let
   networkCompatibilityMode = false;

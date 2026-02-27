@@ -1,3 +1,4 @@
+# System-level application and virtualization configuration
 { config, pkgs, lib, ... }:
 
 {

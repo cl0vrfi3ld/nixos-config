@@ -1,3 +1,4 @@
+# System-level core configuration (Nix, users, locale)
 { config, pkgs, ... }:
 
 {

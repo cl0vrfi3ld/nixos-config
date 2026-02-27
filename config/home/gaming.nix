@@ -1,3 +1,4 @@
+# User-level gaming application configuration
 { pkgs, ... }:
 
 {

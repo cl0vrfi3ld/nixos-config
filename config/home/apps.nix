@@ -1,3 +1,4 @@
+# User-level application configuration and flatpaks
 { config, pkgs, inputs, system, ... }:
 
 let

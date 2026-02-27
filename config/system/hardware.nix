@@ -1,3 +1,4 @@
+# System-level hardware configuration (power, graphics, audio, bluetooth)
 { config, pkgs, ... }:
 
 {

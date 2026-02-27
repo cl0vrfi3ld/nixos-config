@@ -1,3 +1,4 @@
+# System-level desktop environment and window manager configuration
 { inputs, pkgs, system, ... }:
 let
   fileManagers = with pkgs; [ kdePackages.dolphin yazi ];

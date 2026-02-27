@@ -1,3 +1,4 @@
+# System-level boot, initrd, and plymouth configuration
 { config, pkgs, lib, ... }:
 
 {

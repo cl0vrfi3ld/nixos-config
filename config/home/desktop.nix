@@ -1,3 +1,4 @@
+# User-level desktop theming and UI configuration
 { pkgs, ... }:
 
 {

@@ -1,3 +1,4 @@
+# System-level secrets management (sops-nix)
 { config, pkgs, ... }:
 
 {
