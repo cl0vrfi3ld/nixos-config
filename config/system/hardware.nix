@@ -72,7 +72,7 @@
     after = [ "graphical-session.target" ];
     partOf = [ "graphical-session.target" ];
     wantedBy = [ "graphical-session.target" ];
-    path = [ inputs.quickshell.packages.${system}.quickshell ];
+    path = [ inputs.quickshell.packages.${system}.quickshell pkgs.dms-shell ];
     serviceConfig = {
       Restart = "on-failure";
       # Currently requires existing DMS-managed display profiles
@@ -81,13 +81,13 @@
         apply_rr() {
           if [ "$1" = "battery" ]; then
              echo "Switched to Battery: Setting 60Hz"
-             ${pkgs.dms-shell}/bin/dms ipc call outputs setProfile OnBattery
+             dms ipc call outputs setProfile OnBattery
           else
              echo "Switched to AC: Setting 165Hz"
-             ${pkgs.dms-shell}/bin/dms ipc call outputs setProfile OnAC
+             dms ipc call outputs setProfile OnAC
           fi
         }
-
+        dms ipc call outputs listProfiles
         STATUS=$(cat /sys/class/power_supply/ACAD/online)
         if [ "$STATUS" = "0" ]; then apply_rr "battery"; else apply_rr "ac"; fi
 
