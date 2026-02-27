@@ -10,7 +10,6 @@ let
     kdePackages.dolphin
     yazi
   ];
-  utilityApps = with pkgs; [ kdePackages.okular ];
 in
 {
   imports = [ inputs.dms-plugin-registry.modules.default ];
@@ -39,8 +38,7 @@ in
       xwayland-satellite
       dgop
     ]
-    ++ fileManagers
-    ++ utilityApps;
+    ++ fileManagers;
 
   programs.niri.enable = true;
   programs.dms-shell = {
@@ -53,7 +51,7 @@ in
     enableSystemMonitoring = true;
     enableVPN = true;
     enableDynamicTheming = true;
-    enableAudioWavelength = true; 
+    enableAudioWavelength = true;
     enableCalendarEvents = true;
     enableClipboardPaste = true;
     plugins = {

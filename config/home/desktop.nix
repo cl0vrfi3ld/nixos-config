@@ -1,6 +1,13 @@
 # User-level desktop theming and UI configuration
 { pkgs, ... }:
-
+let
+  iconPacks = with pkgs; [
+    adwaita-icon-theme
+    kdePackages.breeze-icons
+  ];
+  themingDeps = with pkgs; [ kdePackages.qt6ct ];
+  utilityApps = with pkgs; [ kdePackages.okular ];
+in
 {
   # set cursor theme
   home.pointerCursor = {
@@ -14,10 +21,8 @@
     package = pkgs.adwaita-icon-theme;
     name = "Adwaita";
   };
-  home.packages = with pkgs; [
-    adwaita-icon-theme
-    kdePackages.breeze-icons
-  ];
+  # add dependencies to home package env
+  home.packages = iconPacks ++ themingDeps ++ utilityApps;
 
   # xdg.configFile."niri/config.kdl".source = ../../dotfiles/niri/config.kdl;
 }
