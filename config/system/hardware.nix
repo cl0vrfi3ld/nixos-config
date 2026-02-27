@@ -1,5 +1,10 @@
 # System-level hardware configuration (power, graphics, audio, bluetooth)
-{ config, pkgs, ... }:
+{
+  pkgs,
+  system,
+  inputs,
+  ...
+}:
 
 {
   # Framework specific stuff
@@ -67,7 +72,7 @@
     after = [ "graphical-session.target" ];
     partOf = [ "graphical-session.target" ];
     wantedBy = [ "graphical-session.target" ];
-
+    path = [ inputs.quickshell.packages.${system}.quickshell ];
     serviceConfig = {
       Restart = "on-failure";
       # Currently requires existing DMS-managed display profiles
@@ -76,10 +81,10 @@
         apply_rr() {
           if [ "$1" = "battery" ]; then
              echo "Switched to Battery: Setting 60Hz"
-             ${pkgs.dms-shell}/bin/dms ipc call outputs setProfile "OnBattery"
+             ${pkgs.dms-shell}/bin/dms ipc call outputs setProfile OnBattery
           else
              echo "Switched to AC: Setting 165Hz"
-             ${pkgs.dms-shell}/bin/dms ipc call outputs setProfile "OnAC"
+             ${pkgs.dms-shell}/bin/dms ipc call outputs setProfile OnAC
           fi
         }
 
