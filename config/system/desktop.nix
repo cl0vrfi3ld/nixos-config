@@ -37,6 +37,7 @@ in
     [
       xwayland-satellite
       dgop
+      kdePackages.ark
     ]
     ++ fileManagers;
 
