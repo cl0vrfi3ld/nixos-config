@@ -6,7 +6,7 @@ let
     adwaita-icon-theme
     kdePackages.breeze-icons
   ];
-  themingDeps = with pkgs; [ kdePackages.qt6ct ];
+  themingDeps = with pkgs; [ kdePackages.qt6ct kdePackages.qt5compat ];
   utilityApps = with pkgs; [ kdePackages.okular ];
 in
 {
