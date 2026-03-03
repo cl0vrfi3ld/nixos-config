@@ -84,6 +84,7 @@ in
     nextcloud-client
     # Documents
     libreoffice
+    onlyoffice-desktopeditors
     # Media
     mpv
     krita
