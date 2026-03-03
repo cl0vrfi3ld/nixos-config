@@ -87,6 +87,7 @@ in
     # Media
     mpv
     krita
+    vlc
     # Music
     picard
     chromaprint
