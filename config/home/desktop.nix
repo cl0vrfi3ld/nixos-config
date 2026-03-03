@@ -30,5 +30,10 @@ in
   # add dependencies to home package env
   home.packages = iconPacks ++ themingDeps ++ utilityApps;
 
+  # make dolphin the default file manager
+  xdg.mimeApps.enable = true;
+  xdg.mimeApps.defaultApplications = {
+    "inode/directory" = "org.kde.dolphin.desktop";
+  };
   # xdg.configFile."niri/config.kdl".source = ../../dotfiles/niri/config.kdl;
 }
