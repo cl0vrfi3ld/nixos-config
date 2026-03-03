@@ -36,14 +36,7 @@ in
   # add dependencies to home package env
   home.packages = iconPacks ++ themingDeps ++ utilityApps;
 
-  # set default apps
-  xdg.mimeApps.enable = true;
-  xdg.mimeApps.defaultApplications = {
-    # make dolphin the default file manager
-    "inode/directory" = "org.kde.dolphin.desktop";
-    # make okular the default document viewer
-    "application/pdf" = "org.kde.okular.desktop";
-  };
+  # set default apps (moved to defaults.nix)
   
   xdg.configFile = {
     # "niri/config.kdl".source = ../../dotfiles/niri/config.kdl;
