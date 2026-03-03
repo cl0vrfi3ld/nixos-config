@@ -1,5 +1,5 @@
-# User-level core session variables and environment config
-{ ... }:
+# Core user-level session config
+{ pkgs, ... }:
 
 {
   home.sessionVariables = {
