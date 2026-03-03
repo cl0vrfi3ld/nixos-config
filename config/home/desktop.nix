@@ -2,6 +2,7 @@
 { pkgs, ... }:
 let
   iconPacks = with pkgs; [
+    papirus-icon-theme
     adwaita-icon-theme
     kdePackages.breeze-icons
   ];
@@ -18,8 +19,8 @@ in
   };
   # set icon theme
   gtk.iconTheme = {
-    package = pkgs.adwaita-icon-theme;
-    name = "Adwaita";
+    package = pkgs.papirus-icon-theme;
+    name = "Papirus";
   };
   # set theming env vars
   home.sessionVariables = {
