@@ -89,12 +89,13 @@
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users."coucoucl0vr" = ./home.nix;
-              home-manager.extraSpecialArgs =
+              home-manager.extraSpecialArgs = {
+                inherit system;
+                inherit inputs;
+              };
 
-                {
-                  inherit system;
-                  inherit inputs;
-                };
+              # when overwriting files, back 'em up!
+              home-manager.backupFileExtension = "old";
             }
             # lanzaboote config
             lanzaboote.nixosModules.lanzaboote
