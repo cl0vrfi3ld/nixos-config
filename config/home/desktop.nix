@@ -13,6 +13,8 @@ let
   utilityApps = with pkgs; [
     kdePackages.okular
     kdePackages.elisa
+    kdePackages.gwenview
+    kdePackages.ark
   ];
 in
 {
