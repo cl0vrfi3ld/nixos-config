@@ -106,6 +106,7 @@
             nix-gaming.nixosModules.platformOptimizations
 
             # --- System Config Modules ---
+            ./config/system/overrides.nix
             ./config/system/boot.nix
             ./config/system/core.nix
             ./config/system/hardware.nix
