@@ -82,6 +82,8 @@ in
     mullvad-browser
     librewolf
     nextcloud-client
+    # Documents
+    libreoffice
     # Media
     mpv
     krita
