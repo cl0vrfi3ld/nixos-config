@@ -44,5 +44,9 @@ in
     # make okular the default document viewer
     "application/pdf" = "org.kde.okular.desktop";
   };
-  # xdg.configFile."niri/config.kdl".source = ../../dotfiles/niri/config.kdl;
+  
+  xdg.configFile = {
+    # "niri/config.kdl".source = ../../dotfiles/niri/config.kdl;
+    "dolphinrc".source = ../../dotfiles/dolphin/dolphinrc;
+    };
 }
