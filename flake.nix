@@ -19,6 +19,11 @@
       # url = "github:quickshell-mirror/quickshell"; # github mirror
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # source builds of dms
+    dms = {
+      url = "github:AvengeMedia/DankMaterialShell/stable";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # DankMaterialShell plugin registry
     dms-plugin-registry = {
       url = "github:AvengeMedia/dms-plugin-registry";

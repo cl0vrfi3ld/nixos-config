@@ -43,6 +43,7 @@ in
   programs.niri.enable = true;
   programs.dms-shell = {
     enable = true;
+    package = inputs.dms.packages.${system}.default;
     quickshell.package = inputs.quickshell.packages.${system}.quickshell;
     systemd = {
       enable = true;
