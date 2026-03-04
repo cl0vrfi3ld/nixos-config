@@ -8,11 +8,11 @@
     "inode/directory" = "org.kde.dolphin.desktop";
 
     # Web Browser
-    "text/html" = "zen.desktop";
-    "x-scheme-handler/http" = "zen.desktop";
-    "x-scheme-handler/https" = "zen.desktop";
-    "x-scheme-handler/about" = "zen.desktop";
-    "x-scheme-handler/unknown" = "zen.desktop";
+    "text/html" = "zen-twilight.desktop";
+    "x-scheme-handler/http" = "zen-twilight.desktop";
+    "x-scheme-handler/https" = "zen-twilight.desktop";
+    "x-scheme-handler/about" = "zen-twilight.desktop";
+    "x-scheme-handler/unknown" = "zen-twilight.desktop";
 
     # Email
     "x-scheme-handler/mailto" = "thunderbird.desktop";
