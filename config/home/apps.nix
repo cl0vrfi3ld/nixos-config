@@ -124,7 +124,6 @@ in
       Fingerprinting = true;
     };
   };
-  programs.zen-browser.suppressXdgMigrationWarning = true;
 
   # Math Junk Desktop Entries
   xdg.desktopEntries = {
