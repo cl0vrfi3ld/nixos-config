@@ -59,6 +59,7 @@ in
       dankBatteryAlerts.enable = true;
       dankKDEConnect.enable = true;
       easyEffects.enable = true;
+      niriScreenshot.enable = true;
     };
   };
 
