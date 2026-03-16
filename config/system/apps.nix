@@ -55,6 +55,7 @@
   # programs.adb.enable = true;
   # services.udev.packages = [ pkgs.android-udev-rules ];
   environment.systemPackages = [
+    pkgs.bitwarden-desktop
     pkgs.android-studio
     pkgs.android-tools
   ];
