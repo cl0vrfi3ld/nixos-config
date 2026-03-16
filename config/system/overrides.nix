@@ -9,16 +9,6 @@
     (final: prev: {
       electron_39 = inputs.prev-electron-nixpkgs.legacyPackages.${system}.electron_39;
       electron = inputs.prev-electron-nixpkgs.legacyPackages.${system}.electron;
-      # bitwarden-desktop = prev.bitwarden-desktop.override {
-      #   electron_39 = inputs.prev-electron-nixpkgs.legacyPackages.${system}.electron_39;
-      # };
-      # feishin = prev.feishin.override {
-      #   electron_39 = inputs.prev-electron-nixpkgs.legacyPackages.${system}.electron_39;
-      # };
-      # heroic = prev.heroic.override {
-      #   electron_39 = inputs.prev-electron-nixpkgs.legacyPackages.${system}.electron_39;
-      #   electron = inputs.prev-electron-nixpkgs.legacyPackages.${system}.electron_39;
-      # };
     })
   ];
 }
