@@ -54,10 +54,10 @@
   nixpkgs.config.android_sdk.accept_license = true;
   # programs.adb.enable = true;
   # services.udev.packages = [ pkgs.android-udev-rules ];
+
+  # General Apps
   environment.systemPackages = [
     pkgs.bitwarden-desktop
-    pkgs.android-studio
-    pkgs.android-tools
   ];
 
   # AI Tools

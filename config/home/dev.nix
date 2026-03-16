@@ -30,6 +30,8 @@ in
     shfmt
     antigravity-fhs
     intellij-fhs
+    android-studio
+    android-tools
   ];
 
   programs.git = {
