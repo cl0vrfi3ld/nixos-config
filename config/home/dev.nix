@@ -6,6 +6,18 @@
   ...
 }:
 
+let
+  intellij-fhs = pkgs.buildFHSEnv {
+    name = "intellij-fhs";
+    targetPkgs =
+      pkgs:
+      (with pkgs; [
+        jetbrains.idea-oss
+        jdk
+      ]);
+    runScript = "idea-oss";
+  };
+in
 {
   home.packages = with pkgs; [
     kdePackages.kate
@@ -17,6 +29,7 @@
     shellcheck
     shfmt
     antigravity-fhs
+    intellij-fhs
   ];
 
   programs.git = {
@@ -31,6 +44,27 @@
   programs.vscode = {
     enable = true;
     package = pkgs.vscodium-fhs;
+  };
+
+  # IntelliJ FHS Desktop Entry
+  xdg.desktopEntries = {
+    intellij-fhs = {
+      name = "JetBrains IntelliJ (FHS)";
+      genericName = "Integrated Development Environment";
+      comment = "JetBrains IntelliJ with FHS environment";
+      exec = "intellij-fhs %F";
+      icon = "${pkgs.jetbrains.idea-oss}/share/icons/hicolor/scalable/apps/idea-oss.svg";
+      terminal = false;
+      categories = [
+        "Development"
+        "Science"
+        "Education"
+      ];
+      mimeType = [
+        "text/x-java-source"
+        "application/java-vm"
+      ];
+    };
   };
 
   # User-level ssh config
