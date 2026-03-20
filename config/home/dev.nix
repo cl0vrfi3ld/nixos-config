@@ -7,8 +7,8 @@
 }:
 
 let
-  intellij-fhs = pkgs.buildFHSEnv {
-    name = "intellij-fhs";
+  intellij-idea-fhs = pkgs.buildFHSEnv {
+    name = "intellij-idea-fhs";
     targetPkgs =
       pkgs:
       (with pkgs; [
@@ -29,7 +29,7 @@ in
     shellcheck
     shfmt
     antigravity-fhs
-    intellij-fhs
+    intellij-idea-fhs
     android-studio
     android-tools
   ];
@@ -50,11 +50,11 @@ in
 
   # IntelliJ FHS Desktop Entry
   xdg.desktopEntries = {
-    intellij-fhs = {
-      name = "JetBrains IntelliJ (FHS)";
+    intellij-idea-fhs = {
+      name = "JetBrains IntelliJ IDEA";
       genericName = "Integrated Development Environment";
-      comment = "JetBrains IntelliJ with FHS environment";
-      exec = "intellij-fhs %F";
+      comment = "JetBrains IntelliJ IDEA with FHS environment";
+      exec = "intellij-idea-fhs %F";
       icon = "${pkgs.jetbrains.idea-oss}/share/icons/hicolor/scalable/apps/idea-oss.svg";
       terminal = false;
       categories = [
