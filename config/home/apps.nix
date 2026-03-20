@@ -74,7 +74,6 @@ in
     vesktop
     fluffychat
     signal-desktop
-    flare
     # Email
     thunderbird
     protonmail-bridge-gui
