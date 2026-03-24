@@ -84,6 +84,8 @@ in
     # Documents
     libreoffice
     onlyoffice-desktopeditors
+    # Notes/Organized Docs and Data
+    obsidian
     # Media
     mpv
     krita
