@@ -85,8 +85,9 @@ in
     obsidian
     # Media
     mpv
-    krita
     vlc
+    # Art/Design
+    krita
     # Music
     picard
     chromaprint
