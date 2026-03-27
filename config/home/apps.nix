@@ -74,9 +74,6 @@ in
     vesktop
     fluffychat
     signal-desktop
-    # Email
-    thunderbird
-    protonmail-bridge-gui
     # Internet
     mullvad-browser
     librewolf
