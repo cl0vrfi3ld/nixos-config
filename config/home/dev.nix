@@ -24,7 +24,6 @@ in
     nixd
     nixfmt
     nodejs
-    bun
     forgejo-cli
     shellcheck
     shfmt
