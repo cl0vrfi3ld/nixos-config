@@ -24,8 +24,6 @@ in
     nixd
     nixfmt
     forgejo-cli
-    shellcheck
-    shfmt
     antigravity-fhs
     intellij-idea-fhs
     android-studio
