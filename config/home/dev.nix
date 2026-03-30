@@ -23,7 +23,6 @@ in
     kdePackages.kate
     nixd
     nixfmt
-    nodejs
     forgejo-cli
     shellcheck
     shfmt
