@@ -39,6 +39,7 @@ let
         freetype.dev
         fontconfig
         fontconfig.dev
+        miktex
         harfbuzz
         harfbuzz.dev
         fribidi
