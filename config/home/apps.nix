@@ -19,6 +19,11 @@ let
         # --- Core ---
         R
         rstudio
+        # --- R Libraries ---
+        rPackages.pacman
+        rPackages.dplyr
+        rPackages.tidyverse
+        rPackages.tinytex
         # --- Toolchain ---
         gcc
         gnumake
