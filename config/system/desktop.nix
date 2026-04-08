@@ -44,7 +44,7 @@ in
   programs.dms-shell = {
     enable = true;
     # package = inputs.dms.packages.${system}.default;
-    quickshell.package = inputs.quickshell.packages.${system}.quickshell;
+    quickshell.package = inputs.quickshell.packages.${system}.default;
     systemd = {
       enable = true;
       restartIfChanged = true;
