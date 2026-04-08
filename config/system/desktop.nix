@@ -10,6 +10,12 @@ let
     kdePackages.dolphin
     yazi
   ];
+  theming-compat = with pkgs; [
+    qt6Packages.qt5compat
+    qt6Packages.qt6ct
+    # or kdePackages.qt6ct
+    # or qt6ct
+  ];
 in
 {
   imports = [ inputs.dms-plugin-registry.modules.default ];
@@ -38,7 +44,9 @@ in
       xwayland-satellite
       dgop
     ]
-    ++ fileManagers;
+    ++ fileManagers
+    ++ theming-compat
+    ;
 
   programs.niri.enable = true;
   programs.dms-shell = {

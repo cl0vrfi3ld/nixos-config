@@ -6,10 +6,9 @@ let
     adwaita-icon-theme
     kdePackages.breeze-icons
   ];
-  themingDeps = with pkgs; [
-    kdePackages.qt6ct
-    kdePackages.qt5compat
-  ];
+  # themingDeps = with pkgs; [
+  #   kdePackages.qt6ct
+  # ];
   utilityApps = with pkgs; [
     kdePackages.okular
     kdePackages.elisa
@@ -36,7 +35,7 @@ in
     QT_QPA_PLATFORMTHEME_QT6 = "qt6ct";
   };
   # add dependencies to home package env
-  home.packages = iconPacks ++ themingDeps ++ utilityApps;
+  home.packages = iconPacks ++ utilityApps;
 
   # set default apps (moved to defaults.nix)
   
