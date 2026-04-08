@@ -10,6 +10,13 @@ let
     kdePackages.dolphin
     yazi
   ];
+
+  quickshell-deps = with pkgs; [
+    qt6Packages.qtsvg
+    qt6Packages.qtimageformats
+    qt6Packages.qtmultimedia
+  ];
+
   theming-compat = with pkgs; [
     qt6Packages.qt5compat
     qt6Packages.qt6ct
@@ -46,7 +53,7 @@ in
     ]
     ++ fileManagers
     ++ theming-compat
-    ;
+    ++ quickshell-deps;
 
   programs.niri.enable = true;
   programs.dms-shell = {
