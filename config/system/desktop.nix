@@ -58,23 +58,29 @@ in
   programs.niri.enable = true;
   programs.dms-shell = {
     enable = true;
+
     # package = inputs.dms.packages.${system}.default;
+    
     quickshell.package = inputs.quickshell.packages.${system}.default;
+
     systemd = {
       enable = true;
       restartIfChanged = true;
     };
+
     enableSystemMonitoring = true;
     enableVPN = true;
     enableDynamicTheming = true;
     enableAudioWavelength = true;
     enableCalendarEvents = true;
     enableClipboardPaste = true;
+
     plugins = {
       dankBatteryAlerts.enable = true;
       dankKDEConnect.enable = true;
       easyEffects.enable = true;
       niriScreenshot.enable = true;
+
     };
   };
 
