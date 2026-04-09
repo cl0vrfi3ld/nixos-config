@@ -82,6 +82,7 @@ in
       niriScreenshot.enable = true;
       # launcher plugins
       commandRunner.enable = true;
+      webSearch.enable = true;
     };
   };
 
