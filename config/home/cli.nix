@@ -38,6 +38,9 @@ in
 
       # system info
       info = "fastfetch";
+
+      # nix run shortcut
+      nixr = "nix run nixpkgs#";
     };
   };
 
