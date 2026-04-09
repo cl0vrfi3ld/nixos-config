@@ -80,7 +80,8 @@ in
       dankKDEConnect.enable = true;
       easyEffects.enable = true;
       niriScreenshot.enable = true;
-
+      # launcher plugins
+      commandRunner.enable = true;
     };
   };
 
