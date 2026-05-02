@@ -9,64 +9,6 @@
 
 let
   selfprivacy-app = inputs.self-privacy.packages.${system}.release;
-  rstudio-fhs = pkgs.buildFHSEnv {
-    name = "rstudio-fhs";
-
-    # These packages will be available inside the FHS bubble
-    targetPkgs =
-      pkgs:
-      (with pkgs; [
-        # --- Core ---
-        R
-        rstudio
-        # --- R Libraries ---
-        rPackages.pacman
-        rPackages.dplyr
-        rPackages.tidyverse
-        rPackages.tinytex
-        # --- Toolchain ---
-        gcc
-        gnumake
-        gfortran
-        binutils
-        pkg-config
-        cmake
-        # --- Libraries & Headers ---
-        openssl
-        openssl.dev
-        curl
-        curl.dev
-        libxml2
-        libxml2.dev
-        zlib
-        zlib.dev
-        freetype
-        freetype.dev
-        fontconfig
-        fontconfig.dev
-        miktex
-        harfbuzz
-        harfbuzz.dev
-        fribidi
-        fribidi.dev
-        icu
-        icu.dev
-        libpng
-        libpng.dev
-        libjpeg
-        libjpeg.dev
-        libtiff
-        libtiff.dev
-        libwebp
-        cairo
-        cairo.dev
-        pango
-        pango.dev
-        rPackages.V8
-        udunits
-      ]);
-    runScript = "rstudio";
-  };
 in
 {
   home.packages = with pkgs; [
@@ -105,8 +47,6 @@ in
     cavasik
     # AI
     gemini-cli
-    # Math
-    rstudio-fhs
   ];
 
   # Zen Browser
@@ -132,23 +72,6 @@ in
 
   # Math Junk Desktop Entries
   xdg.desktopEntries = {
-    rstudio-fhs = {
-      name = "RStudio (FHS)";
-      genericName = "Integrated Development Environment";
-      comment = "RStudio with FHS environment for compilation";
-      exec = "rstudio-fhs %F";
-      icon = "${pkgs.rstudio}/share/icons/hicolor/256x256/apps/rstudio.png";
-      terminal = false;
-      categories = [
-        "Development"
-        "Science"
-        "Education"
-      ];
-      mimeType = [
-        "text/x-r-source"
-        "application/x-r-data"
-      ];
-    };
   };
 
   # Flatpak
