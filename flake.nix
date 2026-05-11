@@ -3,8 +3,8 @@
 
   inputs = {
     # setting the root url for nixpkgs, using the unstable branch
-    # nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    nixpkgs.url = "github:NixOS/nixpkgs/192a99b3c66089b8ef342971d5d47b0e8b72527c";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-systemd-compat.url = "github:NixOS/nixpkgs/192a99b3c66089b8ef342971d5d47b0e8b72527c";
     # hardware config repo for nixos
     nixos-hardware.url = "github:NixOS/nixos-hardware/master";
     # home manager flake
