@@ -28,6 +28,7 @@ in
     intellij-idea-fhs
     android-studio
     android-tools
+    zed-editor-fhs
   ];
 
   programs.git = {
