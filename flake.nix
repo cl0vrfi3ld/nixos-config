@@ -46,10 +46,8 @@
     };
     # --- home environment inputs ---
     # selfprivacy repo
-    self-privacy = {
-      url = "git+https://git.selfprivacy.org/SelfPrivacy/selfprivacy.org.app/?ref=master";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    self-privacy.url = "git+https://git.selfprivacy.org/SelfPrivacy/selfprivacy.org.app/?ref=master";
+
     # zen browser flake
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
