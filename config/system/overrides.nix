@@ -7,9 +7,8 @@
 }:
 
 {
-  nixpkgs.overlays = [
-    (final: prev: {
-      systemd = inputs.nixpkgs-systemd-compat.legacyPackages.${system}.systemd;
-    })
-  ];
+  # nixpkgs.overlays = [
+  #   (final: prev: {
+  #   })
+  # ];
 }
