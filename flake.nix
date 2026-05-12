@@ -69,6 +69,7 @@
       home-manager,
       nix-flatpak,
       nix-gaming,
+      nix-citizen,
       nix-iwd-provisioning,
       sops-nix,
       lanzaboote,
@@ -114,7 +115,8 @@
             nix-flatpak.nixosModules.nix-flatpak
             # gaming config
             nix-gaming.nixosModules.platformOptimizations
-
+            # nix-citizen stuff
+            nix-citizen.nixosModules.default
             # --- System Config Modules ---
             ./config/system/overrides.nix
             ./config/system/boot.nix

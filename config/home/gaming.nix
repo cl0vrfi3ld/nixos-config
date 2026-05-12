@@ -16,6 +16,5 @@
         pkgs.proton-ge-bin
       ];
     })
-    inputs.nix-citizen.packages.${system}.rsi-launcher
   ];
 }
