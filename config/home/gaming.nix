@@ -1,5 +1,10 @@
 # User-level gaming application configuration
-{ pkgs, ... }:
+{
+  pkgs,
+  inputs,
+  system,
+  ...
+}:
 
 {
   home.packages = with pkgs; [
@@ -11,5 +16,6 @@
         pkgs.proton-ge-bin
       ];
     })
+    inputs.nix-citizen.packages.${system}.rsi-launcher
   ];
 }

@@ -32,6 +32,11 @@
     };
     # gaming utilities
     nix-gaming.url = "github:fufexan/nix-gaming";
+    # star citizen!
+    nix-citizen = {
+      url = "github:LovingMelody/nix-citizen";
+      inputs.nix-gaming.follows = "nix-gaming";
+    };
     # repo for nix-iwd-provisioning
     nix-iwd-provisioning.url = "git+https://git.cl0vr.co/cl0vr/nix-iwd-provisioning/?ref=main";
     # secrets handling
