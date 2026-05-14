@@ -1,8 +1,6 @@
 # System-level gaming and VR configuration
 {
-  config,
   pkgs,
-  inputs,
   ...
 }:
 
