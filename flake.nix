@@ -33,10 +33,10 @@
     # gaming utilities
     nix-gaming.url = "github:fufexan/nix-gaming";
     # star citizen!
-    nix-citizen = {
-      url = "github:LovingMelody/nix-citizen";
-      inputs.nix-gaming.follows = "nix-gaming";
-    };
+    # nix-citizen = {
+    #   url = "github:LovingMelody/nix-citizen";
+    #   inputs.nix-gaming.follows = "nix-gaming";
+    # };
     # repo for nix-iwd-provisioning
     nix-iwd-provisioning.url = "git+https://git.cl0vr.co/cl0vr/nix-iwd-provisioning/?ref=main";
     # secrets handling
@@ -69,7 +69,6 @@
       home-manager,
       nix-flatpak,
       nix-gaming,
-      nix-citizen,
       nix-iwd-provisioning,
       sops-nix,
       lanzaboote,
@@ -115,8 +114,6 @@
             nix-flatpak.nixosModules.nix-flatpak
             # gaming config
             nix-gaming.nixosModules.platformOptimizations
-            # nix-citizen stuff
-            nix-citizen.nixosModules.default
             # --- System Config Modules ---
             ./config/system/overrides.nix
             ./config/system/boot.nix
