@@ -112,4 +112,12 @@
   # Filesystem and tmp optimisations
   services.fstrim.enable = true;
   boot.tmp.useTmpfs = true;
+
+  # Drive mounting
+  fileSystems = {
+    # "/too" = {
+    #   device = "/dev/disk/by-label/data_too";
+    #   fsType = "ext4";
+    # };
+  };
 }
