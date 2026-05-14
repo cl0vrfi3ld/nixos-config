@@ -8,7 +8,6 @@
 
 {
   home.packages = with pkgs; [
-    bottles
     prismlauncher
     (heroic.override {
       extraPkgs = pkgs: [
