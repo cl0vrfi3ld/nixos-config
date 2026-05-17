@@ -48,7 +48,6 @@
 
   # System packages
   environment.systemPackages = with pkgs; [
-    nixd
     git
     micro
     wget
