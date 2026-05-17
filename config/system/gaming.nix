@@ -23,4 +23,9 @@
     enable = true;
     openFirewall = false;
   };
+
+  # Gaming Packages
+  environment.systemPackages = with pkgs; [
+    lact
+  ];
 }

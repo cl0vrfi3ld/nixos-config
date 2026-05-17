@@ -49,21 +49,15 @@
   # System packages
   environment.systemPackages = with pkgs; [
     nixd
-    libsecret
     git
     micro
-    age
     direnv
     wget
-    easyeffects
-    ghostty
     distrobox
     webkitgtk_4_1
     ffmpeg
     unzip
     cachix
-    lact
-    kdePackages.partitionmanager
   ];
 
   # Allow specific unfree packages

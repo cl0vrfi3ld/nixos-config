@@ -49,6 +49,9 @@ in
     with pkgs;
     [
       xwayland-satellite
+      kdePackages.partitionmanager
+      ghostty # Terminal emulator
+      easyeffects
       dgop
     ]
     ++ fileManagers
@@ -60,7 +63,7 @@ in
     enable = true;
 
     # package = inputs.dms.packages.${system}.default;
-    
+
     quickshell.package = inputs.quickshell.packages.${system}.default;
 
     systemd = {
