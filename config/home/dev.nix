@@ -28,8 +28,8 @@ in
     nixfmt
     forgejo-cli
     antigravity-fhs
-    intellij-idea-fhs
-    android-studio
+    # intellij-idea-fhs
+    # android-studio
     android-tools
     zed-editor-fhs
   ];

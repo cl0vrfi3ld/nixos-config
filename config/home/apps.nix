@@ -1,6 +1,5 @@
 # User-level application configuration and flatpaks
 {
-  config,
   pkgs,
   inputs,
   system,
@@ -28,12 +27,13 @@ in
     nextcloud-client
     # Documents
     libreoffice
-    onlyoffice-desktopeditors
     # Notes/Organized Docs and Data
     obsidian
     # Media
     mpv
     vlc
+    # Game streaming
+    moonlight-qt
     # Art/Design
     krita
     # Music
@@ -43,8 +43,7 @@ in
     mixxx
     ardour
     tidal-hifi
-    feishin
-    cavasik
+    finamp
     # AI
     gemini-cli
   ];
@@ -80,11 +79,6 @@ in
     "org.gnome.World.PikaBackup"
     "io.anytype.anytype"
     "com.github.zocker_160.SyncThingy"
-    "com.toolstack.Folio"
-    "re.sonny.Eloquent"
-    "com.moonlight_stream.Moonlight"
-    "com.unicornsonlsd.finamp"
-    "org.vinegarhq.Sober"
   ];
   services.flatpak.overrides = {
     global = {

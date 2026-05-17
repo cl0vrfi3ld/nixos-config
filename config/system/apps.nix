@@ -37,8 +37,6 @@
   # Flatpak
   services.flatpak.enable = true;
   services.flatpak.packages = [
-    "io.github.kolunmi.Bazaar"
-    "app.devsuite.Ptyxis"
     "dev.deedles.Trayscale"
   ];
   services.flatpak.overrides = {
@@ -51,7 +49,7 @@
   # virtualisation.waydroid.enable = true;
 
   # Android Development
-  nixpkgs.config.android_sdk.accept_license = true;
+  # nixpkgs.config.android_sdk.accept_license = true;
   # programs.adb.enable = true;
   # services.udev.packages = [ pkgs.android-udev-rules ];
 
@@ -62,14 +60,4 @@
 
   # AI Tools
   hardware.amdgpu.opencl.enable = true;
-  services.ollama.enable = false;
-  systemd.services.ollama.wantedBy = lib.mkForce [ ];
-  services.ollama.package = pkgs.ollama-rocm;
-  services.ollama.environmentVariables = {
-    OLLAMA_DEBUG = "1";
-    HIP_VISIBLE_DEVICES = "0";
-    ROCR_VISIBLE_DEVICES = "0";
-  };
-  services.open-webui.enable = false;
-  services.open-webui.port = 12121;
 }
