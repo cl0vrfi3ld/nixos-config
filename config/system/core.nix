@@ -51,8 +51,6 @@
     git
     micro
     wget
-    webkitgtk_4_1
-    ffmpeg
     unzip
   ];
 
