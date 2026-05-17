@@ -39,10 +39,6 @@
   services.tlp.enable = false;
   powerManagement.powertop.enable = false;
 
-  environment.systemPackages = with pkgs; [
-    powertop
-  ];
-
   services.upower.enable = true;
   hardware.acpilight.enable = true;
 
