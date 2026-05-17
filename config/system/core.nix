@@ -51,13 +51,10 @@
     nixd
     git
     micro
-    direnv
     wget
-    distrobox
     webkitgtk_4_1
     ffmpeg
     unzip
-    cachix
   ];
 
   # Allow specific unfree packages

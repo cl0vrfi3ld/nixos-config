@@ -21,6 +21,9 @@ in
 {
   home.packages = with pkgs; [
     kdePackages.kate
+    cachix
+    direnv
+    distrobox
     nixd
     nixfmt
     forgejo-cli
