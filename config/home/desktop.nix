@@ -37,10 +37,9 @@ in
   # add dependencies to home package env
   home.packages = iconPacks ++ utilityApps;
 
-  # set default apps (moved to defaults.nix)
-  
+  # desktop config dotfiles
   xdg.configFile = {
     # "niri/config.kdl".source = ../../dotfiles/niri/config.kdl;
     "dolphinrc".source = ../../dotfiles/dolphin/dolphinrc;
-    };
+  };
 }
