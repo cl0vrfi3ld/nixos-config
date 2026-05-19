@@ -107,9 +107,9 @@
 
   # Drive mounting
   fileSystems = {
-    # "/too" = {
-    #   device = "/dev/disk/by-label/data_too";
-    #   fsType = "ext4";
-    # };
+    "/too" = {
+      device = "/dev/disk/by-label/data_too";
+      fsType = "btrfs";
+    };
   };
 }
