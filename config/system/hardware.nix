@@ -52,16 +52,6 @@
     "amd_pstate=active"
   ];
 
-  services.udev.extraRules = ''
-    # force my current dgpu (RX 7700S) to auto shutoff when not in use
-    ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x1002", ATTR{device}=="0x7480", ATTR{power/control}="auto"
-
-    # force WD/Sandisk NVMe ssd to sleep
-    ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x15b7", ATTR{device}=="0x5017", ATTR{power/control}="auto"
-    # force Phison NVMe ssd to sleep
-    ACTION=="add", SUBSYSTEM=="pci", ATTR{vendor}=="0x1987", ATTR{device}=="0x5021", ATTR{power/control}="auto"
-  '';
-
   # Refresh rate monitor
   systemd.user.services.auto-rr-throttle = {
     description = "Automatically throttle max refresh rate when on battery";
