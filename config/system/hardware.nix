@@ -44,12 +44,10 @@
 
   # Device tweaks
   boot.kernelParams = [
-    "amdgpu.abmlevel=3"
-    "amdgpu.ppfeaturemask=0xffffbfff"
-    "pcie_port_pm=force"
-    "pcie_aspm.policy=powersupersave"
-    "usbcore.autosuspend=1"
     "amd_pstate=active"
+    "amdgpu.abmlevel=3"
+    # "amdgpu.ppfeaturemask=0xffffffff"
+    # "usbcore.autosuspend=1"
   ];
 
   # Refresh rate monitor
