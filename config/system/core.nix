@@ -27,6 +27,7 @@
       "podman"
       "kvm"
       "adbusers"
+      "greeter"
     ];
     shell = pkgs.fish;
   };
