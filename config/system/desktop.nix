@@ -35,6 +35,9 @@ in
     enable = true;
     compositor.name = "niri";
 
+    # User home directory to grab DMS settings from
+    configHome = "/home/coucoucl0vr";
+
     # Use latest/source build of quickshell
     quickshell.package = inputs.quickshell.packages.${system}.default;
   };
