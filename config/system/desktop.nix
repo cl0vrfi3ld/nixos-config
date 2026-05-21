@@ -34,6 +34,9 @@ in
   services.displayManager.dms-greeter = {
     enable = true;
     compositor.name = "niri";
+
+    # Use latest/source build of quickshell
+    quickshell.package = inputs.quickshell.packages.${system}.default;
   };
 
   # Niri and DMS Shell dependencies
