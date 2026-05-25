@@ -21,10 +21,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # source builds of dms
-    # dms = {
-    #   url = "github:AvengeMedia/DankMaterialShell/stable";
-    #   inputs.nixpkgs.follows = "nixpkgs";
-    # };
+    dms = {
+      url = "github:AvengeMedia/DankMaterialShell/stable";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # DankMaterialShell plugin registry
     dms-plugin-registry = {
       url = "github:AvengeMedia/dms-plugin-registry";
@@ -68,6 +68,7 @@
       nixos-hardware,
       home-manager,
       nix-flatpak,
+      dms,
       nix-gaming,
       nix-iwd-provisioning,
       sops-nix,
@@ -112,6 +113,10 @@
             nix-iwd-provisioning.nixosModules.nix-iwd-provisioning
             # declarative flatpak management
             nix-flatpak.nixosModules.nix-flatpak
+            # DankMaterialShell config
+            inputs.dms.nixosModules.dank-material-shell
+            inputs.dms.nixosModules.greeter
+            inputs.dms-plugin-registry.modules.default
             # gaming config
             nix-gaming.nixosModules.platformOptimizations
             # --- System Config Modules ---

@@ -25,13 +25,13 @@ let
   ];
 in
 {
-  imports = [ inputs.dms-plugin-registry.modules.default ];
+  # imports = [ ];
 
   # Wayland Config
   services.xserver.enable = false;
 
   # Display Manager
-  services.displayManager.dms-greeter = {
+  programs.dank-material-shell.greeter = {
     enable = true;
     compositor.name = "niri";
 
@@ -43,34 +43,22 @@ in
   };
 
   # Niri and DMS Shell dependencies
-  nixpkgs.overlays = [
-    (final: prev: {
-      dms-shell = prev.dms-shell.overrideAttrs (oldAttrs: {
-        buildInputs = (oldAttrs.buildInputs or [ ]) ++ [ prev.kdePackages.kimageformats ];
-      });
-    })
-  ];
-
-  environment.systemPackages =
-    with pkgs;
-    [
-      xwayland-satellite
-      kdePackages.partitionmanager
-      ghostty # Terminal emulator
-      easyeffects
-      dgop
-    ]
-    ++ fileManagers
-    ++ theming-compat
-    ++ quickshell-deps;
+  # nixpkgs.overlays = [
+  #   (final: prev: {
+  #     dms-shell = prev.dms-shell.overrideAttrs (oldAttrs: {
+  #       buildInputs = (oldAttrs.buildInputs or [ ]) ++ [ prev.kdePackages.kimageformats ];
+  #     });
+  #   })
+  # ];
 
   programs.niri.enable = true;
-  programs.dms-shell = {
+  programs.dank-material-shell = {
     enable = true;
 
     # package = inputs.dms.packages.${system}.default;
 
     quickshell.package = inputs.quickshell.packages.${system}.default;
+    dgop.package = pkgs.dgop;
 
     systemd = {
       enable = true;
@@ -97,6 +85,19 @@ in
 
   programs.dsearch.enable = true;
   services.accounts-daemon.enable = true;
+
+  environment.systemPackages =
+    with pkgs;
+    [
+      xwayland-satellite
+      kdePackages.partitionmanager
+      ghostty # Terminal emulator
+      easyeffects
+      dgop
+    ]
+    ++ fileManagers
+    ++ theming-compat
+    ++ quickshell-deps;
 
   # Fonts
   fonts.packages = with pkgs; [
