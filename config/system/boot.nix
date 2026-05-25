@@ -6,6 +6,20 @@
   ...
 }:
 
+let
+  # pin kernel to 7.0.6 as its the last known cached kernel
+  # that has working bluetooth
+  linux_7_0_6 = pkgs.linux_7_0.override {
+    argsOverride = rec {
+      version = "7.0.6";
+      modDirVersion = version;
+      src = pkgs.fetchurl {
+        url = "mirror://kernel/linux/kernel/v7.x/linux-${version}.tar.xz";
+        hash = "sha256-y6REQKpXr/18ISQdxbwjSw31PEmfj/w+vCkN0zkKdSM=";
+      };
+    };
+  };
+in
 {
   # Bootloader setup
   # boot.loader.systemd-boot.enable = true; # Lanzaboote takes over
@@ -21,8 +35,9 @@
     pkiBundle = "/var/lib/sbctl";
   };
 
-  # Use latest kernel
-  boot.kernelPackages = pkgs.linuxPackages_latest;
+  # # Use latest kernel
+  # boot.kernelPackages = pkgs.linuxPackages_latest;
+  boot.kernelPackages = pkgs.linuxPackagesFor linux_7_0_6;
 
   # Enable initrd
   boot.initrd.enable = true;
