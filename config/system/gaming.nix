@@ -24,6 +24,13 @@
     openFirewall = false;
   };
 
+  # Star Citizen config
+  programs.rsi-launcher = {
+    # Enables the star citizen module
+    enable = true;
+    location = "/too/Games/rsi-launcher";
+  };
+
   # Gaming Packages
   environment.systemPackages = with pkgs; [
     lact
