@@ -46,7 +46,7 @@
   boot.kernelParams = [
     "amd_pstate=active"
     "amdgpu.abmlevel=3"
-    # "amdgpu.ppfeaturemask=0xffffffff"
+    "amdgpu.ppfeaturemask=0xffffffff"
     # "usbcore.autosuspend=1"
   ];
 
