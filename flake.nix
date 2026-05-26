@@ -23,7 +23,10 @@
     # source builds of dms
     dms = {
       url = "github:AvengeMedia/DankMaterialShell/stable";
-      inputs.nixpkgs.follows = "nixpkgs";
+      inputs = {
+        nixpkgs.follows = "nixpkgs";
+        quickshell.follows = "quickshell";
+      };
     };
     # DankMaterialShell plugin registry
     dms-plugin-registry = {
