@@ -19,7 +19,6 @@ in
     selfprivacy-app
     btop-rocm
     # Chat
-    vesktop
     fluffychat
     signal-desktop
     # Internet
@@ -49,6 +48,18 @@ in
     # AI
     gemini-cli
   ];
+
+  # Vesktop/Vencord
+  programs.vesktop.enable = true;
+  programs.vesktop = {
+    settings = {
+      arRPC = true;
+      checkUpdates = false;
+      disableMinSize = true;
+      discordBranch = "stable";
+      hardwareAcceleration = true;
+    };
+  };
 
   # Zen Browser
   programs.zen-browser.enable = true;
