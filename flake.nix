@@ -54,6 +54,11 @@
     };
 
     # --- home environment inputs ---
+    # pano scrobbler
+    pano-scrobbler = {
+      url = "github:kawaiiDango/pano-scrobbler-flake";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # selfprivacy repo
     self-privacy.url = "git+https://git.selfprivacy.org/SelfPrivacy/selfprivacy.org.app/?ref=master";
     # zen browser flake

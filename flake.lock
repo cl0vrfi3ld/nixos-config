@@ -448,6 +448,26 @@
         "type": "github"
       }
     },
+    "pano-scrobbler": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1779270916,
+        "narHash": "sha256-OEVnC5U5zeTcw6Br5YHEfOO+2/4U+dUMVByLF2hFYOU=",
+        "owner": "kawaiiDango",
+        "repo": "pano-scrobbler-flake",
+        "rev": "299c8dcec11254928e7df9dbd92c0888ea7eed47",
+        "type": "github"
+      },
+      "original": {
+        "owner": "kawaiiDango",
+        "repo": "pano-scrobbler-flake",
+        "type": "github"
+      }
+    },
     "pre-commit": {
       "inputs": {
         "flake-compat": "flake-compat",
@@ -503,6 +523,7 @@
         "nix-iwd-provisioning": "nix-iwd-provisioning",
         "nixos-hardware": "nixos-hardware",
         "nixpkgs": "nixpkgs_3",
+        "pano-scrobbler": "pano-scrobbler",
         "quickshell": "quickshell",
         "self-privacy": "self-privacy",
         "sops-nix": "sops-nix",

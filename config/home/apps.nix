@@ -8,6 +8,7 @@
 
 let
   selfprivacy-app = inputs.self-privacy.packages.${system}.release;
+  pano-scrobbler = inputs.pano-scrobbler.packages.${system}.default;
 in
 {
   home.packages = with pkgs; [
@@ -39,6 +40,7 @@ in
     # Music
     picard
     chromaprint
+    pano-scrobbler
     lrcget
     mixxx
     ardour
