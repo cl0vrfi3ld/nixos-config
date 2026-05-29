@@ -52,10 +52,10 @@
       url = "github:nix-community/lanzaboote/v1.0.0";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
     # --- home environment inputs ---
     # selfprivacy repo
     self-privacy.url = "git+https://git.selfprivacy.org/SelfPrivacy/selfprivacy.org.app/?ref=master";
-
     # zen browser flake
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
@@ -72,13 +72,12 @@
       home-manager,
       nix-flatpak,
       dms,
+      dms-plugin-registry,
       nix-gaming,
       nix-citizen,
       nix-iwd-provisioning,
       sops-nix,
       lanzaboote,
-      self-privacy,
-      zen-browser,
       ...
     }@inputs:
     {
@@ -118,9 +117,9 @@
             # declarative flatpak management
             nix-flatpak.nixosModules.nix-flatpak
             # DankMaterialShell config
-            inputs.dms.nixosModules.dank-material-shell
-            inputs.dms.nixosModules.greeter
-            inputs.dms-plugin-registry.modules.default
+            dms.nixosModules.dank-material-shell
+            dms.nixosModules.greeter
+            dms-plugin-registry.modules.default
             # gaming config
             nix-gaming.nixosModules.platformOptimizations
             # nix-citizen stuff
