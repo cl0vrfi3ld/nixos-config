@@ -1,6 +1,8 @@
 # System-level gaming and VR configuration
 {
   pkgs,
+  inputs,
+  system,
   ...
 }:
 
@@ -29,6 +31,18 @@
     # Enables the star citizen module
     enable = true;
     location = "/too/Games/rsi-launcher";
+    gamescope = {
+      enable = true;
+      args = [
+        "-W 2560"
+        "-H 1600"
+      ];
+    };
+    # umu.enable = true;
+    # wine = inputs.nix-citizen.packages.${system}.lug-wine-bin;
+    package = inputs.nix-citizen.packages.${system}.rsi-launcher.override (prev: {
+      hidetray = true;
+    });
   };
 
   # Gaming Packages
