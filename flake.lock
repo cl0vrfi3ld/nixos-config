@@ -125,12 +125,27 @@
         "type": "github"
       }
     },
+    "flake-parts_2": {
+      "inputs": {
+        "nixpkgs-lib": "nixpkgs-lib_2"
+      },
+      "locked": {
+        "lastModified": 1777988971,
+        "narHash": "sha256-qIoWPDs+0/8JecyYgE3gpKQxW/4bLW/gp45vow9ioCQ=",
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "rev": "0678d8986be1661af6bb555f3489f2fdfc31f6ff",
+        "type": "github"
+      },
+      "original": {
+        "owner": "hercules-ci",
+        "repo": "flake-parts",
+        "type": "github"
+      }
+    },
     "flake-utils": {
       "inputs": {
-        "systems": [
-          "self-privacy",
-          "systems"
-        ]
+        "systems": "systems"
       },
       "locked": {
         "lastModified": 1731533236,
@@ -210,6 +225,26 @@
       "original": {
         "owner": "hercules-ci",
         "repo": "gitignore.nix",
+        "type": "github"
+      }
+    },
+    "gradle2nix": {
+      "inputs": {
+        "flake-utils": "flake-utils",
+        "nixpkgs": "nixpkgs_4"
+      },
+      "locked": {
+        "lastModified": 1755902591,
+        "narHash": "sha256-mnPaPH9k6Mbr7O0KzBBdkiDDS88oB5NiFHVSFkCzswU=",
+        "owner": "tadfisher",
+        "repo": "gradle2nix",
+        "rev": "30cfe5889188524223364ee7919d94e83d6ee44a",
+        "type": "github"
+      },
+      "original": {
+        "owner": "tadfisher",
+        "ref": "v2",
+        "repo": "gradle2nix",
         "type": "github"
       }
     },
@@ -400,6 +435,21 @@
         "type": "github"
       }
     },
+    "nixpkgs-lib_2": {
+      "locked": {
+        "lastModified": 1777168982,
+        "narHash": "sha256-GOkGPcboWE9BmGCRMLX3worL4EMnsnG8MyKmXNeYuhQ=",
+        "owner": "nix-community",
+        "repo": "nixpkgs.lib",
+        "rev": "f5901329dade4a6ea039af1433fb087bd9c1fe14",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "nixpkgs.lib",
+        "type": "github"
+      }
+    },
     "nixpkgs_2": {
       "locked": {
         "lastModified": 1779536132,
@@ -433,6 +483,22 @@
       }
     },
     "nixpkgs_4": {
+      "locked": {
+        "lastModified": 1755615617,
+        "narHash": "sha256-HMwfAJBdrr8wXAkbGhtcby1zGFvs+StOp19xNsbqdOg=",
+        "owner": "NixOS",
+        "repo": "nixpkgs",
+        "rev": "20075955deac2583bb12f07151c2df830ef346b4",
+        "type": "github"
+      },
+      "original": {
+        "owner": "NixOS",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
+    "nixpkgs_5": {
       "locked": {
         "lastModified": 1778430510,
         "narHash": "sha256-Ti+ZBvW6yrWWAg2szExVTwCd4qOJ3KlVr1tFHfyfi8Q=",
@@ -553,16 +619,16 @@
     },
     "self-privacy": {
       "inputs": {
-        "flake-utils": "flake-utils",
-        "nixpkgs": "nixpkgs_4",
-        "systems": "systems"
+        "flake-parts": "flake-parts_2",
+        "gradle2nix": "gradle2nix",
+        "nixpkgs": "nixpkgs_5"
       },
       "locked": {
-        "lastModified": 1777480202,
-        "narHash": "sha256-cSqEJ6Cr2H/wyRMBicplIfYzLIlj1SBE2lEKw+n1UZ8=",
+        "lastModified": 1779314030,
+        "narHash": "sha256-PnzCbvlaSZzheNpNC93yv5PSh/oUrLnORg3ADDW8pUw=",
         "ref": "master",
-        "rev": "4a737931a29dccc1b5b3b6b759c2a285cd7b8942",
-        "revCount": 1898,
+        "rev": "736121e0b1d36bd3e8791e98b49044d4a02782da",
+        "revCount": 1933,
         "type": "git",
         "url": "https://git.selfprivacy.org/SelfPrivacy/selfprivacy.org.app/"
       },
@@ -594,16 +660,16 @@
     },
     "systems": {
       "locked": {
-        "lastModified": 1689347949,
-        "narHash": "sha256-12tWmuL2zgBgZkdoB6qXZsgJEH9LR3oUgpaQq2RbI80=",
+        "lastModified": 1681028828,
+        "narHash": "sha256-Vy1rq5AaRuLzOxct8nz4T6wlgyUR7zLU309k9mBC768=",
         "owner": "nix-systems",
-        "repo": "default-linux",
-        "rev": "31732fcf5e8fea42e59c2488ad31a0e651500f68",
+        "repo": "default",
+        "rev": "da67096a3b9bf56a91d16901293e51ba5b49a27e",
         "type": "github"
       },
       "original": {
         "owner": "nix-systems",
-        "repo": "default-linux",
+        "repo": "default",
         "type": "github"
       }
     },

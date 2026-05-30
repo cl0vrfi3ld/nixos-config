@@ -7,7 +7,7 @@
 }:
 
 let
-  selfprivacy-app = inputs.self-privacy.packages.${system}.release;
+  selfprivacy-app = inputs.self-privacy.packages.${system}.default;
   pano-scrobbler = inputs.pano-scrobbler.packages.${system}.default;
 in
 {
