@@ -110,6 +110,9 @@ in
     noto-fonts-color-emoji
   ];
 
+  # Create an app list menu for the xdg portals and such
+  environment.etc."xdg/menus/applications.menu".source = ../../dotfiles/xdg-config/applications.menu;
+
   # Shortcuts and Aliases
   environment.shellAliases = {
     # System
