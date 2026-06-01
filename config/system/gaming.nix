@@ -32,7 +32,7 @@
     enable = true;
     location = "/too/Games/rsi-launcher";
     gamescope = {
-      enable = true;
+      enable = false;
       args = [
         "-W 2560"
         "-H 1600"
