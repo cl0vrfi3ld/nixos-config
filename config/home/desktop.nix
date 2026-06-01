@@ -42,4 +42,13 @@ in
     # "niri/config.kdl".source = ../../dotfiles/niri/config.kdl;
     "dolphinrc".source = ../../dotfiles/dolphin/dolphinrc;
   };
+
+  # ensure xdg portals are defined
+  xdg.portal = {
+    enable = true;
+    xdgOpenUsePortal = true;
+    extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
+    configPackages = [ pkgs.xdg-desktop-portal-gtk ];
+    config.common.default = "gtk";
+  };
 }
