@@ -53,6 +53,9 @@
     "rd.systemd.show_status=auto"
   ];
 
+  # Enable zswap (hybrid zram + swap partition)
+  boot.zswap.enable = true;
+
   # Hide the OS choice for bootloaders
   boot.loader.timeout = 0;
 }
