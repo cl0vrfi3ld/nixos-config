@@ -31,7 +31,7 @@ in
   services.xserver.enable = false;
 
   # Display Manager
-  programs.dank-material-shell.greeter = {
+  services.displayManager.dms-greeter = {
     enable = true;
     compositor.name = "niri";
 
