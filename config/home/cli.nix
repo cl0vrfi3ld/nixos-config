@@ -41,6 +41,9 @@ in
 
       # nix run shortcut
       nixr = "nix run nixpkgs#";
+
+      # reboot to systemd-boot boot menu
+      reboot-to-menu = "systemctl reboot --boot-loader-menu=0";
     };
   };
 
