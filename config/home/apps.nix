@@ -44,6 +44,7 @@ in
     mixxx
     ardour
     tidal-hifi
+    sone
     finamp
     # AI
     gemini-cli
