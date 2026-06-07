@@ -54,7 +54,7 @@
   ];
 
   # Enable zswap (hybrid zram + swap partition)
-  boot.zswap.enable = true;
+  # boot.zswap.enable = true;
 
   # Hide the OS choice for bootloaders
   boot.loader.timeout = 0;
