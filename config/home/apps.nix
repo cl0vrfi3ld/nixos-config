@@ -29,6 +29,7 @@ in
     libreoffice
     # Notes/Organized Docs and Data
     obsidian
+    anytype
     # Media
     mpv
     vlc
@@ -91,7 +92,6 @@ in
   services.flatpak.enable = true;
   services.flatpak.packages = [
     "org.gnome.World.PikaBackup"
-    "io.anytype.anytype"
     "com.github.zocker_160.SyncThingy"
   ];
   services.flatpak.overrides = {
