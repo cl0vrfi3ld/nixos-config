@@ -20,18 +20,20 @@ let
 in
 {
   home.packages = with pkgs; [
-    kdePackages.kate
+    # Tools
+    android-tools
     cachix
     direnv
     distrobox
     nixd
     nixfmt
     forgejo-cli
+    # IDEs
     antigravity-fhs
-    # intellij-idea-fhs
-    # android-studio
-    android-tools
+    kdePackages.kate
     zed-editor-fhs
+    # Languages
+    python3
   ];
 
   programs.git = {
