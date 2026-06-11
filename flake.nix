@@ -16,7 +16,7 @@
     nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
     # source builds of quickshell
     quickshell = {
-      url = "git+https://git.outfoxxed.me/quickshell/quickshell";
+      url = "git+https://git.outfoxxed.me/quickshell/quickshell/?ref=refs/tags/v0.3.0";
       # url = "github:quickshell-mirror/quickshell"; # github mirror
       inputs.nixpkgs.follows = "nixpkgs";
     };
