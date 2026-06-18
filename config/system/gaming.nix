@@ -26,6 +26,12 @@
     openFirewall = false;
   };
 
+  # Sunshine config
+  services.sunshine = {
+    enable = true;
+    capSysAdmin = true;
+  };
+
   # Star Citizen config
   programs.rsi-launcher = {
     # Enables the star citizen module
