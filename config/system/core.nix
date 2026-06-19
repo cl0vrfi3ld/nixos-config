@@ -50,9 +50,10 @@
   # System packages
   environment.systemPackages = with pkgs; [
     git
+    gptfdisk
     micro
-    wget
     unzip
+    wget
   ];
 
   # Allow specific unfree packages
