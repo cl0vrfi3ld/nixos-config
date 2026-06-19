@@ -98,6 +98,10 @@
     "/too" = {
       device = "/dev/disk/by-label/data_too";
       fsType = "btrfs";
+      options = [
+        "nofail"
+        "x-systemd.mount-timeout=5s"
+      ];
     };
   };
 }
