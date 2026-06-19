@@ -30,6 +30,7 @@
   services.sunshine = {
     enable = true;
     capSysAdmin = true;
+    autoStart = false;
   };
 
   # Star Citizen config
