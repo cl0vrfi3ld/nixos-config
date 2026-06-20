@@ -23,7 +23,6 @@ in
     signal-desktop
     # Internet
     mullvad-browser
-    librewolf
     nextcloud-client
     # Documents
     libreoffice
