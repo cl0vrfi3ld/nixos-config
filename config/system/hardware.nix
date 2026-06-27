@@ -53,6 +53,28 @@
     # "usbcore.autosuspend=1"
   ];
 
+  # Filesystem and tmp optimisations
+  services.fstrim.enable = true;
+  boot.tmp.useTmpfs = true;
+
+  # Swap optimizations
+  boot.zswap = {
+    enable = true;
+    compressor = "lz4";
+  };
+
+  # Drive mounting
+  fileSystems = {
+    "/too" = {
+      device = "/dev/disk/by-label/data_too";
+      fsType = "btrfs";
+      options = [
+        "nofail"
+        "x-systemd.mount-timeout=5s"
+      ];
+    };
+  };
+
   # Refresh rate monitor
   systemd.user.services.auto-rr-throttle = {
     description = "Automatically throttle max refresh rate when on battery";
@@ -89,22 +111,6 @@
           fi
         done
       '';
-    };
-  };
-
-  # Filesystem and tmp optimisations
-  services.fstrim.enable = true;
-  boot.tmp.useTmpfs = true;
-
-  # Drive mounting
-  fileSystems = {
-    "/too" = {
-      device = "/dev/disk/by-label/data_too";
-      fsType = "btrfs";
-      options = [
-        "nofail"
-        "x-systemd.mount-timeout=5s"
-      ];
     };
   };
 }
