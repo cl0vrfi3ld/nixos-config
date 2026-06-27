@@ -42,6 +42,9 @@
   services.upower.enable = true;
   hardware.acpilight.enable = true;
 
+  # Stuff
+  hardware.enableRedistributableFirmware = true;
+
   # Device tweaks
   boot.kernelParams = [
     "amd_pstate=active"
