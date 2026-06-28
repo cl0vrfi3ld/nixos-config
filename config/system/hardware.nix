@@ -42,6 +42,18 @@
   services.upower.enable = true;
   hardware.acpilight.enable = true;
 
+  # Power state behaviour
+  # Suspend first then hibernate when closing the lid
+  services.logind.settings.Login.LidSwitch = "suspend-then-hibernate";
+  # Suspend-then-hibernate on power button pressed
+  services.logind.settings.Login.PowerKey = "suspend-then-hibernate";
+  services.logind.settings.Login.PowerKeyLongPress = "poweroff";
+  # Define time delay for hibernation
+  systemd.sleep.settings.Sleep = {
+    HibernateDelaySec = "1h";
+    SuspendState = "mem";
+  };
+
   # Stuff
   hardware.enableRedistributableFirmware = true;
 

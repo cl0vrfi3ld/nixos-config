@@ -51,10 +51,11 @@
     "boot.shell_on_fail"
     "udev.log_priority=3"
     "rd.systemd.show_status=auto"
+
   ];
 
-  # Enable zswap (hybrid zram + swap partition)
-  # boot.zswap.enable = true;
+  # Resume from hibernate stuff
+  boot.resumeDevice = "/dev/disk/by-uuid/b13fc3f8-2563-4a5a-9ad9-62d68b5212e5";
 
   # Hide the OS choice for bootloaders
   boot.loader.timeout = 0;
