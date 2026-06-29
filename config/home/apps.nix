@@ -46,8 +46,6 @@ in
     tidal-hifi
     sone
     finamp
-    # AI
-    gemini-cli
   ];
 
   # Vesktop/Vencord

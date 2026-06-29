@@ -34,6 +34,9 @@ in
     zed-editor-fhs
     # Languages
     python3
+    # AI
+    antigravity-cli
+    claude-code
   ];
 
   programs.git = {
