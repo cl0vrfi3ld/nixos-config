@@ -6,11 +6,12 @@
 
 Unstable
 
-### Target Hardware
+### Target Hosts
 
-Framework Laptop 16 (Ryzen 7040HS with RX 7700S dGPU)
+- TheUnreliable: 
+  Framework Laptop 16 (Ryzen 7040HS with RX 7700S dGPU)
 
-### Desktop Environment
+### Desktop Environments
 
 DankMaterialShell (via Niri compositor)
 
