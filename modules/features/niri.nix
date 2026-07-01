@@ -33,6 +33,9 @@
         };
       };
       services.xserver.enable = false;
+      environment.systemPackages = lib.mkIf (config.features.niri.shell == "dms") [
+        pkgs.xwayland-satellite
+      ];
     };
   };
 
