@@ -5,7 +5,7 @@
   ...
 }:
 {
-  flake.nixosModules.greetd =
+  flake.nixosModules.tuigreet =
     {
       config,
       pkgs,
