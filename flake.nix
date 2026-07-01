@@ -66,83 +66,25 @@
       url = "github:0xc000022070/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    flake-parts.url = "github:hercules-ci/flake-parts";
+    import-tree.url = "github:vic/import-tree";
+    wrapper-modules.url = "github:BirdeeHub/nix-wrapper-modules";
   };
 
   outputs =
-    {
+    inputs@{
       self,
       nixpkgs,
-      nixos-hardware,
-      home-manager,
-      nix-flatpak,
-      dms,
-      dms-plugin-registry,
-      nix-gaming,
-      nix-citizen,
-      nix-iwd-provisioning,
-      sops-nix,
-      lanzaboote,
+      flake-parts,
       ...
-    }@inputs:
-    {
-      nixosConfigurations.TheUnreliable =
-        let
-          system = "x86_64-linux";
-          # system = nixpkgs.stdenv.hostPlatform.system;
-        in
-        nixpkgs.lib.nixosSystem {
-          specialArgs = {
-            inherit inputs;
-            inherit system;
-          };
-          modules = [
-            # hardware config for the fw16
-            nixos-hardware.nixosModules.framework-16-7040-amd
-            # sops cfg
-            sops-nix.nixosModules.sops
-            # home manager config
-            home-manager.nixosModules.home-manager
-            {
-              home-manager.useGlobalPkgs = true;
-              home-manager.useUserPackages = true;
-              home-manager.users."coucoucl0vr" = ./home.nix;
-              home-manager.extraSpecialArgs = {
-                inherit system;
-                inherit inputs;
-              };
-
-              # when overwriting files, back 'em up!
-              home-manager.backupFileExtension = "old";
-            }
-            # lanzaboote config
-            lanzaboote.nixosModules.lanzaboote
-            # eduroam/general iwd provisioning
-            nix-iwd-provisioning.nixosModules.nix-iwd-provisioning
-            # declarative flatpak management
-            nix-flatpak.nixosModules.nix-flatpak
-            # DankMaterialShell config
-            dms.nixosModules.dank-material-shell
-            dms.nixosModules.greeter
-            dms-plugin-registry.modules.default
-            # gaming config
-            nix-gaming.nixosModules.platformOptimizations
-            # nix-citizen stuff
-            nix-citizen.nixosModules.default
-            # --- System Config Modules ---
-            ./config/system/overrides.nix
-            ./config/system/boot.nix
-            ./config/system/core.nix
-            ./config/system/hardware.nix
-            ./config/system/network.nix
-            ./config/system/desktop.nix
-            ./config/system/apps.nix
-            ./config/system/gaming.nix
-            ./config/system/security.nix
-            ./config/system/secrets.nix
-
-            # this is the old config method, importing it here so its settings are still applied
-            ./configuration.nix
-          ];
-        };
+    }:
+    flake-parts.lib.mkFlake { inherit inputs; } {
+      systems = [
+        "x86_64-linux"
+      ];
+      imports = [
+        (inputs.import-tree ./modules)
+      ];
     };
 }

@@ -15,8 +15,6 @@
     # zen browser module
     inputs.zen-browser.homeModules.twilight
     # --- home config ---
-    ./config/home/core.nix
-    ./config/home/desktop.nix
     ./config/home/defaults.nix
     ./config/home/apps.nix
     ./config/home/dev.nix
