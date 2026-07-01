@@ -8,7 +8,7 @@
     }:
     {
       # Tell niri we're using noctalia
-      features.niri.shell = "noctalia";
+      config.features.niri.shell = "noctalia";
     };
   perSystem = { pkgs, ... }: {
     packages.myNoctalia = inputs.wrapper-modules.wrappers.noctalia-shell.wrap {

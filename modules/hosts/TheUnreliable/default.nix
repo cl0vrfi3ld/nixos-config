@@ -16,6 +16,7 @@
         self.nixosModules.core
         self.nixosModules.nh
         self.nixosModules.users
+        # self.nixosModules.greetd
         self.nixosModules.dms
         self.nixosModules.niri
         self.nixosModules.desktop-suite
@@ -36,14 +37,17 @@
           };
         }
 
-        # lanzaboote config
+        # lanzaboote config (not migrated yet)
         inputs.lanzaboote.nixosModules.lanzaboote
 
-        # eduroam/general iwd provisioning
+        # eduroam/general iwd provisioning (not migrated yet)
         inputs.nix-iwd-provisioning.nixosModules.nix-iwd-provisioning
 
-        # declarative flatpak management
+        # declarative flatpak management (not migrated yet)
         inputs.nix-flatpak.nixosModules.nix-flatpak
+
+        # sysc-greet stuff
+        inputs.sysc-greet.nixosModules.default
 
         # DankMaterialShell config (not migrated yet)
         inputs.dms.nixosModules.dank-material-shell
@@ -53,7 +57,7 @@
         # gaming config (not migrated yet)
         inputs.nix-gaming.nixosModules.platformOptimizations
 
-        # nix-citizen stuff
+        # nix-citizen stuff (not migrated yet)
         inputs.nix-citizen.nixosModules.default
 
         # --- System Config Modules (Legacy, not migrated yet) ---

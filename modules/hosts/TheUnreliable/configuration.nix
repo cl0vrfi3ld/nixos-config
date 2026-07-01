@@ -44,9 +44,11 @@
     };
 
     features.niri = {
-      configPath = toString (pkgs.replaceVars ../../../dotfiles/niri/config.kdl {
-        user_path = "/home/coucoucl0vr/.config/niri";
-      });
+      configPath = toString (
+        pkgs.replaceVars ../../../dotfiles/niri/dms-config.kdl {
+          user_path = "/home/coucoucl0vr/.config/niri";
+        }
+      );
     };
 
     # Override or define machine-specific settings

@@ -60,7 +60,7 @@
               "config.kdl".path = lib.mkIf (args.configPath != null) args.configPath;
 
               settings = {
-                spawn-at-startup = lib.mkIf (args.shell == "niri") [
+                spawn-at-startup = lib.mkIf (args.shell == "noctalia") [
                   (lib.getExe self'.packages.myNoctalia)
                 ];
                 xwayland-satellite.path = lib.getExe pkgs.xwayland-satellite;
