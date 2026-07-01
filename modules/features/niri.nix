@@ -64,7 +64,7 @@
                   (lib.getExe self'.packages.myNoctalia)
                 ];
                 xwayland-satellite.path = lib.getExe pkgs.xwayland-satellite;
-                binds = {
+                binds = lib.mkIf (args.shell == "noctalia") {
                   "Mod+T".spawn-sh = lib.getExe pkgs.ghostty;
                   "Mod+Q".close-window = _: { };
                 };
