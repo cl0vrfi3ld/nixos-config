@@ -13,7 +13,9 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # repo for nix-flatpak
-    nix-flatpak.url = "github:gmodena/nix-flatpak/?ref=latest";
+    nix-flatpak = {
+      url = "github:gmodena/nix-flatpak/?ref=latest";
+    };
     # source builds of quickshell
     quickshell = {
       url = "git+https://git.outfoxxed.me/quickshell/quickshell/?ref=refs/tags/v0.3.0";
@@ -34,14 +36,20 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # gaming utilities
-    nix-gaming.url = "github:fufexan/nix-gaming";
+    nix-gaming = {
+      url = "github:fufexan/nix-gaming";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # star citizen!
     nix-citizen = {
       url = "github:LovingMelody/nix-citizen";
       inputs.nix-gaming.follows = "nix-gaming";
+      inputs.nixpkgs.follows = "nixpkgs";
     };
     # repo for nix-iwd-provisioning
-    nix-iwd-provisioning.url = "git+https://git.cl0vr.co/cl0vr/nix-iwd-provisioning/?ref=main";
+    nix-iwd-provisioning = {
+      url = "git+https://git.cl0vr.co/cl0vr/nix-iwd-provisioning/?ref=main";
+    };
     # secrets handling
     sops-nix = {
       url = "github:Mic92/sops-nix";
@@ -60,7 +68,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     # selfprivacy repo
-    self-privacy.url = "git+https://git.selfprivacy.org/SelfPrivacy/selfprivacy.org.app/?ref=master";
+    self-privacy = {
+      url = "git+https://git.selfprivacy.org/SelfPrivacy/selfprivacy.org.app/?ref=master";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     # zen browser flake
     zen-browser = {
       url = "github:0xc000022070/zen-browser-flake";
