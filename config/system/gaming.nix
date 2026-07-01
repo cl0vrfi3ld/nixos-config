@@ -30,7 +30,16 @@
   services.sunshine = {
     enable = true;
     capSysAdmin = true;
+    openFirewall = true;
     autoStart = false;
+  };
+
+  # Rules for moondeck-buddy
+  networking.firewall = {
+    allowedTCPPorts = [ 59999 ];
+    allowedUDPPorts = [
+      59999
+    ];
   };
 
   # Star Citizen config
