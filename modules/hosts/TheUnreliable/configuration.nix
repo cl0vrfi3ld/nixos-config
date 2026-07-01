@@ -28,6 +28,7 @@
           "kvm"
           "adbusers"
           "greeter"
+          "uinput"
         ];
         shell = pkgs.fish;
         sessionVariables = {
