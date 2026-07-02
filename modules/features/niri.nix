@@ -5,39 +5,47 @@
   ...
 }:
 {
-  flake.nixosModules.niri = { config, pkgs, ... }: {
-    options.features.niri = {
-      configPath = lib.mkOption {
-        type = lib.types.nullOr lib.types.str;
-        default = null;
-        description = ''
-          Store path (as a string) to a config.kdl file.
-          Use toString on derivations like pkgs.replaceVars to convert them.
-        '';
-      };
-      shell = lib.mkOption {
-        type = lib.types.enum [
-          "dms"
-          "noctalia"
-        ];
-        description = "The shell that is being used";
-      };
-    };
-
-    config = {
-      programs.niri = {
-        enable = true;
-        package = self.packages.${pkgs.system}.myNiri.override {
-          configPath = config.features.niri.configPath;
-          shell = config.features.niri.shell;
+  flake.nixosModules.niri =
+    {
+      config,
+      pkgs,
+      lib,
+      options,
+      ...
+    }:
+    {
+      options.features.niri = {
+        configPath = lib.mkOption {
+          type = lib.types.nullOr lib.types.str;
+          default = null;
+          description = ''
+            Store path (as a string) to a config.kdl file.
+            Use toString on derivations like pkgs.replaceVars to convert them.
+          '';
+        };
+        shell = lib.mkOption {
+          type = lib.types.enum [
+            "dms"
+            "noctalia"
+          ];
+          description = "The shell that is being used";
         };
       };
-      services.xserver.enable = false;
-      environment.systemPackages = lib.mkIf (config.features.niri.shell == "dms") [
-        pkgs.xwayland-satellite
-      ];
+
+      config = {
+        programs.niri = {
+          enable = true;
+          package = self.packages.${pkgs.system}.myNiri.override {
+            configPath = config.features.niri.configPath;
+            shell = config.features.niri.shell;
+          };
+        };
+        services.xserver.enable = false;
+        environment.systemPackages = lib.mkIf (config.features.niri.shell == "dms") [
+          pkgs.xwayland-satellite
+        ];
+      };
     };
-  };
 
   perSystem =
     {
@@ -51,6 +59,14 @@
         pkgs.lib.makeOverridable
           (
             args:
+            let
+              noctaliaBindsKdl = toString (
+                pkgs.replaceVars ../../dotfiles/niri/noctalia-binds.kdl {
+                  noctalia = lib.getExe self'.packages.myNoctalia;
+                  ghostty = lib.getExe pkgs.ghostty;
+                }
+              );
+            in
             inputs.wrapper-modules.wrappers.niri.wrap {
               inherit pkgs;
 
@@ -62,17 +78,26 @@
               # generated themes), which don't exist inside the Nix sandbox.
               "config.kdl".path = lib.mkIf (args.configPath != null) args.configPath;
 
-              settings = {
-                spawn-at-startup = lib.mkIf (args.shell == "noctalia") [
-                  (lib.getExe self'.packages.myNoctalia)
-                ];
-                xwayland-satellite.path = lib.getExe pkgs.xwayland-satellite;
-                binds = lib.mkIf (args.shell == "noctalia") {
-                  "Mod+T".spawn-sh = lib.getExe pkgs.ghostty;
-                  "Mod+Q".close-window = _: { };
-                  "Mod+Space".spawn-sh = "${lib.getExe self'.packages.myNoctalia} ipc call launcher toggle";
-                };
-              };
+              extraSettings = [
+                {
+                  include = lib.mkIf (args.shell == "noctalia") noctaliaBindsKdl;
+                }
+              ];
+
+              settings = lib.mkMerge [
+                # Always point niri to xwayland-satellite
+                {
+                  xwayland-satellite.path = lib.getExe pkgs.xwayland-satellite;
+                }
+                (lib.mkIf (args.shell == "noctalia") {
+                  spawn-at-startup = [
+                    (lib.getExe self'.packages.myNoctalia)
+                  ];
+                  input = {
+                    touchpad."natural-scroll" = _: { };
+                  };
+                })
+              ];
             }
           )
           {
