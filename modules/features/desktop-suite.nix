@@ -33,11 +33,6 @@
           # File managers
           kdePackages.dolphin
           yazi
-
-          # Quickshell deps
-          qt6Packages.qtsvg
-          qt6Packages.qtimageformats
-          qt6Packages.qtmultimedia
         ];
 
         # Fonts

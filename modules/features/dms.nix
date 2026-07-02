@@ -77,6 +77,10 @@
         environment.systemPackages = with pkgs; [
           qt6Packages.qt5compat
           qt6Packages.qt6ct
+          # Quickshell deps
+          qt6Packages.qtsvg
+          qt6Packages.qtimageformats
+          qt6Packages.qtmultimedia
         ];
 
         # Home-Manager specific theming config for DMS
