@@ -5,7 +5,7 @@
   ...
 }:
 {
-  flake.nixosModules.tuigreet =
+  flake.nixosModules.ly =
     {
       config,
       pkgs,
