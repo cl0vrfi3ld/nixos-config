@@ -20,14 +20,14 @@
           default = "coucoucl0vr";
           description = "The primary user to fetch DMS configurations for.";
         };
-        users = lib.mkOption {
-          type = lib.types.listOf lib.types.str;
-          default = lib.mapAttrsToList (name: user: name) (
-            lib.filterAttrs (name: user: user.isDesktopUser) config.features.users.users
-          );
-          defaultText = lib.literalExpression "all desktop users configured in features.users.users";
-          description = "Users to apply DMS specific home-manager settings and theming to.";
-        };
+        # users = lib.mkOption {
+        #   type = lib.types.listOf lib.types.str;
+        #   default = lib.mapAttrsToList (name: user: name) (
+        #     lib.filterAttrs (name: user: user.isDesktopUser) config.features.users.users
+        #   );
+        #   defaultText = lib.literalExpression "all desktop users configured in features.users.users";
+        #   description = "Users to apply DMS specific home-manager settings and theming to.";
+        # };
       };
 
       config = {
@@ -80,7 +80,7 @@
         ];
 
         # Home-Manager specific theming config for DMS
-        home-manager.users = lib.genAttrs config.features.dms.users (username: {
+        home-manager.users = self.lib.applyDesktopHome config (username: {
           # Cursor theming
           home.pointerCursor = {
             gtk.enable = true;
