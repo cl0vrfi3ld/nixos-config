@@ -7,11 +7,6 @@
       options,
       ...
     }:
-    let
-      desktopUsers = lib.mapAttrsToList (name: user: name) (
-        lib.filterAttrs (name: user: user.isDesktopUser) config.features.users.users
-      );
-    in
     {
       # Tell niri we're using noctalia
       features.niri.shell = "noctalia";
@@ -19,20 +14,7 @@
         "Noctalia shell module is imported, but `features.niri.shell` is defined in multiple places. It may be overwriting or overwritten by another config!"
       ];
 
-      home-manager.users = lib.genAttrs desktopUsers (username: {
-        # Cursor theming
-        home.pointerCursor = {
-          gtk.enable = true;
-          package = pkgs.adwaita-icon-theme;
-          name = "Adwaita";
-          size = 24;
-        };
-        home.packages = with pkgs; [
-          # clipboard history
-          cliphist
-          wl-clip-persist
-        ];
-      });
+      imports = [ self.nixosModules.noctalia-theming ];
     };
   perSystem = { pkgs, ... }: {
     packages.myNoctalia = inputs.wrapper-modules.wrappers.noctalia-shell.wrap {
