@@ -42,12 +42,10 @@
 
         # Fonts
         fonts.packages = with pkgs; [
-          nerd-fonts.droid-sans-mono
           nerd-fonts.fira-code
           nerd-fonts.roboto-mono
           roboto
           nerd-fonts.open-dyslexic
-          noto-fonts
           noto-fonts-color-emoji
         ];
 
