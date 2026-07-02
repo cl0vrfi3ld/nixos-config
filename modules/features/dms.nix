@@ -10,6 +10,7 @@
       config,
       pkgs,
       lib,
+      options,
       ...
     }:
     {
@@ -32,6 +33,9 @@
       config = {
         # Tell niri we're using DMS
         features.niri.shell = "dms";
+        warnings = lib.mkIf (builtins.length options.features.niri.shell.definitions > 1) [
+          "DMS shell module is imported, but `features.niri.shell` is defined in multiple places. It may be overwriting or overwritten by another config!"
+        ];
         # Display Manager / Greeter
         services.displayManager.dms-greeter = {
           enable = true;
