@@ -126,6 +126,7 @@ binds {
     Super+Shift+S { screenshot; }
     Mod+Shift+E { quit; }
     Mod+T hotkey-overlay-title="Open Terminal" { spawn "@ghostty@"; }
+    Super+Slash hotkey-overlay-title="Open Control Center" { spawn "@noctalia@" "ipc" "call" "controlCenter" "toggle"; }
     Mod+D repeat=false { toggle-overview; }
     Mod+Escape allow-inhibiting=false { toggle-keyboard-shortcuts-inhibit; }
     Mod+Shift+Slash { show-hotkey-overlay; }
