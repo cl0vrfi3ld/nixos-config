@@ -94,7 +94,17 @@
                     (lib.getExe self'.packages.myNoctalia)
                   ];
                   input = {
-                    touchpad."natural-scroll" = _: { };
+                    touchpad.natural-scroll = _: { };
+                    disable-power-key-handling = _: { };
+                  };
+                  switch-events = {
+                    lid-close.spawn = [
+                      "${lib.getExe self'.packages.myNoctalia}"
+                      "ipc"
+                      "call"
+                      "sessionMenu"
+                      "lockAndSuspend"
+                    ];
                   };
                 })
               ];
