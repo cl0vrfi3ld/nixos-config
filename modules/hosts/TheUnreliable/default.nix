@@ -16,10 +16,14 @@
         self.nixosModules.core
         self.nixosModules.nh
         self.nixosModules.users
-        # self.nixosModules.greetd
-        self.nixosModules.dms
         self.nixosModules.niri
         self.nixosModules.desktop-suite
+        # --- noctalia setup ---
+        # self.nixosModules.tuigreet
+        self.nixosModules.ly
+        self.nixosModules.noctalia
+        # --- dms setup ---
+        # self.nixosModules.dms
 
         # Hardware inputs for fw16
         inputs.nixos-hardware.nixosModules.framework-16-7040-amd
