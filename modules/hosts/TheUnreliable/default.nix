@@ -18,6 +18,7 @@
         self.nixosModules.users
         self.nixosModules.niri
         self.nixosModules.desktop-suite
+        self.nixosModules.battery
         # --- noctalia setup ---
         # self.nixosModules.tuigreet
         self.nixosModules.ly
