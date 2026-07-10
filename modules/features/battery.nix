@@ -13,7 +13,6 @@
       ...
     }:
     {
-
       systemd.user.services.auto-rr-throttle =
         let
           path =
