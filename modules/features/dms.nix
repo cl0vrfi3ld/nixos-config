@@ -41,13 +41,13 @@
           enable = true;
           compositor.name = "niri";
           configHome = "/home/${config.features.dms.user}";
-          quickshell.package = inputs.quickshell.packages.${pkgs.system}.default;
+          quickshell.package = inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.default;
         };
 
         # DMS Shell
         programs.dank-material-shell = {
           enable = true;
-          quickshell.package = inputs.quickshell.packages.${pkgs.system}.default;
+          quickshell.package = inputs.quickshell.packages.${pkgs.stdenv.hostPlatform.system}.default;
           dgop.package = pkgs.dgop;
           systemd = {
             enable = true;

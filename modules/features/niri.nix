@@ -35,7 +35,7 @@
       config = {
         programs.niri = {
           enable = true;
-          package = self.packages.${pkgs.system}.myNiri.override {
+          package = self.packages.${pkgs.stdenv.hostPlatform.system}.myNiri.override {
             configPath = config.features.niri.configPath;
             shell = config.features.niri.shell;
           };

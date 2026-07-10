@@ -15,7 +15,7 @@
       services.sysc-greet = {
         enable = true;
         compositor = "niri";
-        niriPackage = self.packages.${pkgs.system}.myNiri;
+        niriPackage = self.packages.${pkgs.stdenv.hostPlatform.system}.myNiri;
       };
     };
 }
