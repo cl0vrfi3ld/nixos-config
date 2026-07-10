@@ -87,42 +87,5 @@
     };
   };
 
-  # Refresh rate monitor
-  systemd.user.services.auto-rr-throttle = {
-    description = "Automatically throttle max refresh rate when on battery";
-    after = [ "graphical-session.target" ];
-    partOf = [ "graphical-session.target" ];
-    wantedBy = [ "graphical-session.target" ];
-    path = [
-      inputs.quickshell.packages.${system}.quickshell
-      pkgs.dms-shell
-    ];
-    serviceConfig = {
-      Restart = "on-failure";
-      # Currently requires existing DMS-managed display profiles
-      # TODO: create display profiles declaratively
-      ExecStart = pkgs.writeShellScript "rr-manager" ''
-        apply_rr() {
-          if [ "$1" = "battery" ]; then
-             echo "Switched to Battery: Setting 60Hz"
-             dms ipc call outputs setProfile OnBattery
-          else
-             echo "Switched to AC: Setting 165Hz"
-             dms ipc call outputs setProfile OnAC
-          fi
-        }
 
-        STATUS=$(cat /sys/class/power_supply/ACAD/online)
-        if [ "$STATUS" = "0" ]; then apply_rr "battery"; else apply_rr "ac"; fi
-
-        ${pkgs.upower}/bin/upower --monitor | while read -r line; do
-          if [[ "$line" == *"line_power"* ]] || [[ "$line" == *"online:"* ]]; then
-             sleep 0.5
-             NEW_STATUS=$(cat /sys/class/power_supply/ACAD/online)
-             if [ "$NEW_STATUS" = "0" ]; then apply_rr "battery"; else apply_rr "ac"; fi
-          fi
-        done
-      '';
-    };
-  };
 }
