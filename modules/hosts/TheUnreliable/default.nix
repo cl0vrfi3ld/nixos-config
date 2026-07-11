@@ -69,7 +69,7 @@
         ../../../config/system/overrides.nix
         ../../../config/system/boot.nix
         # removed ../../../config/system/core.nix (handled by features.core)
-        ../../../config/system/hardware.nix
+        # removed ../../../config/system/hardware.nix
         ../../../config/system/network.nix
         ../../../config/system/apps.nix
         ../../../config/system/gaming.nix
