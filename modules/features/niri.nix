@@ -82,6 +82,12 @@
                 {
                   include = lib.mkIf (args.shell == "noctalia") noctaliaBindsKdl;
                 }
+                {
+                  include = lib.mkIf (args.shell == "noctalia") [
+                    { optional = true; }
+                    "~/.config/niri/noctalia.kdl"
+                  ];
+                }
               ];
 
               settings = lib.mkMerge [
@@ -90,6 +96,17 @@
                   xwayland-satellite.path = lib.getExe pkgs.xwayland-satellite;
                 }
                 (lib.mkIf (args.shell == "noctalia") {
+                  prefer-no-csd = _: { };
+                  window-rule = {
+                    geometry-corner-radius = 20;
+                    clip-to-geometry = true;
+                  };
+                  layout = {
+                    gaps = 8;
+                    # focus-ring = {
+                    #   width = 4.0;
+                    # };
+                  };
                   spawn-at-startup = [
                     (lib.getExe self'.packages.myNoctalia)
                   ];
