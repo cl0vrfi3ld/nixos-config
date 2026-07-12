@@ -13,7 +13,7 @@ binds {
     // ── Session & Power ──────────────────────────────────────────────
     Super+X hotkey-overlay-title="Power Menu: Toggle" { spawn "@noctalia@" "ipc" "call" "sessionMenu" "toggle"; }
     Mod+Alt+L hotkey-overlay-title="Lock Screen" { spawn "@noctalia@" "ipc" "call" "lockScreen" "lock"; }
-    XF86PowerOff allow-when-locked=true { spawn "@noctalia@" "ipc" "call" "sessionMenu" "lock"; }
+    XF86PowerOff allow-when-locked=true { spawn "@noctalia@" "ipc" "call" "sessionMenu" "lockAndSuspend"; }
     Mod+Shift+P { power-off-monitors; }
     Mod+Shift+E { quit; }
 
