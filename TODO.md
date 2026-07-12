@@ -2,10 +2,19 @@
 
 Things to do:
 
+- [ ] Switch to dendritic pattern (in progress, not yet complete).
 - [ ] Fix "evaluation warning: coucoucl0vr profile: `programs.ssh.matchBlocks` is deprecated. Use `programs.ssh.settings`".
-- [ ] Switch to dendritic pattern.
+- [x] Fix "evaluation warning: `system` has been renamed to/replaced by `stdenv.hostPlatform.system`"
 - [ ] Fix theming on noctalia
-  - [ ] borders
+  - [x] borders
   - [x] mouse themes
-  - [ ] colours
+  - [x] colours
+- [x] Create power profile switcher service
+  - [x] monitors battery status
+  - [x] switches to balanced when on battery
+  - [x] switches to performance when on AC/plugged in
+- [x] Update automatic refresh rate switcher service for noctalia
+  - [x] monitors battery status
+  - [x] switches to 60hz when on battery
+  - [x] switches to 165hz when on AC/plugged in
 - [ ] Setup gpg

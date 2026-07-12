@@ -58,9 +58,9 @@
           ];
 
           # User-specific config files
-          xdg.configFile = {
-            "dolphinrc".source = ../../dotfiles/dolphin/dolphinrc;
-          };
+          # xdg.configFile = {
+          #   "dolphinrc".source = ../../dotfiles/dolphin/dolphinrc;
+          # };
 
           # XDG Portal Configuration (User level)
           xdg.portal = {
