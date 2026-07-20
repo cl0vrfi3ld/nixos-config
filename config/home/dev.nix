@@ -29,6 +29,7 @@ in
     nixfmt
     forgejo-cli
     # IDEs
+    android-studio
     antigravity-fhs
     kdePackages.kate
     zed-editor-fhs
