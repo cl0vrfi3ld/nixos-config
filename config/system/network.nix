@@ -10,7 +10,11 @@
   networking.networkmanager.enable = true;
   systemd.services.NetworkManager-wait-online.enable = false;
   networking.nftables.enable = true;
-  networking.interfaces.wlan0.useDHCP = lib.mkDefault true;
+
+  # Do NOT set networking.interfaces.wlan0.useDHCP: NetworkManager already does
+  # DHCP on wlan0. Setting it spawns a second, competing dhcpcd client (via
+  # `allowinterfaces wlan0`), producing duplicate/stale leases that black-hole
+  # the interface (a dead lease can win the route metric and drop all traffic).
 
   # iwd configuration
   networking.networkmanager.wifi.backend = "iwd";
