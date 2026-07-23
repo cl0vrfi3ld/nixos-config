@@ -23,6 +23,9 @@
       };
 
       config = {
+        # KDE Connect (desktop device connectivity)
+        programs.kdeconnect.enable = true;
+
         # System level packages (Apps and utility desktop components)
         environment.systemPackages = with pkgs; [
           kdePackages.partitionmanager

@@ -60,6 +60,7 @@
       # };
 
       # Override or define machine-specific settings
+      networking.hostName = "TheUnreliable";
       time.timeZone = "America/New_York";
       # Leave this one be
       system.stateVersion = "25.05"; # Did you read the comment?

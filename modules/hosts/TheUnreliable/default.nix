@@ -19,6 +19,25 @@
         self.nixosModules.niri
         self.nixosModules.desktop-suite
         self.nixosModules.battery
+        # system
+        self.nixosModules.boot
+        self.nixosModules.networking
+        self.nixosModules.security
+        self.nixosModules.pam
+        self.nixosModules.sops
+        self.nixosModules.virtualisation
+        self.nixosModules.flatpak
+        self.nixosModules.fish
+        self.nixosModules.gaming
+        self.nixosModules.bitwarden
+        self.nixosModules.compat
+        self.nixosModules.gpu
+        # home
+        self.nixosModules.dev
+        self.nixosModules.ssh
+        self.nixosModules.browser
+        self.nixosModules.user-apps
+        self.nixosModules.xdg-mime
         # --- noctalia setup ---
         # self.nixosModules.tuigreet
         self.nixosModules.ly
@@ -35,8 +54,6 @@
         # home manager config (base)
         inputs.home-manager.nixosModules.home-manager
         {
-          # Keep old home.nix until fully migrated
-          home-manager.users."coucoucl0vr" = ../../../home.nix;
           home-manager.extraSpecialArgs = {
             inherit system inputs;
           };
@@ -64,17 +81,6 @@
 
         # nix-citizen stuff (not migrated yet)
         inputs.nix-citizen.nixosModules.default
-
-        # --- System Config Modules (Legacy, not migrated yet) ---
-        ../../../config/system/overrides.nix
-        ../../../config/system/boot.nix
-        # removed ../../../config/system/core.nix (handled by features.core)
-        # removed ../../../config/system/hardware.nix
-        ../../../config/system/network.nix
-        ../../../config/system/apps.nix
-        ../../../config/system/gaming.nix
-        ../../../config/system/security.nix
-        ../../../config/system/secrets.nix
       ];
     };
 }
