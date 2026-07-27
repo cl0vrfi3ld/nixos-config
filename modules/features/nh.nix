@@ -16,7 +16,7 @@
       programs.nh = {
         enable = true;
         clean.enable = true;
-        clean.extraArgs = "--keep 3";
+        clean.extraArgs = "--keep 3 --no-direnv --optimise";
       };
     };
   };
