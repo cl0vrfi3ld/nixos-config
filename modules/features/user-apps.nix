@@ -53,7 +53,7 @@
               lrcget
               mixxx
               ardour
-              tidal-hifi
+              # tidal-hifi
               sone
               finamp
             ];
