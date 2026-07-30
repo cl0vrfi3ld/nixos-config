@@ -39,10 +39,10 @@
               nixfmt
               forgejo-cli
               # IDEs
-              android-studio
-              antigravity-fhs
+              # android-studio
+              antigravity-ide-fhs
               kdePackages.kate
-              intellij-idea-fhs
+              # intellij-idea-fhs
               zed-editor-fhs
               # Languages
               python3
@@ -66,25 +66,25 @@
             };
 
             # IntelliJ FHS Desktop Entry
-            xdg.desktopEntries = {
-              intellij-idea-fhs = {
-                name = "JetBrains IntelliJ IDEA";
-                genericName = "Integrated Development Environment";
-                comment = "JetBrains IntelliJ IDEA with FHS environment";
-                exec = "intellij-idea-fhs %F";
-                icon = "${pkgs.jetbrains.idea-oss}/share/icons/hicolor/scalable/apps/idea-oss.svg";
-                terminal = false;
-                categories = [
-                  "Development"
-                  "Science"
-                  "Education"
-                ];
-                mimeType = [
-                  "text/x-java-source"
-                  "application/java-vm"
-                ];
-              };
-            };
+            # xdg.desktopEntries = {
+            #   intellij-idea-fhs = {
+            #     name = "JetBrains IntelliJ IDEA";
+            #     genericName = "Integrated Development Environment";
+            #     comment = "JetBrains IntelliJ IDEA with FHS environment";
+            #     exec = "intellij-idea-fhs %F";
+            #     icon = "${pkgs.jetbrains.idea-oss}/share/icons/hicolor/scalable/apps/idea-oss.svg";
+            #     terminal = false;
+            #     categories = [
+            #       "Development"
+            #       "Science"
+            #       "Education"
+            #     ];
+            #     mimeType = [
+            #       "text/x-java-source"
+            #       "application/java-vm"
+            #     ];
+            #   };
+            # };
           }
         );
       };

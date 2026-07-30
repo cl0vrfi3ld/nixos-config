@@ -103,7 +103,7 @@
 
         # Mullvad
         services.mullvad-vpn.enable = lib.mkIf cfg.mullvad.enable true;
-        services.mullvad-vpn.package = lib.mkIf cfg.mullvad.enable pkgs.mullvad-vpn;
+        services.mullvad-vpn.gui.enable = lib.mkIf cfg.mullvad.enable true;
 
         # Proxychains
         programs.proxychains.enable = cfg.proxychains.enable;
