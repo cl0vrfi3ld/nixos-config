@@ -17,16 +17,16 @@
         home-manager.users = self.lib.applyDesktopHome config (
           username:
           let
-            intellij-idea-fhs = pkgs.buildFHSEnv {
-              name = "idea";
-              targetPkgs =
-                pkgs:
-                (with pkgs; [
-                  jetbrains.idea-oss
-                  jdk
-                ]);
-              runScript = "idea-oss";
-            };
+            # intellij-idea-fhs = pkgs.buildFHSEnv {
+            #   name = "idea";
+            #   targetPkgs =
+            #     pkgs:
+            #     (with pkgs; [
+            #       jetbrains.idea-oss
+            #       jdk
+            #     ]);
+            #   runScript = "idea-oss";
+            # };
           in
           {
             home.packages = with pkgs; [
