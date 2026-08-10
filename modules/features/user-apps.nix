@@ -19,6 +19,8 @@
           let
             selfprivacy-app = inputs.self-privacy.packages.${pkgs.stdenv.hostPlatform.system}.default;
             pano-scrobbler = inputs.pano-scrobbler.packages.${pkgs.stdenv.hostPlatform.system}.default;
+            hermes-agent = inputs.hermes-agent.packages.${pkgs.stdenv.hostPlatform.system}.default;
+            hermes-agent-desktop = inputs.hermes-agent.packages.${pkgs.stdenv.hostPlatform.system}.desktop;
           in
           {
             home.packages = with pkgs; [
@@ -56,6 +58,11 @@
               # tidal-hifi
               sone
               finamp
+              # AI
+              hermes-agent
+              hermes-agent-desktop
+              # other
+              betaflight-configurator
             ];
 
             # Vesktop/Vencord

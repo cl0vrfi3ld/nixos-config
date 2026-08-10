@@ -77,6 +77,10 @@
       url = "github:0xc000022070/zen-browser-flake";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # hermes agent
+    hermes-agent = {
+      url = "github:NousResearch/hermes-agent";
+    };
 
     flake-parts.url = "github:hercules-ci/flake-parts";
     import-tree.url = "github:vic/import-tree";
