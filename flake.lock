@@ -709,11 +709,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1780517670,
-        "narHash": "sha256-vqMJcst2NWYnu423uTmHkcU7TsgE2ReW+0nr3o5wwNY=",
+        "lastModified": 1786128050,
+        "narHash": "sha256-w7WWdVtqKv2JMeaw27tCDfOWLs4sf2PfrtkZtqbtK6g=",
         "ref": "master",
-        "rev": "d15cbe2485b3b518b5060f1dcfc2858850705c17",
-        "revCount": 1934,
+        "rev": "d886af17a8db77f37ddc196cf7bb3dec2abaa02d",
+        "revCount": 2017,
         "type": "git",
         "url": "https://git.selfprivacy.org/SelfPrivacy/selfprivacy.org.app/"
       },
