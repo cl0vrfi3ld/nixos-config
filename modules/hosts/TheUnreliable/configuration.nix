@@ -36,6 +36,8 @@
             "adbusers"
             "greeter"
             "uinput"
+            "dialout"
+            "plugdev"
           ];
           shell = pkgs.fish;
           sessionVariables = {
