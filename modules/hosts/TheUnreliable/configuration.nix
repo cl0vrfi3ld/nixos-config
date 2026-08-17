@@ -67,6 +67,8 @@
       # Leave this one be
       system.stateVersion = "25.05"; # Did you read the comment?
 
+      programs.fuse.userAllowOther = true;
+
       # Home-Manager host-level settings
       home-manager.useGlobalPkgs = true;
       home-manager.useUserPackages = true;
