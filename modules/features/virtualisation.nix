@@ -23,6 +23,8 @@
             defaultNetwork.settings.dns_enabled = true;
           };
         };
+
+        environment.systemPackages = [ pkgs.slirp4netns ];
         environment.etc."containers/registries.conf".text = lib.mkDefault ''
           [registries.search]
           registries = ['docker.io']
