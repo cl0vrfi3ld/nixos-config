@@ -25,8 +25,8 @@
           {
             home.packages = with pkgs; [
               # Utils
-              gearlever
-              usbimager
+              # gearlever
+              # usbimager
               wl-clipboard
               selfprivacy-app
               btop-rocm
