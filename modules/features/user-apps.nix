@@ -19,6 +19,7 @@
           let
             selfprivacy-app = inputs.self-privacy.packages.${pkgs.stdenv.hostPlatform.system}.default;
             pano-scrobbler = inputs.pano-scrobbler.packages.${pkgs.stdenv.hostPlatform.system}.default;
+            openwork = self.packages.${pkgs.stdenv.hostPlatform.system}.openwork;
           in
           {
             home.packages = with pkgs; [
@@ -28,6 +29,8 @@
               wl-clipboard
               selfprivacy-app
               btop-rocm
+              # AI
+              openwork
               # Chat
               fluffychat
               signal-desktop
