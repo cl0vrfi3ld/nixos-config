@@ -14,6 +14,12 @@
     }:
     {
       options.features.core = {
+        allowUnfree = lib.mkOption {
+          type = lib.types.bool;
+          default = true;
+          description = "Whether to allow all unfree packages globally.";
+        };
+
         unfreePackages = lib.mkOption {
           type = lib.types.listOf lib.types.str;
           default = [ ];
@@ -52,9 +58,14 @@
           builders-use-substitutes = true;
         };
 
-        nixpkgs.config.allowUnfree = true;
+        nixpkgs.config.allowUnfree = config.features.core.allowUnfree;
         nixpkgs.config.allowUnfreePredicate =
-          pkg: builtins.elem (pkgs.lib.getName pkg) config.features.core.unfreePackages;
+          pkg:
+          let
+            name = lib.getName pkg;
+          in
+          lib.elem name config.features.core.unfreePackages
+          || lib.any (allowed: lib.hasPrefix allowed name) config.features.core.unfreePackages;
 
         services.accounts-daemon.enable = true;
 

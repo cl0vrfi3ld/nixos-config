@@ -53,14 +53,6 @@
         flake = "/home/coucoucl0vr/nixos-config";
       };
 
-      # features.niri = {
-      # configPath = toString (
-      # pkgs.replaceVars ../../../dotfiles/niri/dms-config.kdl {
-      # user_path = "/home/coucoucl0vr/.config/niri";
-      # }
-      # );
-      # };
-
       # Override or define machine-specific settings
       networking.hostName = "TheUnreliable";
       time.timeZone = "America/New_York";

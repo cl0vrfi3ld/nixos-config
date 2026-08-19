@@ -13,6 +13,10 @@
       ...
     }:
     {
+      imports = [
+        inputs.nix-flatpak.nixosModules.nix-flatpak
+      ];
+
       config = {
         # Flatpak
         services.flatpak.enable = true;

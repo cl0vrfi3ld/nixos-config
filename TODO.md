@@ -2,10 +2,10 @@
 
 Things to do:
 
-- [ ] Switch to dendritic pattern (in progress, not yet complete).
-- [ ] Fix "evaluation warning: coucoucl0vr profile: `programs.ssh.matchBlocks` is deprecated. Use `programs.ssh.settings`".
+- [x] Switch to dendritic pattern
+- [x] Fix "evaluation warning: coucoucl0vr profile: `programs.ssh.matchBlocks` is deprecated. Use `programs.ssh.settings`"
 - [x] Fix "evaluation warning: `system` has been renamed to/replaced by `stdenv.hostPlatform.system`"
-- [ ] Fix theming on noctalia
+- [x] Fix theming on noctalia
   - [x] borders
   - [x] mouse themes
   - [x] colours

@@ -14,6 +14,10 @@
     }:
     {
       config = {
+        features.core.unfreePackages = [
+          "obsidian"
+        ];
+
         home-manager.users = self.lib.applyDesktopHome config (
           username:
           let

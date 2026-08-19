@@ -13,15 +13,6 @@
       ...
     }:
     {
-      options.features.desktop-suite = {
-        # users = lib.mkOption {
-        #   type = lib.types.listOf lib.types.str;
-        #   default = self.lib.getDesktopUsers config;
-        #   defaultText = lib.literalExpression "all desktop users configured in features.users.users";
-        #   description = "Users to apply Home Manager packages and XDG portals to.";
-        # };
-      };
-
       config = {
         # KDE Connect (desktop device connectivity)
         programs.kdeconnect.enable = true;
@@ -59,11 +50,6 @@
             kdePackages.gwenview
             kdePackages.ark
           ];
-
-          # User-specific config files
-          # xdg.configFile = {
-          #   "dolphinrc".source = ../../dotfiles/dolphin/dolphinrc;
-          # };
 
           # XDG Portal Configuration (User level)
           xdg.portal = {

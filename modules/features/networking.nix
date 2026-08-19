@@ -16,6 +16,10 @@
       cfg = config.features.networking;
     in
     {
+      imports = [
+        inputs.nix-iwd-provisioning.nixosModules.nix-iwd-provisioning
+      ];
+
       options.features.networking = {
         eduroam = {
           enable = lib.mkOption {

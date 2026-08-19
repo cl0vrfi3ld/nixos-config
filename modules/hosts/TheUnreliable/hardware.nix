@@ -15,6 +15,7 @@
     {
       imports = [
         (modulesPath + "/installer/scan/not-detected.nix")
+        inputs.nixos-hardware.nixosModules.framework-16-7040-amd
       ];
 
       boot.initrd.availableKernelModules = [

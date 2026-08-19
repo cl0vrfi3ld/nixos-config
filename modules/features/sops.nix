@@ -12,6 +12,10 @@
       ...
     }:
     {
+      imports = [
+        inputs.sops-nix.nixosModules.sops
+      ];
+
       # SOPS config
       sops.validateSopsFiles = false;
       sops.defaultSopsFile = "/home/coucoucl0vr/nixos-config/secrets/default.yaml";

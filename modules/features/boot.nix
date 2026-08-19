@@ -16,6 +16,10 @@
       cfg = config.features.boot;
     in
     {
+      imports = [
+        inputs.lanzaboote.nixosModules.lanzaboote
+      ];
+
       options.features.boot = {
         secureBoot.enable = lib.mkOption {
           type = lib.types.bool;

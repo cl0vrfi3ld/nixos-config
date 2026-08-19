@@ -21,50 +21,50 @@
             # User-level ssh config
             programs.ssh = {
               enable = true;
-              matchBlocks = {
+              enableDefaultConfig = false;
+              settings = {
                 "clovergit" = {
-                  hostname = "git.cl0vr.co";
-                  user = "gitea";
-                  identityFile = "~/.ssh/id_gitea_cl0vrco.pub";
-                  identitiesOnly = true;
+                  HostName = "git.cl0vr.co";
+                  User = "gitea";
+                  IdentityFile = "~/.ssh/id_gitea_cl0vrco.pub";
+                  IdentitiesOnly = "yes";
                 };
                 "LaptopBackupBox" = {
-                  hostname = "apollo.borg.cl0vr.co";
-                  user = "u455601-sub1";
-                  port = 23;
-                  identityFile = "~/.ssh/id_ed25519-backupbox.pub";
-                  identitiesOnly = true;
+                  HostName = "apollo.borg.cl0vr.co";
+                  User = "u455601-sub1";
+                  Port = 23;
+                  IdentityFile = "~/.ssh/id_ed25519-backupbox.pub";
+                  IdentitiesOnly = "yes";
                 };
                 "MovieMediaBox" = {
-                  hostname = "u455601-sub5.your-storagebox.de";
-                  user = "u455601-sub5";
-                  port = 23;
+                  HostName = "u455601-sub5.your-storagebox.de";
+                  User = "u455601-sub5";
+                  Port = 23;
                 };
                 "root.cl0vr.co" = {
-                  hostname = "cl0vr.co";
-                  user = "root";
-                  identityFile = "~/.ssh/id_root_cl0vrco.pub";
-                  identitiesOnly = true;
+                  HostName = "cl0vr.co";
+                  User = "root";
+                  IdentityFile = "~/.ssh/id_root_cl0vrco.pub";
+                  IdentitiesOnly = "yes";
                 };
                 "selfprivacy" = {
-                  hostname = "git.selfprivacy.org";
-                  user = "gitea";
-                  identityFile = "~/.ssh/id_ed25519";
-                  identitiesOnly = true;
+                  HostName = "git.selfprivacy.org";
+                  User = "gitea";
+                  IdentityFile = "~/.ssh/id_ed25519";
+                  IdentitiesOnly = "yes";
                 };
-              };
-              enableDefaultConfig = false;
-              matchBlocks."*" = {
-                forwardAgent = false;
-                addKeysToAgent = "no";
-                compression = false;
-                serverAliveInterval = 0;
-                serverAliveCountMax = 3;
-                hashKnownHosts = false;
-                userKnownHostsFile = "~/.ssh/known_hosts";
-                controlMaster = "no";
-                controlPath = "~/.ssh/master-%r@%n:%p";
-                controlPersist = "no";
+                "*" = {
+                  ForwardAgent = "no";
+                  AddKeysToAgent = "no";
+                  Compression = "no";
+                  ServerAliveInterval = 0;
+                  ServerAliveCountMax = 3;
+                  HashKnownHosts = "no";
+                  UserKnownHostsFile = "~/.ssh/known_hosts";
+                  ControlMaster = "no";
+                  ControlPath = "~/.ssh/master-%r@%n:%p";
+                  ControlPersist = "no";
+                };
               };
             };
 

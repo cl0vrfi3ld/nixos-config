@@ -16,6 +16,11 @@
       cfg = config.features.gaming;
     in
     {
+      imports = [
+        inputs.nix-gaming.nixosModules.platformOptimizations
+        inputs.nix-citizen.nixosModules.default
+      ];
+
       options.features.gaming = {
         extraCompatPackages = lib.mkOption {
           type = lib.types.listOf lib.types.package;
@@ -43,6 +48,15 @@
       };
 
       config = {
+        features.core.unfreePackages = [
+          "steam"
+          "steam-original"
+          "steam-run"
+          "steam-unwrapped"
+          "proton-ge-bin"
+          "rsi-launcher"
+        ];
+
         # Steam Configuration
         programs.steam = {
           enable = true;

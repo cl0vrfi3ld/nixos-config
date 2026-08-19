@@ -11,6 +11,7 @@
       home-manager.users = self.lib.applyDesktopHome config (username: {
         # Cursor theming
         home.pointerCursor = {
+          enable = true;
           gtk.enable = true;
           package = pkgs.adwaita-icon-theme;
           name = "Adwaita";

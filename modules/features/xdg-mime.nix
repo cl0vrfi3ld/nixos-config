@@ -52,16 +52,16 @@
             "audio/wav" = "org.kde.elisa.desktop";
             "audio/ogg" = "org.kde.elisa.desktop";
 
-            # Office Suite (OnlyOffice & PDF)
+            # Office Suite (LibreOffice & PDF)
             "application/vnd.openxmlformats-officedocument.wordprocessingml.document" =
-              "onlyoffice-desktopeditors.desktop";
+              "libreoffice-writer.desktop";
             "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" =
-              "onlyoffice-desktopeditors.desktop";
+              "libreoffice-calc.desktop";
             "application/vnd.openxmlformats-officedocument.presentationml.presentation" =
-              "onlyoffice-desktopeditors.desktop";
-            "application/msword" = "onlyoffice-desktopeditors.desktop";
-            "application/vnd.ms-excel" = "onlyoffice-desktopeditors.desktop";
-            "application/vnd.ms-powerpoint" = "onlyoffice-desktopeditors.desktop";
+              "libreoffice-impress.desktop";
+            "application/msword" = "libreoffice-writer.desktop";
+            "application/vnd.ms-excel" = "libreoffice-calc.desktop";
+            "application/vnd.ms-powerpoint" = "libreoffice-impress.desktop";
             "application/pdf" = "org.kde.okular.desktop";
 
             # Archive Manager

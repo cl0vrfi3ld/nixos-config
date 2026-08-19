@@ -103,9 +103,6 @@
                   };
                   layout = {
                     gaps = 8;
-                    # focus-ring = {
-                    #   width = 4.0;
-                    # };
                   };
                   spawn-at-startup = [
                     (lib.getExe self'.packages.myNoctalia)
