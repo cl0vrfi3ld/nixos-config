@@ -122,9 +122,21 @@
       boot.kernelParams = [
         "amd_pstate=active"
         "amdgpu.abmlevel=3"
-        "amdgpu.ppfeaturemask=0xffffffff"
         "usbcore.autosuspend=1"
+        "pcie_aspm=force"
+        "pcie_aspm.policy=powersupersave"
+        # Override nixos-hardware's PSR disable (framework/16-inch/common/amd.nix).
+        # It works around drm/amd#3647, fixed well before 7.1. Last occurrence wins.
+        "amdgpu.dcdebugmask=0x0"
       ];
+
+      # Declarative runtime power management for PCIe and NVMe
+      services.udev.extraRules = ''
+        # Enable runtime PM for all PCI devices
+        ACTION=="add", SUBSYSTEM=="pci", ATTR{power/control}="auto"
+        # Enable runtime PM for NVMe devices
+        ACTION=="add", SUBSYSTEM=="nvme", ATTR{power/control}="auto"
+      '';
 
       # Filesystem and tmp optimisations
       services.fstrim.enable = true;
