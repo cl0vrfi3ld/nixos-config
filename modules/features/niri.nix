@@ -91,9 +91,20 @@
               ];
 
               settings = lib.mkMerge [
-                # Always point niri to xwayland-satellite
+                # Always point niri to xwayland-satellite and use the efficient iGPU render node
                 {
                   xwayland-satellite.path = lib.getExe pkgs.xwayland-satellite;
+                  # Render node numbers are assigned by probe order and are not
+                  # stable across boots; the by-path symlink is. A hardcoded
+                  # renderD129 would silently select the *dGPU* if numbering flipped.
+                  debug."render-drm-device" = "/dev/dri/by-path/pci-0000:c5:00.0-render";
+                  # Let the panel drop to its minimum refresh on static content.
+                  # `props` renders "eDP-2" as a node argument rather than a
+                  # nested child node -- see wrapper-modules' lib/toKdl.nix.
+                  output = _: {
+                    props = [ "eDP-2" ];
+                    content.variable-refresh-rate = _: { };
+                  };
                 }
                 (lib.mkIf (args.shell == "noctalia") {
                   prefer-no-csd = _: { };
@@ -111,15 +122,12 @@
                     touchpad.natural-scroll = _: { };
                     disable-power-key-handling = _: { };
                   };
-                  switch-events = {
-                    lid-close.spawn = [
-                      "${lib.getExe self'.packages.myNoctalia}"
-                      "ipc"
-                      "call"
-                      "sessionMenu"
-                      "lockAndSuspend"
-                    ];
-                  };
+                  # Lid-close is handled solely by logind
+                  # (services.logind.settings.Login.HandleLidSwitch =
+                  # "suspend-then-hibernate"); a niri-side lid-close.spawn here would
+                  # race it with a plain suspend, defeating hibernation. Locking
+                  # before sleep is instead handled by a systemd
+                  # sleep.target-ordered unit (see battery.nix).
                 })
               ];
             }
