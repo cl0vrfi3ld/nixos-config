@@ -105,9 +105,16 @@
         networking.interfaces.tailscale0.useDHCP = lib.mkIf cfg.tailscale.enable (lib.mkDefault false);
         networking.firewall.checkReversePath = lib.mkIf cfg.tailscale.enable "loose";
 
-        # Mullvad
+        # Mullvad: installed but not started at boot. The daemon is a plain
+        # systemd service (not socket/D-Bus activated -- see
+        # nixos/modules/services/networking/mullvad-vpn.nix upstream), so the GUI
+        # will not bring it up on its own; run `sudo systemctl start
+        # mullvad-daemon` first, then the GUI/CLI. Keeps a second always-on VPN
+        # daemon (alongside Tailscale) from idling/keeping the radio busier than
+        # necessary.
         services.mullvad-vpn.enable = lib.mkIf cfg.mullvad.enable true;
         services.mullvad-vpn.gui.enable = lib.mkIf cfg.mullvad.enable true;
+        systemd.services.mullvad-daemon.wantedBy = lib.mkIf cfg.mullvad.enable (lib.mkForce [ ]);
 
         # Proxychains
         programs.proxychains.enable = cfg.proxychains.enable;
