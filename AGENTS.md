@@ -49,6 +49,23 @@ The interactive user shell ([`modules/features/fish.nix`](file:///home/coucoucl0
 
 ---
 
+## Project Skills
+
+Repo-specific procedures live in [`.claude/skills/`](file:///home/coucoucl0vr/nixos-config/.claude/skills) and load on demand:
+
+| Skill | Fires when |
+| :--- | :--- |
+| `add-feature` | Adding or editing a `modules/features/*.nix` dendritic module — includes the Home Manager patterns, the mandatory `git add`, and host wiring. |
+| `add-package` | Packaging an AppImage or other software not in nixpkgs under `modules/packages/`, or bumping a custom package's version. |
+| `nix-lookup` | Before writing any unfamiliar option path or package attribute — verifies it against the rev locked in `flake.lock`. |
+| `flake-update` | Updating inputs (all or one), summarizing what moved, and reverting a single bad input. |
+| `rescue` | Rolling back, choosing between `build`/`test`/`boot`/`switch`, inspecting generations, or garbage collecting. |
+| `commit` | Writing a commit message in this repo's `<scope>: <summary>` convention, with an untracked-`.nix` check. |
+
+The `Verify` and `Triage` agents cover building and log triage; the skills delegate to them rather than duplicating.
+
+---
+
 ## Architecture
 
 This repository follows the **dendritic pattern** powered by `flake-parts` and `import-tree`:
@@ -164,9 +181,9 @@ Exported under `flake.lib` (available as `self.lib` across modules):
 
 ### Hardware & Battery Automation
 
-[`modules/features/battery.nix`](file:///home/coucoucl0vr/nixos-config/modules/features/battery.nix) manages two background automation services:
+[`modules/features/battery.nix`](file:///home/coucoucl0vr/nixos-config/modules/features/battery.nix) manages two background automation services, both built from the shared `mkPowerWatcher` helper (a debounced `upower --monitor` loop that only fires on an actual AC/battery transition):
 1. `auto-rr-throttle` (systemd user service): Monitors power supply via `upower` and dynamically toggles the internal display `eDP-2` between **60Hz** (`2560x1600@60.002`) on battery and **165Hz** (`2560x1600@165.000`) on AC power using `niri msg`.
-2. `power-profile-switcher` (systemd system service): Switches power profile daemon between `balanced` (battery) and `performance` (AC).
+2. `power-profile-switcher` (systemd system service): Switches power profile daemon between `power-saver` (battery) and `performance` (AC).
 
 ---
 
