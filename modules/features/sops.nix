@@ -22,11 +22,15 @@
       sops.age.sshKeyPaths = [ "/home/coucoucl0vr/.ssh/id_ed25519-age-system-theseus" ];
       # iwd eduroam password
       sops.secrets."iwd/eduroam/passwd" = { };
+      sops.secrets."hermes-agent" = {
+        format = "yaml";
+      };
 
       # General Secrets Management and Utils
       environment.systemPackages = with pkgs; [
         age
         libsecret
+        sops
       ];
     };
 }

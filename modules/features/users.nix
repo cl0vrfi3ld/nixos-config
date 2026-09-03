@@ -69,6 +69,8 @@
       home-manager.users = lib.mapAttrs (username: userConfig: {
         home.sessionVariables = userConfig.sessionVariables;
         home.stateVersion = "25.05";
+        home.username = username;
+        home.homeDirectory = config.users.users.${username}.home;
       }) config.features.users.users;
     };
   };
