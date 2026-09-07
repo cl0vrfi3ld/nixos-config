@@ -24,6 +24,8 @@
       sops.secrets."iwd/eduroam/passwd" = { };
       sops.secrets."hermes-agent" = {
         format = "yaml";
+        group = "users";
+        mode = "0440";
       };
 
       # General Secrets Management and Utils
