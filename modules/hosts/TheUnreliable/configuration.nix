@@ -53,6 +53,11 @@
         flake = "/home/coucoucl0vr/nixos-config";
       };
 
+      # Right Alt is the Compose key. Note that this takes RAlt away from
+      # applications entirely -- Wine games see the key as dead, not merely
+      # unmodified -- so Star Citizen's RAlt binds need rebinding onto LAlt.
+      features.niri.raltCompose = true;
+
       # Override or define machine-specific settings
       networking.hostName = "TheUnreliable";
       time.timeZone = "America/New_York";
