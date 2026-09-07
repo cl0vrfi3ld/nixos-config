@@ -30,6 +30,20 @@
           ];
           description = "The shell that is being used";
         };
+        raltCompose = lib.mkOption {
+          type = lib.types.bool;
+          default = false;
+          description = ''
+            Make Right Alt the Compose key (xkb `compose:ralt`), enabling
+            chords like Compose-s-s for ss and Compose-quote-e for e-acute.
+
+            Off by default because it is not free: the option drops Right Alt
+            from the Mod1 modifier set and makes the key emit Multi_key, so
+            RAlt-modified shortcuts stop working. Wine games are hit hardest --
+            Wine maps X keysyms to scancodes, and Multi_key has no scancode,
+            so the key goes dead rather than merely losing its modifier.
+          '';
+        };
       };
 
       config = {
@@ -38,6 +52,7 @@
           package = self.packages.${pkgs.stdenv.hostPlatform.system}.myNiri.override {
             configPath = config.features.niri.configPath;
             shell = config.features.niri.shell;
+            raltCompose = config.features.niri.raltCompose;
           };
         };
         services.xserver.enable = false;
@@ -106,6 +121,16 @@
                     content.variable-refresh-rate = _: { };
                   };
                 }
+                # Right Alt emits Multi_key, so accented characters come from
+                # compose chords (RAlt s s -> ß, RAlt " a -> ä). The chord table
+                # itself is client-side: libxkbcommon reads it from the locale
+                # (en_US.UTF-8), with ~/.XCompose overriding when present.
+                (lib.mkIf args.raltCompose {
+                  input.keyboard.xkb = {
+                    layout = "us";
+                    options = "compose:ralt";
+                  };
+                })
                 (lib.mkIf (args.shell == "noctalia") {
                   prefer-no-csd = _: { };
                   window-rule = {
@@ -135,6 +160,7 @@
           {
             configPath = null;
             shell = null;
+            raltCompose = false;
           };
     };
 }
