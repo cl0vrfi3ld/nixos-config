@@ -81,6 +81,11 @@
     hermes-agent = {
       url = "github:NousResearch/hermes-agent";
     };
+    # llm agent packages
+    llm-agents = {
+      url = "github:numtide/llm-agents.nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     flake-parts.url = "github:hercules-ci/flake-parts";
     import-tree.url = "github:vic/import-tree";
