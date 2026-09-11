@@ -26,6 +26,7 @@
             selfprivacy-app = inputs.self-privacy.packages.${pkgs.stdenv.hostPlatform.system}.default;
             pano-scrobbler = inputs.pano-scrobbler.packages.${pkgs.stdenv.hostPlatform.system}.default;
             openwork = self.packages.${pkgs.stdenv.hostPlatform.system}.openwork;
+            pi = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.pi;
             # hermes-agent = inputs.hermes-agent.packages.${pkgs.stdenv.hostPlatform.system}.default;
             # hermes-agent-desktop = inputs.hermes-agent.packages.${pkgs.stdenv.hostPlatform.system}.desktop;
           in
@@ -42,6 +43,7 @@
               signal-desktop
               # Internet
               mullvad-browser
+              chromium
               nextcloud-client
               # Documents
               libreoffice
@@ -67,6 +69,7 @@
               # finamp
               # AI
               openwork
+              pi
               # other
               betaflight-configurator
             ];

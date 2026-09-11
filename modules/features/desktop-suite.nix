@@ -57,7 +57,15 @@
             xdgOpenUsePortal = true;
             extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
             configPackages = [ pkgs.xdg-desktop-portal-gtk ];
-            config.common.default = "gtk";
+            config.common = {
+              default = "gtk";
+              # xdg-desktop-portal uses the *first* config file it finds and does
+              # not merge, so this user-level portals.conf shadows the system's
+              # niri-portals.conf outright. gtk.portal implements no Secret
+              # backend, so without naming gnome-keyring here every portal
+              # consumer (i.e. every Flatpak) gets no keyring at all.
+              "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
+            };
           };
         });
       };
