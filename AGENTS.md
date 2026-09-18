@@ -25,8 +25,8 @@ nix build .#myNiri                            # wrapped Niri compositor
 nix build .#myNoctalia                        # wrapped Noctalia shell
 nix build .#openwork                          # Openwork AppImage wrapper
 
-# Secrets (sops is NOT in the default system packages)
-nix shell nixpkgs#sops -c sops secrets/default.yaml
+# Secrets (sops IS in system packages via sops.nix)
+sops secrets/default.yaml
 ```
 
 `nh` garbage collection is enabled and configured with `clean.extraArgs = "--keep 3 --no-direnv --optimise"`.
@@ -93,7 +93,7 @@ modules/
     ├── compat.nix            # AppImage & nix-ld binaries compatibility
     ├── core.nix              # Locale, timezone, nix settings & base utils
     ├── desktop-suite.nix     # Core desktop utilities, KDE apps & fonts
-    ├── dev.nix               # Dev tools, IDEs (VS Codium, Kate, Zed) & AI agents
+    ├── dev.nix               # Dev tools, IDEs (VS Codium, Kate, Zed, android-studio, IntelliJ FHS) & AI agents
     ├── dms.nix               # DankMaterialShell (deprecated / inactive)
     ├── fish.nix              # Fish shell & abbreviations
     ├── flatpak.nix           # Declarative Flatpaks (Trayscale, PikaBackup, SyncThingy)
@@ -113,7 +113,7 @@ modules/
     ├── ssh.nix               # SSH client match blocks & permissions hook
     ├── sysc-greet.nix        # sysc-greet display manager module
     ├── tuigreet.nix          # greetd / tuigreet display manager module
-    ├── user-apps.nix         # User desktop software (Vesktop, Obsidian, Moonlight, etc.)
+    ├── user-apps.nix         # User desktop software (Vesktop, Obsidian, Hermes Agent, etc.)
     ├── users.nix             # User accounts & Home Manager stateVersion injection
     ├── virtualisation.nix    # Podman container runtime & registries
     └── xdg-mime.nix          # Default XDG MIME file/protocol associations
@@ -140,7 +140,9 @@ Exported under `flake.lib` (available as `self.lib` across modules):
 - Runs as a NixOS module (`inputs.home-manager.nixosModules.home-manager`) with `useGlobalPkgs = true`, `useUserPackages = true`, and `backupFileExtension = "old"`.
 - There is **no standalone `home.nix`**. Feature modules write Home Manager config via `home-manager.users = self.lib.applyDesktopHome config (username: { ... });`.
 - External HM input modules are imported through `home-manager.sharedModules` in the owning feature module (e.g. `zen-browser` in `browser.nix`, `nix-flatpak` in `flatpak.nix`).
-- `home.stateVersion = "25.05"` is centrally injected in [`modules/features/users.nix`](file:///home/coucoucl0vr/nixos-config/modules/features/users.nix).
+- `home.stateVersion = "25.05"` is centrally injected in [`modules/features/users.nix`](file:///home/coucoucl0vr/nixos-config/modules/features/users.nix), along with `home.username` and `home.homeDirectory` derived from `config.features.users.users`.
+- `desktop-suite.nix` sets `org.freedesktop.impl.portal.Secret = [ "gnome-keyring" ]` in the portal config: xdg-desktop-portal uses the first config file it finds without merging, so the user-level portals.conf shadows the system's `niri-portals.conf`, and gtk's portal has no Secret backend — without this every Flatpak gets no keyring.
+- `dev.nix` IDEs: `vscodium-fhs`, `kate`, `android-studio`, and a custom `intellij-idea-fhs` (`buildFHSEnv` wrapping `jetbrains.idea-oss`, run script `idea-oss`); Zed is wrapped as `zed-editor-fhs` with extra bwrap args that hide the dGPU so it stays in D0 (iGPU resolved via `/dev/dri/by-path/pci-0000:c5:00.0-*`). `nixpkgs.config.android_sdk.accept_license` is enabled here.
 - When a Home Manager config requires Home Manager-specific library helpers (e.g. `lib.hm.dag.entryAfter`), wrap the function arguments as `(username: { lib, ... }: { ... })` so HM's own `lib` is used.
 
 ---
@@ -163,6 +165,7 @@ Exported under `flake.lib` (available as `self.lib` across modules):
 - When `features.niri.shell = "noctalia"`:
   - Keybindings are sourced from [`dotfiles/niri/noctalia-binds.kdl`](file:///home/coucoucl0vr/nixos-config/dotfiles/niri/noctalia-binds.kdl) via `pkgs.replaceVars` (substituting `@noctalia@` and `@ghostty@`).
   - Configures rounded window corners (20), layout gaps (8), autostarts Noctalia shell, and sets lid-close action to lock/suspend via Noctalia IPC.
+- When `features.niri.raltCompose = true` (set in `configuration.nix`), xkb `compose:ralt` makes Right Alt the Compose key (e.g. RAlt s s → ß, RAlt " a → ä). This takes RAlt away from applications entirely — Wine games see the key as dead, not merely unmodified — so Star Citizen's RAlt binds need rebinding onto LAlt.
 - When `features.niri.configPath` is set (e.g. for legacy DMS), build-time `niri validate` is bypassed to allow dynamic runtime `$HOME` Matugen theme includes.
 
 ### Noctalia Desktop Shell
@@ -191,8 +194,19 @@ Exported under `flake.lib` (available as `self.lib` across modules):
 
 - **Encryption**: Uses **Age** encryption (configured in [`.sops.yaml`](file:///home/coucoucl0vr/nixos-config/.sops.yaml)). Keys include user key `admin_clover` (`~/.config/sops/age/keys.txt`) and host key `machine_theseus` (converted from `~/.ssh/id_ed25519-age-system-theseus.pub`).
 - **Decryption**: `sops-nix` decrypts secrets at **system activation / runtime** via a systemd unit using the private host key (`/home/coucoucl0vr/.ssh/id_ed25519-age-system-theseus`). Secrets are **never** decrypted into the Nix store at build time.
-- **Paths**: Encrypted data is committed in [`secrets/default.yaml`](file:///home/coucoucl0vr/nixos-config/secrets/default.yaml) and decrypted to `/run/secrets/<name>` (e.g. `/run/secrets/iwd/eduroam/passwd`).
-- **Editing Secrets**: Run `nix shell nixpkgs#sops -c sops secrets/default.yaml`.
+- **Paths**: Encrypted data is committed in [`secrets/default.yaml`](file:///home/coucoucl0vr/nixos-config/secrets/default.yaml) and decrypted to `/run/secrets/<name>` (e.g. `/run/secrets/iwd/eduroam/passwd`). The `hermes-agent` secret is YAML-format, group `users`, mode `0440`, and read by the Hermes Agent service via `environmentFiles`.
+- **Editing Secrets**: Run `sops secrets/default.yaml` (sops is in system packages).
+
+---
+
+## Hermes Agent
+
+Integrated in `user-apps.nix` (per desktop user) with two flake inputs: `hermes-agent` (github:NousResearch/hermes-agent) and `llm-agents` (github:numtide/llm-agents.nix, provides the `pi` package).
+
+- The HM module is imported via `home-manager.sharedModules = [ inputs.hermes-agent.homeManagerModules.default ];`.
+- `services.hermes-agent`: `enable = true`, `backend.mode = "serve"`, `backend.port = 9119`, `environmentFiles = [ config.sops.secrets."hermes-agent".path ]`.
+- `programs.hermes-agent`: `enable = true`, `desktop.enable = true`.
+- The `pi` agent CLI comes from `inputs.llm-agents.packages.${system}.pi`; `openwork` is also grouped under "AI" in `home.packages`.
 
 ---
 
