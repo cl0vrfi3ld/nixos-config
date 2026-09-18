@@ -50,7 +50,7 @@
 
         nix.settings = {
           trusted-users = [ "root" ] ++ config.features.core.trustedUsers;
-          experimental-features = "nix-command flakes";
+          experimental-features = ["nix-command" "flakes"];
           sandbox = true;
           show-trace = true;
           auto-optimise-store = true;
