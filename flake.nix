@@ -18,7 +18,7 @@
     };
     # source builds of quickshell
     quickshell = {
-      url = "git+https://git.outfoxxed.me/quickshell/quickshell/?ref=refs/tags/v0.3.0";
+      url = "git+https://git.outfoxxed.me/quickshell/quickshell/?ref=refs/tags/v0.3.1";
       # url = "github:quickshell-mirror/quickshell"; # github mirror
       inputs.nixpkgs.follows = "nixpkgs";
     };
