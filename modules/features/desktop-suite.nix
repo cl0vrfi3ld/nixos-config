@@ -64,7 +64,13 @@
               # niri-portals.conf outright. gtk.portal implements no Secret
               # backend, so without naming gnome-keyring here every portal
               # consumer (i.e. every Flatpak) gets no keyring at all.
+              # Same trap for ScreenCast/RemoteDesktop: niri implements them via
+              # xdg-desktop-portal-gnome, but `default = "gtk"` routes everything
+              # to gtk.portal, which has no ScreenCast — screenshare (Vesktop,
+              # browsers) silently finds no sources.
               "org.freedesktop.impl.portal.Secret" = [ "gnome-keyring" ];
+              "org.freedesktop.impl.portal.ScreenCast" = [ "gnome" ];
+              "org.freedesktop.impl.portal.RemoteDesktop" = [ "gnome" ];
             };
           };
         });
