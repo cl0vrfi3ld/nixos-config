@@ -109,5 +109,45 @@
       imports = [
         (inputs.import-tree ./modules)
       ];
+
+      # Groups of flake inputs, updated together via `flake-update --group <name>`
+      flake.meta.inputGroups = {
+        core = [
+          "nixpkgs"
+          "home-manager"
+          "nixos-hardware"
+        ];
+        flake = [
+          "flake-parts"
+          "import-tree"
+          "wrapper-modules"
+        ];
+        system = [
+          "sops-nix"
+          "lanzaboote"
+          "nix-iwd-provisioning"
+          "nix-flatpak"
+        ];
+        gaming = [
+          "nix-gaming"
+          "nix-citizen"
+        ];
+        apps = [
+          "zen-browser"
+          "pano-scrobbler"
+          "self-privacy"
+        ];
+        ai = [
+          "hermes-agent"
+          "llm-agents"
+        ];
+        # inactive: DMS is deprecated, sysc-greet is unused
+        legacy = [
+          "dms"
+          "dms-plugin-registry"
+          "quickshell"
+          "sysc-greet"
+        ];
+      };
     };
 }
