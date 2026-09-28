@@ -64,6 +64,9 @@
         desktop.enable = true;
       };
 
+      # CUA Driver computer-use automation
+      features.ai.cua-driver.enable = true;
+
       # Override or define machine-specific settings
       networking.hostName = "TheUnreliable";
       time.timeZone = "America/New_York";

@@ -14,6 +14,26 @@
     }:
     let
       cfg = config.features.ai;
+
+      # cua-driver shells out to these at runtime; upstream's package doesn't reference them
+      cuaDriverBase = inputs.cua.packages.${pkgs.stdenv.hostPlatform.system}.cua-driver;
+      cuaDriver = pkgs.symlinkJoin {
+        name = "cua-driver-compat-wrapped-${cuaDriverBase.version}";
+        paths = [ cuaDriverBase ];
+        nativeBuildInputs = [ pkgs.makeWrapper ];
+        postBuild = ''
+          wrapProgram $out/bin/cua-driver --suffix PATH : ${
+            lib.makeBinPath [
+              (lib.getBin pkgs.glib) # gdbus: doctor's AT-SPI probe, GNOME/KWin helpers
+              pkgs.wtype # Wayland virtual-keyboard typing
+              pkgs.grim # wlroots screenshot fallback
+              pkgs.wf-recorder # Wayland screen recording
+              pkgs.ffmpeg-headless # recording encode
+            ]
+          }
+        '';
+        inherit (cuaDriverBase) meta;
+      };
     in
     {
       options.features.ai = {
@@ -21,9 +41,24 @@
           enable = lib.mkEnableOption "the Hermes Agent CLI (programs.hermes-agent)";
           desktop.enable = lib.mkEnableOption "the Hermes Agent desktop application";
         };
+        cua-driver.enable = lib.mkEnableOption "the CUA Driver computer-use MCP server";
       };
 
+      imports = [ inputs.cua.nixosModules.cua-driver ];
+
       config = {
+        # CUA Driver
+        services.cua-driver = {
+          enable = cfg.cua-driver.enable;
+          package = cuaDriver;
+        };
+        # Opt into the experimental native Wayland backend (capture, AT-SPI)
+        environment.sessionVariables = lib.mkIf cfg.cua-driver.enable {
+          CUA_DRIVER_RS_ENABLE_WAYLAND = "1";
+        };
+        # Register the AT-SPI accessibility bus with D-Bus; upstream only installs the package
+        services.gnome.at-spi2-core.enable = lib.mkIf cfg.cua-driver.enable true;
+
         home-manager.sharedModules = [ inputs.hermes-agent.homeManagerModules.default ];
 
         home-manager.users = self.lib.applyDesktopHome config (username: {

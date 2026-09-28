@@ -85,6 +85,11 @@
       url = "github:numtide/llm-agents.nix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # cua computer-use driver
+    cua = {
+      url = "github:trycua/cua";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
 
     flake-parts.url = "github:hercules-ci/flake-parts";
     import-tree.url = "github:vic/import-tree";
@@ -140,6 +145,7 @@
         ai = [
           "hermes-agent"
           "llm-agents"
+          "cua"
         ];
         # inactive: DMS is deprecated, sysc-greet is unused
         legacy = [
