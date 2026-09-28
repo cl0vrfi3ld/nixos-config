@@ -25,6 +25,8 @@
               ]);
             runScript = "idea-oss";
           };
+          agy = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.antigravity-cli;
+          claude = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.claude-code;
         in
         {
           features.core.unfreePackages = [
@@ -64,8 +66,8 @@
               # Languages
               python3
               # AI
-              antigravity-cli
-              claude-code
+              agy
+              claude
             ];
 
             programs.git = {
