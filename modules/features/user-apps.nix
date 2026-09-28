@@ -27,8 +27,6 @@
             pano-scrobbler = inputs.pano-scrobbler.packages.${pkgs.stdenv.hostPlatform.system}.default;
             openwork = self.packages.${pkgs.stdenv.hostPlatform.system}.openwork;
             claude-desktop = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.claude-desktop;
-            # hermes-agent = inputs.hermes-agent.packages.${pkgs.stdenv.hostPlatform.system}.default;
-            # hermes-agent-desktop = inputs.hermes-agent.packages.${pkgs.stdenv.hostPlatform.system}.desktop;
           in
           {
             home.packages = with pkgs; [
