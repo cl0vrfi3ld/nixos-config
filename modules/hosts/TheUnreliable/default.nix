@@ -37,6 +37,7 @@
         self.nixosModules.ssh
         self.nixosModules.browser
         self.nixosModules.user-apps
+        self.nixosModules.ai
         self.nixosModules.xdg-mime
         # --- noctalia setup ---
         # self.nixosModules.tuigreet

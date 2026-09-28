@@ -58,6 +58,12 @@
       # unmodified -- so Star Citizen's RAlt binds need rebinding onto LAlt.
       features.niri.raltCompose = true;
 
+      # Hermes Agent CLI and desktop application
+      features.ai.hermes-agent = {
+        enable = true;
+        desktop.enable = true;
+      };
+
       # Override or define machine-specific settings
       networking.hostName = "TheUnreliable";
       time.timeZone = "America/New_York";

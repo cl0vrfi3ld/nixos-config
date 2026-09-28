@@ -18,8 +18,6 @@
           "obsidian"
         ];
 
-        home-manager.sharedModules = [ inputs.hermes-agent.homeManagerModules.default ];
-
         home-manager.users = self.lib.applyDesktopHome config (
           username:
           let
@@ -71,18 +69,6 @@
               # other
               betaflight-configurator
             ];
-
-            # Hermes Agent
-            services.hermes-agent = {
-              enable = true;
-              backend.mode = "serve";
-              backend.port = 9119;
-              environmentFiles = [ config.sops.secrets."hermes-agent".path ];
-            };
-            programs.hermes-agent = {
-              enable = true;
-              desktop.enable = true;
-            };
 
             # Vesktop/Vencord
             programs.vesktop.enable = true;

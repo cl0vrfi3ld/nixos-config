@@ -86,6 +86,7 @@ modules/
 ├── packages/                 # Standalone flake packages (perSystem.packages)
 │   └── openwork.nix          # Openwork AppImage package
 └── features/                 # Modular NixOS & Home Manager features
+    ├── ai.nix                # Hermes Agent service, CLI & desktop app (gated by features.ai)
     ├── battery.nix           # Dynamic refresh rate & power profile daemons
     ├── bitwarden.nix         # Bitwarden desktop & electron overrides
     ├── boot.nix              # Lanzaboote Secure Boot & Plymouth theme
@@ -113,7 +114,7 @@ modules/
     ├── ssh.nix               # SSH client match blocks & permissions hook
     ├── sysc-greet.nix        # sysc-greet display manager module
     ├── tuigreet.nix          # greetd / tuigreet display manager module
-    ├── user-apps.nix         # User desktop software (Vesktop, Obsidian, Hermes Agent, etc.)
+    ├── user-apps.nix         # User desktop software (Vesktop, Obsidian, Openwork, Claude Desktop, etc.)
     ├── users.nix             # User accounts & Home Manager stateVersion injection
     ├── virtualisation.nix    # Podman container runtime & registries
     └── xdg-mime.nix          # Default XDG MIME file/protocol associations
@@ -201,12 +202,12 @@ Exported under `flake.lib` (available as `self.lib` across modules):
 
 ## Hermes Agent
 
-Integrated in `user-apps.nix` (per desktop user) with two flake inputs: `hermes-agent` (github:NousResearch/hermes-agent) and `llm-agents` (github:numtide/llm-agents.nix, provides the `pi` package).
+Integrated in [`modules/features/ai.nix`](file:///home/coucoucl0vr/nixos-config/modules/features/ai.nix) (per desktop user) from the `hermes-agent` flake input (github:NousResearch/hermes-agent).
 
 - The HM module is imported via `home-manager.sharedModules = [ inputs.hermes-agent.homeManagerModules.default ];`.
-- `services.hermes-agent`: `enable = true`, `backend.mode = "serve"`, `backend.port = 9119`, `environmentFiles = [ config.sops.secrets."hermes-agent".path ]`.
-- `programs.hermes-agent`: `enable = true`, `desktop.enable = true`.
-- The `pi` agent CLI comes from `inputs.llm-agents.packages.${system}.pi`; `openwork` is also grouped under "AI" in `home.packages`.
+- `services.hermes-agent` (always on when the module is imported): `backend.mode = "serve"`, `backend.port = 9119`, `environmentFiles = [ config.sops.secrets."hermes-agent".path ]`.
+- `programs.hermes-agent.enable` (the `hermes` CLI) is gated by `features.ai.hermes-agent.enable`; `programs.hermes-agent.desktop.enable` (the Electron app + launcher) by `features.ai.hermes-agent.desktop.enable`. Both default to `false` and are set to `true` in `configuration.nix`. The two are independent upstream.
+- `openwork` and `claude-desktop` (from `inputs.llm-agents`) stay under "AI" in `user-apps.nix`'s `home.packages`.
 
 ---
 
