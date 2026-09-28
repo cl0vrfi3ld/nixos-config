@@ -26,7 +26,6 @@
             selfprivacy-app = inputs.self-privacy.packages.${pkgs.stdenv.hostPlatform.system}.default;
             pano-scrobbler = inputs.pano-scrobbler.packages.${pkgs.stdenv.hostPlatform.system}.default;
             openwork = self.packages.${pkgs.stdenv.hostPlatform.system}.openwork;
-            pi = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.pi;
             claude-desktop = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.claude-desktop;
             # hermes-agent = inputs.hermes-agent.packages.${pkgs.stdenv.hostPlatform.system}.default;
             # hermes-agent-desktop = inputs.hermes-agent.packages.${pkgs.stdenv.hostPlatform.system}.desktop;
@@ -70,7 +69,6 @@
               # finamp
               # AI
               openwork
-              pi
               claude-desktop
               # other
               betaflight-configurator
