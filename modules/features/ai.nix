@@ -55,6 +55,7 @@
         # Opt into the experimental native Wayland backend (capture, AT-SPI)
         environment.sessionVariables = lib.mkIf cfg.cua-driver.enable {
           CUA_DRIVER_RS_ENABLE_WAYLAND = "1";
+          HERMES_CUA_DRIVER_CMD = "${cuaDriver}/bin/cua-driver";
         };
         # Register the AT-SPI accessibility bus with D-Bus; upstream only installs the package
         services.gnome.at-spi2-core.enable = lib.mkIf cfg.cua-driver.enable true;
@@ -67,6 +68,13 @@
             enable = true;
             backend.mode = "serve";
             backend.port = 9119;
+            settings = {
+              terminal.cwd = ".";
+              memory.provider = "better-memory";
+              skills.trusted_project_dirs = [
+                "/home/coucoucl0vr/nixos-config"
+              ];
+            };
             environmentFiles = [ config.sops.secrets."hermes-agent".path ];
           };
           programs.hermes-agent = {
