@@ -65,7 +65,7 @@
       };
 
       # CUA Driver computer-use automation
-      features.ai.cua-driver.enable = true;
+      features.ai.cua-driver.enable = false;
 
       # Override or define machine-specific settings
       networking.hostName = "TheUnreliable";
