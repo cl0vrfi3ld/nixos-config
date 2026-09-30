@@ -90,6 +90,11 @@
       url = "github:trycua/cua";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    memory-buckets = {
+      url = "git+https://git.cl0vr.co/cl0vr/memory-buckets";
+      # or the GitHub mirror: url = "github:cl0vrfi3ld/memory-buckets";
+      flake = false;  # only nix/package.nix is used
+    };
 
     flake-parts.url = "github:hercules-ci/flake-parts";
     import-tree.url = "github:vic/import-tree";

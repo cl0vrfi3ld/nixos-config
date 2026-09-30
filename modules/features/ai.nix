@@ -64,19 +64,30 @@
 
         home-manager.users = self.lib.applyDesktopHome config (username: {
           # Hermes Agent
-          services.hermes-agent = {
-            enable = true;
-            backend.mode = "serve";
-            backend.port = 9119;
-            settings = {
-              terminal.cwd = ".";
-              memory.provider = "better-memory";
-              skills.trusted_project_dirs = [
-                "/home/coucoucl0vr/nixos-config"
-              ];
+          services.hermes-agent =
+            let
+              hermesBase = inputs.hermes-agent.packages.${pkgs.stdenv.hostPlatform.system}.default;
+              memory-buckets =
+                hermesBase.python.pkgs.callPackage "${inputs.memory-buckets}/nix/package.nix"
+                  { };
+            in
+            {
+              enable = true;
+              # Override the package directly instead of setting extraPythonPackages: the module
+              # re-overrides with its own extraDependencyGroups (default [ ]), which clobbers the
+              # default package's optional integrations (messaging, anthropic, bedrock, ...)
+              package = hermesBase.override { extraPythonPackages = [ memory-buckets ]; };
+              backend.mode = "serve";
+              backend.port = 9119;
+              settings = {
+                terminal.cwd = ".";
+                memory.provider = "memory-buckets";
+                skills.trusted_project_dirs = [
+                  "/home/coucoucl0vr/nixos-config"
+                ];
+              };
+              environmentFiles = [ config.sops.secrets."hermes-agent".path ];
             };
-            environmentFiles = [ config.sops.secrets."hermes-agent".path ];
-          };
           programs.hermes-agent = {
             enable = cfg.hermes-agent.enable;
             desktop.enable = cfg.hermes-agent.desktop.enable;
