@@ -29,6 +29,12 @@
                   IdentityFile = "~/.ssh/id_gitea_cl0vrco.pub";
                   IdentitiesOnly = "yes";
                 };
+                "cl0vrfi3ld" = {
+                  HostName = "github.com";
+                  User = "git";
+                  IdentityFile = "~/.ssh/id_cl0vrfi3ld_github.pub";
+                  IdentitiesOnly = "yes";
+                };
                 "LaptopBackupBox" = {
                   HostName = "apollo.borg.cl0vr.co";
                   User = "u455601-sub1";
