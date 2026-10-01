@@ -67,6 +67,41 @@
       # CUA Driver computer-use automation
       features.ai.cua-driver.enable = false;
 
+      # SSH host configurations
+      features.ssh.hosts = {
+        "clovergit" = {
+          hostName = "git.cl0vr.co";
+          user = "gitea";
+          identityFile = "~/.ssh/id_gitea_cl0vrco.pub";
+        };
+        "cl0vrfi3ld" = {
+          hostName = "github.com";
+          user = "git";
+          identityFile = "~/.ssh/id_cl0vrfi3ld_github.pub";
+        };
+        "LaptopBackupBox" = {
+          hostName = "apollo.borg.cl0vr.co";
+          user = "u455601-sub1";
+          port = 23;
+          identityFile = "~/.ssh/id_ed25519-backupbox.pub";
+        };
+        "MovieMediaBox" = {
+          hostName = "u455601-sub5.your-storagebox.de";
+          user = "u455601-sub5";
+          port = 23;
+        };
+        "root.cl0vr.co" = {
+          hostName = "cl0vr.co";
+          user = "root";
+          identityFile = "~/.ssh/id_root_cl0vrco.pub";
+        };
+        "selfprivacy" = {
+          hostName = "git.selfprivacy.org";
+          user = "gitea";
+          identityFile = "~/.ssh/id_ed25519-selfprivacy.pub";
+        };
+      };
+
       # Override or define machine-specific settings
       networking.hostName = "TheUnreliable";
       time.timeZone = "America/New_York";

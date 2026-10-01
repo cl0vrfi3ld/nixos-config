@@ -13,52 +13,73 @@
       ...
     }:
     {
+      options.features.ssh = {
+        hosts = lib.mkOption {
+          description = "SSH host configurations keyed by alias.";
+          default = { };
+          type = lib.types.attrsOf (
+            lib.types.submodule (
+              { name, ... }:
+              {
+                options = {
+                  hostName = lib.mkOption {
+                    type = lib.types.str;
+                    description = "The remote hostname or IP.";
+                  };
+                  user = lib.mkOption {
+                    type = lib.types.str;
+                    default = "git";
+                    description = "The remote user.";
+                  };
+                  port = lib.mkOption {
+                    type = lib.types.nullOr lib.types.port;
+                    default = null;
+                    description = "The remote SSH port.";
+                  };
+                  identityFile = lib.mkOption {
+                    type = lib.types.nullOr lib.types.str;
+                    default = null;
+                    description = "Path to the private key (or public key, if that's what you have).";
+                  };
+                  identitiesOnly = lib.mkOption {
+                    type = lib.types.bool;
+                    default = true;
+                    description = "Whether to force the use of the specified identity file.";
+                  };
+                  extraConfig = lib.mkOption {
+                    type = lib.types.attrsOf lib.types.str;
+                    default = { };
+                    description = "Extra SSH config key-value pairs.";
+                  };
+                };
+              }
+            )
+          );
+        };
+      };
+
       config = {
         home-manager.users = self.lib.applyDesktopHome config (
           username:
           { lib, ... }:
+          let
+            sshHostToConfig =
+              name: host:
+              {
+                HostName = host.hostName;
+                User = host.user;
+                IdentitiesOnly = if host.identitiesOnly then "yes" else "no";
+              }
+              // lib.optionalAttrs (host.identityFile != null) { IdentityFile = host.identityFile; }
+              // lib.optionalAttrs (host.port != null) { Port = toString host.port; }
+              // host.extraConfig;
+          in
           {
             # User-level ssh config
             programs.ssh = {
               enable = true;
               enableDefaultConfig = false;
-              settings = {
-                "clovergit" = {
-                  HostName = "git.cl0vr.co";
-                  User = "gitea";
-                  IdentityFile = "~/.ssh/id_gitea_cl0vrco.pub";
-                  IdentitiesOnly = "yes";
-                };
-                "cl0vrfi3ld" = {
-                  HostName = "github.com";
-                  User = "git";
-                  IdentityFile = "~/.ssh/id_cl0vrfi3ld_github.pub";
-                  IdentitiesOnly = "yes";
-                };
-                "LaptopBackupBox" = {
-                  HostName = "apollo.borg.cl0vr.co";
-                  User = "u455601-sub1";
-                  Port = 23;
-                  IdentityFile = "~/.ssh/id_ed25519-backupbox.pub";
-                  IdentitiesOnly = "yes";
-                };
-                "MovieMediaBox" = {
-                  HostName = "u455601-sub5.your-storagebox.de";
-                  User = "u455601-sub5";
-                  Port = 23;
-                };
-                "root.cl0vr.co" = {
-                  HostName = "cl0vr.co";
-                  User = "root";
-                  IdentityFile = "~/.ssh/id_root_cl0vrco.pub";
-                  IdentitiesOnly = "yes";
-                };
-                "selfprivacy" = {
-                  HostName = "git.selfprivacy.org";
-                  User = "gitea";
-                  IdentityFile = "~/.ssh/id_ed25519";
-                  IdentitiesOnly = "yes";
-                };
+              settings = lib.mapAttrs sshHostToConfig config.features.ssh.hosts // {
                 "*" = {
                   ForwardAgent = "no";
                   AddKeysToAgent = "no";
