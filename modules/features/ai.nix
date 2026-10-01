@@ -67,9 +67,7 @@
           services.hermes-agent =
             let
               hermesBase = inputs.hermes-agent.packages.${pkgs.stdenv.hostPlatform.system}.default;
-              memory-buckets =
-                hermesBase.python.pkgs.callPackage "${inputs.memory-buckets}/nix/package.nix"
-                  { };
+              memory-buckets = hermesBase.python.pkgs.callPackage "${inputs.memory-buckets}/nix/package.nix" { };
             in
             {
               enable = true;
@@ -81,7 +79,16 @@
               backend.port = 9119;
               settings = {
                 terminal.cwd = ".";
-                memory.provider = "memory-buckets";
+                memory = {
+                  provider = "memory-buckets";
+                  memory_enabled = false;
+                  user_profile_enabled = false;
+                };
+                plugins = {
+                  memory-buckets = {
+                    prefetch_min_similarity = 0.35;
+                  };
+                };
                 skills.trusted_project_dirs = [
                   "/home/coucoucl0vr/nixos-config"
                 ];
