@@ -60,6 +60,7 @@ Repo-specific procedures live in [`.claude/skills/`](file:///home/coucoucl0vr/ni
 | `nix-lookup` | Before writing any unfamiliar option path or package attribute — verifies it against the rev locked in `flake.lock`. |
 | `flake-update` | Updating inputs (all or one), summarizing what moved, and reverting a single bad input. |
 | `rescue` | Rolling back, choosing between `build`/`test`/`boot`/`switch`, inspecting generations, or garbage collecting. |
+| `hermes-nix` | Configuring Hermes Agent declaratively via `services.hermes-agent` in `modules/features/ai.nix` — settings, plugins, secrets, MCP servers; includes the `extraPythonPackages` clobber workaround. |
 | `commit` | Writing a commit message in this repo's `<scope>: <summary>` convention, with an untracked-`.nix` check. |
 
 The `Verify` and `Triage` agents cover building and log triage; the skills delegate to them rather than duplicating.
