@@ -79,6 +79,7 @@
               backend.port = 9119;
               settings = {
                 terminal.cwd = ".";
+                display.interface = "tui";
                 memory = {
                   provider = "memory-buckets";
                   memory_enabled = false;
