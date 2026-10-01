@@ -79,7 +79,10 @@
               backend.port = 9119;
               settings = {
                 terminal.cwd = ".";
-                display.interface = "tui";
+                display = {
+                  interface = "tui";
+                  show_reasoning = true;
+                };
                 memory = {
                   provider = "memory-buckets";
                   memory_enabled = false;
@@ -93,6 +96,10 @@
                 skills.trusted_project_dirs = [
                   "/home/coucoucl0vr/nixos-config"
                 ];
+                tts = {
+                  provider = "elevenlabs";
+                  elevenlabs.voice_id = "L7kaJS9Njvqf8Zy4hmuk";
+                };
               };
               environmentFiles = [ config.sops.secrets."hermes-agent".path ];
             };
