@@ -151,6 +151,7 @@
           "hermes-agent"
           "llm-agents"
           "cua"
+          "memory-buckets"
         ];
         # inactive: DMS is deprecated, sysc-greet is unused
         legacy = [
