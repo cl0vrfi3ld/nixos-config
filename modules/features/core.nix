@@ -50,7 +50,10 @@
 
         nix.settings = {
           trusted-users = [ "root" ] ++ config.features.core.trustedUsers;
-          experimental-features = ["nix-command" "flakes"];
+          experimental-features = [
+            "nix-command"
+            "flakes"
+          ];
           sandbox = true;
           show-trace = true;
           auto-optimise-store = true;
@@ -76,6 +79,15 @@
           unzip
           wget
         ];
+
+        home-manager.users = self.lib.applyDesktopHome config (_: {
+          # flake-update with bash/fish completions (bash completion is picked up
+          # via bash-completion's profile loader, fish via vendor_completions.d
+          # on XDG_DATA_DIRS)
+          home.packages = [
+            self.packages.${pkgs.stdenv.hostPlatform.system}.flake-update
+          ];
+        });
       };
     };
 }
