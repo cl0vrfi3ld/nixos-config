@@ -19,6 +19,7 @@ Scope mirrors the path that changed:
 | `modules/features/noctalia/theming.nix` | `features/noctalia` |
 | `modules/packages/openwork.nix` | `packages/openwork` |
 | `modules/hosts/TheUnreliable/*` | `hosts/TheUnreliable` |
+| `.hermes/skills/<name>/*` or `.claude/skills/<name>/*` | `skills/<name>` (or `skills` if multi-skill) |
 | `flake.lock` only | `flake.lock: Update` |
 
 Real examples from this history:
@@ -28,6 +29,7 @@ features/user-apps: add openwork package
 features/nh: auto optimise store and don't auto clean direnv
 hosts/TheUnreliable: enable programs.fuse.userAllowOther
 features/pam: fix pam modules
+skills/hermes-nix: update non-interactive switch guidance
 flake.lock: Update
 ```
 
