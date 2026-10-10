@@ -102,6 +102,8 @@
                     prefetch_min_similarity = 0.35;
                   };
                 };
+                kanban.default_assignee = "developer";
+                kanban.orchestrator_profile = "task-triage";
                 # Lists replace on merge: this is the full CLI toolset list, not an addition
                 platform_toolsets.cli = [
                   "a2a"
