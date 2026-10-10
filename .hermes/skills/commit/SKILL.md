@@ -30,6 +30,7 @@ Scope rules:
 - `modules/features/<name>.nix` → `features/<name>`
 - `modules/packages/<name>.nix` → `packages/<name>`
 - `modules/hosts/TheUnreliable/*` → `hosts/TheUnreliable`
+- `.hermes/skills/<name>/*` or `.claude/skills/<name>/*` → `skills/<name>` (or `skills` if multi-skill)
 - `flake.lock` only → `flake.lock: Update` (exact capitalization)
 - Cross-cutting changes → bare imperative (`refactor: ...` or `move everything to dendritic`)
 
@@ -39,6 +40,7 @@ features/user-apps: add openwork package
 features/nh: auto optimise store and don't auto clean direnv
 hosts/TheUnreliable: enable programs.fuse.userAllowOther
 features/pam: fix pam modules
+skills/hermes-nix: update non-interactive switch guidance
 flake.lock: Update
 ```
 
