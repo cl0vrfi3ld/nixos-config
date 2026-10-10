@@ -46,6 +46,7 @@
               nixd
               nixfmt
               forgejo-cli
+              gh
               # IDEs
               kdePackages.kate
               android-studio
