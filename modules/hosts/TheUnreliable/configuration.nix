@@ -65,7 +65,7 @@
       };
 
       # CUA Driver computer-use automation
-      features.ai.cua-driver.enable = false;
+      features.ai.cua-driver.enable = true;
 
       # SSH host configurations
       features.ssh.hosts = {
