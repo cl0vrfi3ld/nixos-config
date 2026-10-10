@@ -114,7 +114,7 @@ After a `flake-update` pulls in #129837, check `effectivePackage` in the module 
 2. **Edit `modules/features/ai.nix`** inside the `services.hermes-agent` block (or `programs.hermes-agent` for CLI/desktop install). Secrets go to sops, never `settings`/`environment`. Done when no secret value appears in any `.nix` file.
 3. **New file?** (plugin source, `SOUL.md`, `my-plugin.nix`) — `terminal(command="git add <file>")`. Done when `git status` shows it staged.
 4. **Build:** `terminal(command="nh os build .", timeout=900)`. Done when it exits 0 with no assertion from `services.hermes-agent`.
-5. **Switch:** `terminal(command="nh os switch", timeout=900)`, then restart the daemons so they reread config/`.env`: `terminal(command="systemctl --user restart hermes-backend")` (plus `hermes-agent` if `gateway.enable`). Done when both report `active (running)`.
+5. **Switch (user-run):** NEVER run `nh os switch` or any elevating command (`run0`, `sudo`, `nixos-rebuild switch/boot/test`) from an agent session — the polkit prompt cannot be answered here and forcing elevation is forbidden. Build with `nh os build .` (step 4), then ask the user to run `nh os switch` themselves. After they've switched, restart the daemons so they reread config/`.env`: `terminal(command="systemctl --user restart hermes-backend")` (plus `hermes-agent` if `gateway.enable`). Done when both report `active (running)`.
 6. **Verify** (next section), then commit with the `commit` skill (scope `features/ai`).
 
 ## Verification
