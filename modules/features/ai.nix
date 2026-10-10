@@ -79,6 +79,15 @@
               backend.port = 9119;
               settings = {
                 terminal.cwd = ".";
+                approvals.mode = "smart";
+                model = {
+                  default = "z-ai/glm-5.3-flash";
+                  provider = "openrouter";
+                };
+                # Lists replace on merge: this is the whole fallback chain, tried in order
+                fallback_providers = [
+                  { provider = "openrouter"; model = "deepseek/deepseek-v4.1-flash"; }
+                ];
                 display = {
                   interface = "tui";
                   show_reasoning = true;
@@ -93,6 +102,27 @@
                     prefetch_min_similarity = 0.35;
                   };
                 };
+                # Lists replace on merge: this is the full CLI toolset list, not an addition
+                platform_toolsets.cli = [
+                  "a2a"
+                  "browser"
+                  "clarify"
+                  "code_execution"
+                  "computer_use"
+                  "context_engine"
+                  "cronjob"
+                  "delegation"
+                  "file"
+                  "kanban"
+                  "memory"
+                  "session_search"
+                  "skills"
+                  "terminal"
+                  "todo"
+                  "tts"
+                  "vision"
+                  "web"
+                ];
                 skills.trusted_project_dirs = [
                   "/home/coucoucl0vr/nixos-config"
                 ];
