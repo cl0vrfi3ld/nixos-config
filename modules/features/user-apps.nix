@@ -49,6 +49,7 @@
               # Media
               mpv
               vlc
+              obs-studio
               # Game streaming
               moonlight-qt
               # Art/Design
