@@ -24,6 +24,7 @@ nix flake show
 nix build .#myNiri                            # wrapped Niri compositor
 nix build .#myNoctalia                        # wrapped Noctalia shell
 nix build .#openwork                          # Openwork AppImage wrapper
+nix build .#flake-update                      # flake-update CLI
 
 # Secrets (sops IS in system packages via sops.nix)
 sops secrets/default.yaml
@@ -85,9 +86,11 @@ modules/
 │       ├── configuration.nix # Host features config, assertions & machine settings
 │       └── hardware.nix      # Declarative hardware, LUKS, filesystems & hibernation
 ├── packages/                 # Standalone flake packages (perSystem.packages)
-│   └── openwork.nix          # Openwork AppImage package
+│   ├── openwork.nix          # Openwork AppImage package
+│   └── scripts/
+│       └── flake-update.nix  # flake-update CLI (with bash/fish completions)
 └── features/                 # Modular NixOS & Home Manager features
-    ├── ai.nix                # Hermes Agent service, CLI & desktop app (gated by features.ai)
+    ├── ai.nix                # Hermes Agent service, gateway, CLI & desktop app; cua-driver MCP server (gated by features.ai)
     ├── battery.nix           # Dynamic refresh rate & power profile daemons
     ├── bitwarden.nix         # Bitwarden desktop & electron overrides
     ├── boot.nix              # Lanzaboote Secure Boot & Plymouth theme
@@ -128,7 +131,7 @@ modules/
 Each `.nix` file inside `modules/` is a flake-parts module taking `{ self, inputs, lib, ... }` at the top level and exports one or both of:
 
 1. **`flake.nixosModules.<name>`**: NixOS module declaring `options.features.<name>` and `config`. These are assembled into host configurations.
-2. **`perSystem = { pkgs, self', ... }: { packages.<name> = ...; }`**: Buildable derivations (`myNiri`, `myNoctalia`, `openwork`), accessible as `self.packages.${system}.<name>` or `self'.packages.<name>`.
+2. **`perSystem = { pkgs, self', ... }: { packages.<name> = ...; }`**: Buildable derivations (`myNiri`, `myNoctalia`, `openwork`, `flake-update`), accessible as `self.packages.${system}.<name>` or `self'.packages.<name>`.
 
 ### Helper Library (`modules/lib.nix`)
 
@@ -206,7 +209,9 @@ Exported under `flake.lib` (available as `self.lib` across modules):
 Integrated in [`modules/features/ai.nix`](file:///home/coucoucl0vr/nixos-config/modules/features/ai.nix) (per desktop user) from the `hermes-agent` flake input (github:NousResearch/hermes-agent).
 
 - The HM module is imported via `home-manager.sharedModules = [ inputs.hermes-agent.homeManagerModules.default ];`.
-- `services.hermes-agent` (always on when the module is imported): `backend.mode = "serve"`, `backend.port = 9119`, `environmentFiles = [ config.sops.secrets."hermes-agent".path ]`.
+- `services.hermes-agent` and its `gateway` are gated by `features.ai.hermes-agent.enable` (as are the CLI and desktop app below): `backend.mode = "serve"`, `backend.port = 9119`, `environmentFiles = [ config.sops.secrets."hermes-agent".path ]`.
+- The package is overridden directly (`hermesBase.override { extraPythonPackages = [ memory-buckets ]; }`) rather than setting `extraPythonPackages` on the service: the module re-overrides with its own `extraDependencyGroups`, which clobbers the default package's optional integrations. `extraPackages = [ config.systemd.package ]` adds `systemd-run` to the sealed unit PATH — the gateway's kanban/cron dispatcher refuses to spawn workers without it.
+- `services.cua-driver` (enabled by `features.ai.cua-driver.enable`, set `true` in `configuration.nix`) runs the CUA computer-use MCP server. The package is wrapped with its runtime tools (`gdbus`, `wtype`, `grim`, `wf-recorder`, `ffmpeg-headless`); enabling it opts into the experimental native Wayland backend (`CUA_DRIVER_RS_ENABLE_WAYLAND`) and registers the AT-SPI accessibility bus with D-Bus.
 - `programs.hermes-agent.enable` (the `hermes` CLI) is gated by `features.ai.hermes-agent.enable`; `programs.hermes-agent.desktop.enable` (the Electron app + launcher) by `features.ai.hermes-agent.desktop.enable`. Both default to `false` and are set to `true` in `configuration.nix`. The two are independent upstream.
 - `openwork` and `claude-desktop` (from `inputs.llm-agents`) stay under "AI" in `user-apps.nix`'s `home.packages`.
 
