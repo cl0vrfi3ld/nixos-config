@@ -70,11 +70,16 @@
               memory-buckets = hermesBase.python.pkgs.callPackage "${inputs.memory-buckets}/nix/package.nix" { };
             in
             {
-              enable = true;
+              enable = cfg.hermes-agent.enable;
+              gateway.enable = cfg.hermes-agent.enable;
               # Override the package directly instead of setting extraPythonPackages: the module
               # re-overrides with its own extraDependencyGroups (default [ ]), which clobbers the
               # default package's optional integrations (messaging, anthropic, bedrock, ...)
               package = hermesBase.override { extraPythonPackages = [ memory-buckets ]; };
+              # The unit PATH is sealed (hermes, bash, coreutils, git + extraPackages). The gateway's
+              # kanban/cron dispatcher wraps workers in `systemd-run --user --scope` and refuses to
+              # spawn when it can't find the binary. Use the host's systemd to match the running manager
+              extraPackages = [ config.systemd.package ];
               backend.mode = "serve";
               backend.port = 9119;
               settings = {
