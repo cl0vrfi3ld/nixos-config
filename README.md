@@ -13,7 +13,8 @@ Unstable
 
 ### Desktop Environments
 
-DankMaterialShell (via Niri compositor)
+- DankMaterialShell (via Niri compositor)
+- Noctalia Shell (via Niri compositor)
 
 ### Other Features
 
