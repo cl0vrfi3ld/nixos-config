@@ -1,6 +1,6 @@
 # Clover's awesome NixOS config!
 
-This is the NixOS setup I run on **TheUnreliable**, my Framework Laptop 16 (Ryzen 7040HS with the RX 7700S dGPU). I'm on `nixos-unstable`, running [Niri](https://github.com/YaLTeR/niri) as my compositor with Noctalia Shell on top and Ly at the login screen.
+This is the NixOS setup for **TheUnreliable**, my Framework Laptop 16 (Ryzen 7040HS + RX 7700S). I'm on `nixos-unstable`, running [Niri](https://github.com/YaLTeR/niri) with Noctalia Shell on top and Ly at the login screen.
 
 ## Features
 
@@ -13,17 +13,17 @@ This is the NixOS setup I run on **TheUnreliable**, my Framework Laptop 16 (Ryze
 
 ## How it's put together
 
-I use the dendritic pattern here (`flake-parts` + `import-tree`), mostly because I got tired of maintaining giant `imports` lists by hand. Anything inside `modules/` gets picked up automatically. Each feature in `modules/features/` defines its own `features.<name>` option, and the host config in `modules/hosts/TheUnreliable/` just turns on whatever it needs.
+I use the dendritic pattern here (`flake-parts` + `import-tree`), mostly because I got tired of maintaining giant `imports` lists by hand. Anything dropped into `modules/` gets picked up automatically. Each file in `modules/features/` is its own module with a `features.<name>` toggle, and the host config just turns on whatever it needs.
 
-Home Manager is wired straight into those same feature modules instead of living in a separate `home.nix`, so all the config for a program stays in one place instead of being split between system and user files.
+Home Manager is wired straight into those same feature modules rather than a separate `home.nix`, so all the config for a program actually stays in one place.
 
 ## Using it
 
-I use [`nh`](https://github.com/nix-community/nh) for rebuilds, mostly through a few fish abbreviations:
+Everything builds with [`nh`](https://github.com/nix-community/nh). Day to day I just use a few fish abbreviations:
 
 ```sh
 sup     # nh os switch
 sug     # nh os switch --update --commit-lock-file
 sbld    # nh os build .
-soops   # roll back to the previous generation
+soops   # roll back when I break something
 ```
