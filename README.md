@@ -1,24 +1,6 @@
 # Clover's awesome NixOS config!
 
-My personal NixOS setup. One laptop, one flake, an unreasonable number of feature modules.
-
-## Branch Details
-
-### NixOS Branch
-
-Unstable (`nixos-unstable`)
-
-### Target Hosts
-
-- **TheUnreliable**:
-  Framework Laptop 16 (Ryzen 7040HS with RX 7700S dGPU)
-
-### Desktop
-
-- [Niri](https://github.com/YaLTeR/niri) scrollable-tiling compositor
-- Noctalia Shell on top (the current daily driver)
-- Ly as the login greeter
-- DankMaterialShell is still in here, but deprecated and switched off
+This is the NixOS setup I run on **TheUnreliable**, my Framework Laptop 16 (Ryzen 7040HS with the RX 7700S dGPU). I'm on `nixos-unstable`, running [Niri](https://github.com/YaLTeR/niri) as my compositor with Noctalia Shell on top and Ly at the login screen.
 
 ## Features
 
@@ -31,58 +13,17 @@ Unstable (`nixos-unstable`)
 
 ## How it's put together
 
-The config follows the **dendritic pattern** using `flake-parts` and `import-tree`. Every `.nix` file under `modules/` is imported automatically, so there are no index files to keep in sync. Each feature is its own little module that exposes a `features.<name>` option, and the host just picks which ones it wants.
+I use the dendritic pattern here (`flake-parts` + `import-tree`), mostly because I got tired of maintaining giant `imports` lists by hand. Anything inside `modules/` gets picked up automatically. Each feature in `modules/features/` defines its own `features.<name>` option, and the host config in `modules/hosts/TheUnreliable/` just turns on whatever it needs.
 
-```
-modules/
-├── hosts/TheUnreliable/   # host assembly, machine settings, hardware
-├── features/              # one file per feature (gaming, networking, niri, ...)
-└── packages/              # custom packages not in nixpkgs
-```
-
-Home Manager runs as a NixOS module, so there's no separate `home.nix`. Features write their own Home Manager config for every desktop user.
-
-> [!NOTE]
-> Flakes only see files tracked by git. If you add a new `.nix` file, `git add` it before building or it simply won't exist.
-
-## Library helpers
-
-`modules/lib.nix` exposes a couple of helpers as `flake.lib`, so any module can reach them through `self.lib`. They exist so feature modules never hardcode a username.
-
-### `getDesktopUsers config`
-
-Returns the usernames of every user in `features.users.users` with `isDesktopUser = true`. Mostly used by the helper below, but handy whenever something needs to loop over the humans on the machine.
-
-### `applyDesktopHome config homeAttrs`
-
-Builds a `home-manager.users` attrset with the same config for every desktop user. `homeAttrs` can be a plain attrset, or a function that takes the username:
-
-```nix
-home-manager.users = self.lib.applyDesktopHome config (username: {
-  home.packages = with pkgs; [ firefox ];
-});
-```
-
-If the config needs Home Manager's own `lib` (for things like `lib.hm.dag.entryAfter`), return a module function instead of an attrset. Home Manager then passes its `lib` in for you:
-
-```nix
-home-manager.users = self.lib.applyDesktopHome config (
-  username:
-  { lib, ... }:
-  {
-    home.activation.foo = lib.hm.dag.entryAfter [ "writeBoundary" ] "...";
-  }
-);
-```
+Home Manager is wired straight into those same feature modules instead of living in a separate `home.nix`, so all the config for a program stays in one place instead of being split between system and user files.
 
 ## Using it
 
-Rebuilds go through [`nh`](https://github.com/nix-community/nh):
+I use [`nh`](https://github.com/nix-community/nh) for rebuilds, mostly through a few fish abbreviations:
 
 ```sh
-nh os switch    # build and switch (or `sup` in fish)
-nh os boot      # build and apply on next boot
-nh os build .   # just build, don't activate (or `sbld`)
+sup     # nh os switch
+sug     # nh os switch --update --commit-lock-file
+sbld    # nh os build .
+soops   # roll back to the previous generation
 ```
-
-Updating everything at once is `sug`, which runs `nh os switch --update --commit-lock-file`. If something breaks, `soops` rolls back to the previous generation.
