@@ -562,11 +562,11 @@
     "memory-buckets": {
       "flake": false,
       "locked": {
-        "lastModified": 1791996941,
-        "narHash": "sha256-iZa+t79Uz/tsTf+KK/8NceqfGWTMu+C14O4xue1oOuA=",
+        "lastModified": 1792104853,
+        "narHash": "sha256-VQEiGvN09XmNnlUJcPALURYangVXhWKVh5shaJYz+Ag=",
         "ref": "refs/heads/main",
-        "rev": "00d3408c03b1a311a62f938f0271cbf5eb2c1ab2",
-        "revCount": 46,
+        "rev": "33574d0ad29267ea3aeb7f41f61aada018f1e32c",
+        "revCount": 48,
         "type": "git",
         "url": "https://git.cl0vr.co/cl0vr/memory-buckets"
       },
