@@ -23,7 +23,6 @@
           let
             selfprivacy-app = inputs.self-privacy.packages.${pkgs.stdenv.hostPlatform.system}.default;
             pano-scrobbler = inputs.pano-scrobbler.packages.${pkgs.stdenv.hostPlatform.system}.default;
-            openwork = self.packages.${pkgs.stdenv.hostPlatform.system}.openwork;
             claude-desktop = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.claude-desktop;
           in
           {
@@ -36,7 +35,7 @@
               btop-rocm
               # Chat
               fluffychat
-              signal-desktop
+              # signal-desktop
               # Internet
               mullvad-browser
               chromium
@@ -49,7 +48,7 @@
               # Media
               mpv
               vlc
-              obs-studio
+              # obs-studio
               # Game streaming
               moonlight-qt
               # Art/Design
@@ -60,12 +59,11 @@
               pano-scrobbler
               lrcget
               mixxx
-              ardour
+              # ardour
               # tidal-hifi
               sone
               # finamp
               # AI
-              openwork
               claude-desktop
               # other
               betaflight-configurator
@@ -83,7 +81,7 @@
               };
             };
 
-            # Math Junk Desktop Entries
+            # Desktop Entries
             xdg.desktopEntries = {
             };
           }
