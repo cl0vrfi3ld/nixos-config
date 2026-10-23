@@ -39,6 +39,7 @@
           services.flatpak.packages = [
             "org.gnome.World.PikaBackup"
             "com.github.zocker_160.SyncThingy"
+            "org.vinegarhq.Sober"
           ];
           services.flatpak.overrides = {
             global = {
