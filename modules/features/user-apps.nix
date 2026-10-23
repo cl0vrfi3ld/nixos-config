@@ -45,6 +45,8 @@
               # Notes/Organized Docs and Data
               obsidian
               anytype
+              # Studying
+              anki
               # Media
               mpv
               vlc
