@@ -66,6 +66,7 @@
               }))
               # Languages
               python3
+              bun
               # AI
               agy
               claude
