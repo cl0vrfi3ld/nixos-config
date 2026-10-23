@@ -91,6 +91,7 @@
                 };
                 # Lists replace on merge: this is the whole fallback chain, tried in order
                 fallback_providers = [
+                  { provider = "openrouter"; model = "z-ai/glm-5.3-flashx"; }
                   { provider = "openrouter"; model = "deepseek/deepseek-v4.1-flash"; }
                 ];
                 display = {
@@ -104,7 +105,7 @@
                 };
                 plugins = {
                   memory-buckets = {
-                    prefetch_min_similarity = 0.35;
+                    prefetch_min_similarity = 0.30;
                   };
                 };
                 kanban.default_assignee = "developer";
@@ -139,6 +140,19 @@
                 };
               };
               environmentFiles = [ config.sops.secrets."hermes-agent".path ];
+
+              # Anytype MCP server (stdio via npx; npx is on the unit PATH via the hermes wrapper).
+              # The bearer token lives in the sops `hermes-agent` secret as ANYTYPE_API_KEY —
+              # `''${...}` in an MCP env value is resolved from the profile's `.env` at runtime,
+              # so no secret ends up in the world-readable store.
+              mcpServers.anytype = {
+                command = "${pkgs.bun}/bin/bunx";
+                args = [
+                  "-y"
+                  "@anyproto/anytype-mcp"
+                ];
+                env.OPENAPI_MCP_HEADERS = ''{"Authorization":"Bearer ''${ANYTYPE_API_KEY}","Anytype-Version":"2025-11-08"}'';
+              };
             };
           programs.hermes-agent = {
             enable = cfg.hermes-agent.enable;
