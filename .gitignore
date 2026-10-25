@@ -7,3 +7,4 @@ secrets/*
 result
 !secrets/README.md
 .neurons/
+result-*
