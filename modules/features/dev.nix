@@ -27,6 +27,7 @@
           };
           agy = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.antigravity-cli;
           claude = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.claude-code;
+          claude-acp = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.claude-agent-acp;
         in
         {
           features.core.unfreePackages = [
@@ -70,6 +71,7 @@
               # AI
               agy
               claude
+              claude-acp
             ];
 
             programs.git = {
