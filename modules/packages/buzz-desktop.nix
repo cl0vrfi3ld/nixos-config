@@ -17,7 +17,7 @@
     {
       # The upstream AppImage run inside appimageTools' FHS env. See
       # buzz-source.nix for the build from source.
-      packages.buzz = pkgs.appimageTools.wrapType2 {
+      packages.buzz-desktop = pkgs.appimageTools.wrapType2 {
         inherit pname version src;
 
         # Not `buzz`: the app links its CLI to ~/.local/bin/buzz on every
