@@ -3,7 +3,7 @@
   perSystem =
     { pkgs, lib, ... }:
     let
-      pname = "buzz";
+      pname = "buzz-desktop";
       version = "0.5.28";
 
       # Upstream only publishes a Linux build for x86_64.
