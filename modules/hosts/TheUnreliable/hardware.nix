@@ -154,6 +154,9 @@
         fsType = "btrfs";
         options = [
           "nofail"
+          # Shares a drive with Windows, which rearranges partitions on update.
+          # Bound the wait for the device too, not just the mount (default 90s).
+          "x-systemd.device-timeout=5s"
           "x-systemd.mount-timeout=5s"
         ];
       };
