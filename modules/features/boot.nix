@@ -63,10 +63,10 @@
           enable = true;
           theme = cfg.plymouth.theme;
           themePackages = with pkgs; [
+            # only pull the selected theme into the Nix store
             (adi1090x-plymouth-themes.override {
               selected_themes = [
-                "rings"
-                "deus_ex"
+                cfg.plymouth.theme
               ];
             })
           ];
