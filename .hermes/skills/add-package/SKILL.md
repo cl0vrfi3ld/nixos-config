@@ -93,6 +93,15 @@ Use `rustPlatform.buildRustPackage` + `cargo-tauri.hook`; nixpkgs `readest` is a
 - Tauri apps use a D-Bus single-instance lock: a second launch hands off to an already-running copy and exits 0. Do NOT work around it with `dbus-run-session`: the private bus starts its own at-spi bus launcher, which overwrites `/run/user/$UID/at-spi/bus_0` and leaves a dead socket when it exits, breaking accessibility (and cua-driver) for every app started afterwards. Close the running instance instead; if it already happened, `systemctl --user restart at-spi-dbus-bus.service` fixes it.
 - An agent integration showing "not installed" usually means a missing adapter binary (e.g. `claude-agent-acp`), not a sandbox PATH problem; read the app's discovery catalog for the exact command names before touching the wrapper.
 
+## Rust CLIs from a Cargo workspace
+
+Follow `modules/packages/buzz-tools.nix`: one `fetchFromGitHub`, one shared `rustPlatform.fetchCargoVendor` (vendored once for every crate), and a small helper that runs `buildRustPackage` per crate with `cargoBuildFlags` and `cargoTestFlags` set to `[ "-p=<crate>" ]`.
+
+- Read each crate's `[[bin]]`: the binary name can differ from the crate (`buzz-cli` installs `buzz`). Set `mainProgram` to the binary.
+- List the native deps with `cargo tree -p <crate> -e normal,build --target x86_64-unknown-linux-gnu` before adding any inputs. aws-lc-sys, ring and secp256k1-sys build with nothing extra.
+- reqwest 0.13's `rustls` feature (rustls-platform-verifier) makes `Client::builder().build()` fail with "builder error" when there is no CA store. Tests that build a client then panic in the sandbox, even against loopback. Add `nativeCheckInputs = [ pkgs.cacert ];` instead of turning checks off.
+- Tests marked `#[ignore = "requires Postgres"]` are already skipped by `cargo test`, so keep `doCheck` on.
+
 ## Hash Generation
 
 ```sh
