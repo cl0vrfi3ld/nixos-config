@@ -24,7 +24,7 @@
             selfprivacy-app = inputs.self-privacy.packages.${pkgs.stdenv.hostPlatform.system}.default;
             pano-scrobbler = inputs.pano-scrobbler.packages.${pkgs.stdenv.hostPlatform.system}.default;
             claude-desktop = inputs.llm-agents.packages.${pkgs.stdenv.hostPlatform.system}.claude-desktop;
-            buzz = self.packages.${pkgs.stdenv.hostPlatform.system}.buzz;
+            buzz-desktop = self.packages.${pkgs.stdenv.hostPlatform.system}.buzz-desktop;
           in
           {
             home.packages = with pkgs; [
@@ -68,7 +68,7 @@
               # finamp
               # AI
               claude-desktop
-              buzz
+              buzz-desktop
               # other
               # betaflight-configurator
             ];
