@@ -75,10 +75,35 @@
           (
             args:
             let
+              # Focus the Hermes desktop window if one exists, otherwise launch it.
+              # hermes-desktop comes from PATH rather than the store: the Home Manager
+              # module wraps it with the service's session token, which this
+              # perSystem package can't see. The running window reports app_id
+              # "hermes" (unpackaged Electron takes package.json's name); the
+              # desktop entry's com.nousresearch.hermes is matched too in case
+              # upstream fixes that.
+              hermesFocus = pkgs.writeShellApplication {
+                name = "hermes-focus-or-launch";
+                runtimeInputs = [
+                  pkgs.niri
+                  pkgs.jq
+                ];
+                text = ''
+                  id=$(niri msg --json windows | jq -r '
+                    first(.[] | select(.app_id == "hermes" or .app_id == "com.nousresearch.hermes") | .id) // empty
+                  ')
+                  if [ -n "$id" ]; then
+                    niri msg action focus-window --id "$id"
+                  else
+                    exec hermes-desktop
+                  fi
+                '';
+              };
               noctaliaBindsKdl = toString (
                 pkgs.replaceVars ../../dotfiles/niri/noctalia-binds.kdl {
                   noctalia = lib.getExe self'.packages.myNoctalia;
                   ghostty = lib.getExe pkgs.ghostty;
+                  hermes = lib.getExe hermesFocus;
                 }
               );
             in

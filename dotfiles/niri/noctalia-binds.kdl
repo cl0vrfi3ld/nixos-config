@@ -9,6 +9,7 @@ binds {
     Super+Slash hotkey-overlay-title="Open Control Center" { spawn "@noctalia@" "ipc" "call" "controlCenter" "toggle"; }
     Mod+Y hotkey-overlay-title="Browse Wallpapers" { spawn "@noctalia@" "ipc" "call" "wallpaper" "toggle"; }
     Mod+T hotkey-overlay-title="Open Terminal" { spawn "@ghostty@"; }
+    Mod+H hotkey-overlay-title="Hermes" { spawn "@hermes@"; }
 
     // ── Session & Power ──────────────────────────────────────────────
     Super+X hotkey-overlay-title="Power Menu: Toggle" { spawn "@noctalia@" "ipc" "call" "sessionMenu" "toggle"; }
@@ -112,7 +113,6 @@ binds {
     Mod+Q repeat=false { close-window; }
 
     // ── Column: Focus & Move ─────────────────────────────────────────
-    Mod+H { focus-column-left; }
     Mod+L { focus-column-right; }
     Mod+Left { focus-column-left; }
     Mod+Right { focus-column-right; }
