@@ -56,7 +56,7 @@
         # Kernel / initrd
         boot.kernelPackages = pkgs.linuxPackages_latest;
         boot.initrd.enable = true;
-        boot.initrd.systemd.enable = true;
+        # boot.initrd.systemd.enable = true;
 
         # Plymouth splash + quiet boot
         boot.plymouth = lib.mkIf cfg.plymouth.enable {
@@ -72,7 +72,7 @@
           ];
         };
         boot.consoleLogLevel = lib.mkIf cfg.plymouth.enable 3;
-        boot.initrd.verbose = lib.mkIf cfg.plymouth.enable false;
+        # boot.initrd.verbose = lib.mkIf cfg.plymouth.enable false;
         boot.kernelParams = lib.mkIf cfg.plymouth.enable [
           "quiet"
           "splash"
