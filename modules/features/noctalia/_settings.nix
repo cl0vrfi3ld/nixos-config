@@ -16,6 +16,13 @@
 
     shadow.direction = "down_right";
 
+    # v4 panels sat at 0.93 opacity; "soft" is the nearest v5 mode.
+    panel.transparency_mode = "soft";
+
+    # The 11-icon category strip is what made the launcher look busy;
+    # Tab still toggles it while the launcher is open. Set compact = true
+    # for single-line rows without descriptions.
+    launcher.categories = false;
     launcher.pinned = [
       "zen-twilight"
       "dev.zed.Zed"
@@ -67,8 +74,11 @@
             action = "shutdown";
             shortcut = "6";
           }
+          # Not `reboot_uefi`: the 5.2 release this host runs doesn't know it.
           {
-            action = "reboot_uefi";
+            action = "command";
+            label = "Firmware";
+            command = "systemctl reboot --firmware-setup";
             shortcut = "7";
           }
         ];
@@ -109,7 +119,6 @@
       "disc"
       "stripes"
       "wipe"
-      "pixel"
       "honeycomb"
     ];
     transition_duration = 1500;
@@ -198,9 +207,16 @@
     # v4 "simple" bar: full-length, flush to the edge, concave outer corners.
     position = "left";
     background_opacity = 0.93;
-    radius = 12;
+    thickness = 45;
     margin_ends = 0;
     margin_edge = 0;
+    # Square on the screen edge, rounded on the inner edge. With
+    # concave_edge_corners the inner corners flare out along the top and bottom
+    # screen edges (v4's "outer corners"); set it false for plain convex
+    # rounding instead. The radius is capped at half the thickness.
+    radius = 0;
+    radius_top_right = 20;
+    radius_bottom_right = 20;
     concave_edge_corners = true;
     capsule = true;
     widget_spacing = 6;
@@ -223,7 +239,6 @@
       "volume"
       "brightness"
       "cpu"
-      "cpu-temp"
       "ram"
       "clipboard"
       "tailscale"
@@ -249,25 +264,32 @@
       artist_first = true;
       hide_when_no_media = true;
     };
+    # v4 "graphic-clean" was a small icon; v5's graphic mode draws a tall
+    # battery body on a vertical bar, so use the glyph instead.
     battery = {
-      display_mode = "graphic";
+      display_mode = "glyph";
       show_label = false;
     };
+    # v4 showed volume and brightness values on hover only.
+    volume.show_label = false;
+    brightness.show_label = false;
     cpu = {
       type = "sysmon";
       stat = "cpu_usage";
-    };
-    cpu-temp = {
-      type = "sysmon";
-      stat = "cpu_temp";
+      show_value = false;
     };
     ram = {
       type = "sysmon";
       stat = "ram_used";
+      show_value = false;
     };
-    privacy.hide_inactive = false;
+    # v4's plugin drew idle icons in colour "none"; hiding them matches that.
+    privacy.hide_inactive = true;
     notifications.hide_when_no_unread = false;
-    todo.type = "nightwatch75/todo:todo";
+    todo = {
+      type = "nightwatch75/todo:todo";
+      show_label = false;
+    };
     tailscale.type = "davemhammer/tailscale:status";
   };
 
