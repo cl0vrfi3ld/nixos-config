@@ -1,41 +1,41 @@
 binds {
     // ── Launchers & UI Panels ────────────────────────────────────────
-    Mod+Space hotkey-overlay-title="Application Launcher" { spawn "@noctalia@" "ipc" "call" "launcher" "toggle"; }
-    Mod+M hotkey-overlay-title="Window Switcher" { spawn "@noctalia@" "ipc" "call" "launcher" "windows"; }
-    Ctrl+Alt+Delete hotkey-overlay-title="Window Switcher" { spawn "@noctalia@" "ipc" "call" "launcher" "windows"; }
-    Mod+V hotkey-overlay-title="Clipboard Manager" { spawn "@noctalia@" "ipc" "call" "launcher" "clipboard"; }
-    Mod+N hotkey-overlay-title="Notification Center" { spawn "@noctalia@" "ipc" "call" "notifications" "toggleHistory"; }
-    Mod+Comma hotkey-overlay-title="Settings" { spawn "@noctalia@" "ipc" "call" "settings" "toggle"; }
-    Super+Slash hotkey-overlay-title="Open Control Center" { spawn "@noctalia@" "ipc" "call" "controlCenter" "toggle"; }
-    Mod+Y hotkey-overlay-title="Browse Wallpapers" { spawn "@noctalia@" "ipc" "call" "wallpaper" "toggle"; }
+    Mod+Space hotkey-overlay-title="Application Launcher" { spawn "@noctalia@" "msg" "panel-toggle" "launcher"; }
+    Mod+M hotkey-overlay-title="Window Switcher" { spawn "@noctalia@" "msg" "panel-toggle" "launcher" "/win "; }
+    Ctrl+Alt+Delete hotkey-overlay-title="Window Switcher" { spawn "@noctalia@" "msg" "panel-toggle" "launcher" "/win "; }
+    Mod+V hotkey-overlay-title="Clipboard Manager" { spawn "@noctalia@" "msg" "panel-toggle" "clipboard"; }
+    Mod+N hotkey-overlay-title="Notification Center" { spawn "@noctalia@" "msg" "panel-toggle" "control-center" "notifications"; }
+    Mod+Comma hotkey-overlay-title="Settings" { spawn "@noctalia@" "msg" "settings-toggle"; }
+    Super+Slash hotkey-overlay-title="Open Control Center" { spawn "@noctalia@" "msg" "panel-toggle" "control-center"; }
+    Mod+Y hotkey-overlay-title="Browse Wallpapers" { spawn "@noctalia@" "msg" "panel-toggle" "wallpaper"; }
     Mod+T hotkey-overlay-title="Open Terminal" { spawn "@ghostty@"; }
     Mod+H hotkey-overlay-title="Hermes" { spawn "@hermes@"; }
 
     // ── Session & Power ──────────────────────────────────────────────
-    Super+X hotkey-overlay-title="Power Menu: Toggle" { spawn "@noctalia@" "ipc" "call" "sessionMenu" "toggle"; }
-    Mod+Alt+L hotkey-overlay-title="Lock Screen" { spawn "@noctalia@" "ipc" "call" "lockScreen" "lock"; }
-    XF86PowerOff allow-when-locked=true { spawn "@noctalia@" "ipc" "call" "sessionMenu" "lockAndSuspend"; }
+    Super+X hotkey-overlay-title="Power Menu: Toggle" { spawn "@noctalia@" "msg" "panel-toggle" "session"; }
+    Mod+Alt+L hotkey-overlay-title="Lock Screen" { spawn "@noctalia@" "msg" "session" "lock"; }
+    XF86PowerOff allow-when-locked=true { spawn "@noctalia@" "msg" "session" "lock-and-suspend"; }
     Mod+Shift+P { power-off-monitors; }
     Mod+Shift+E { quit; }
 
     // ── Volume ───────────────────────────────────────────────────────
-    XF86AudioRaiseVolume allow-when-locked=true { spawn "@noctalia@" "ipc" "call" "volume" "increase"; }
-    XF86AudioLowerVolume allow-when-locked=true { spawn "@noctalia@" "ipc" "call" "volume" "decrease"; }
-    XF86AudioMute allow-when-locked=true { spawn "@noctalia@" "ipc" "call" "volume" "muteOutput"; }
-    Ctrl+XF86AudioRaiseVolume allow-when-locked=true { spawn "@noctalia@" "ipc" "call" "volume" "increaseInput"; }
-    Ctrl+XF86AudioLowerVolume allow-when-locked=true { spawn "@noctalia@" "ipc" "call" "volume" "decreaseInput"; }
-    Ctrl+XF86AudioMute allow-when-locked=true { spawn "@noctalia@" "ipc" "call" "volume" "muteInput"; }
-    XF86AudioMicMute allow-when-locked=true { spawn "@noctalia@" "ipc" "call" "volume" "muteInput"; }
+    XF86AudioRaiseVolume allow-when-locked=true { spawn "@noctalia@" "msg" "volume-up"; }
+    XF86AudioLowerVolume allow-when-locked=true { spawn "@noctalia@" "msg" "volume-down"; }
+    XF86AudioMute allow-when-locked=true { spawn "@noctalia@" "msg" "volume-mute"; }
+    Ctrl+XF86AudioRaiseVolume allow-when-locked=true { spawn "@noctalia@" "msg" "mic-volume-up"; }
+    Ctrl+XF86AudioLowerVolume allow-when-locked=true { spawn "@noctalia@" "msg" "mic-volume-down"; }
+    Ctrl+XF86AudioMute allow-when-locked=true { spawn "@noctalia@" "msg" "mic-mute"; }
+    XF86AudioMicMute allow-when-locked=true { spawn "@noctalia@" "msg" "mic-mute"; }
 
     // ── Media Playback ───────────────────────────────────────────────
-    XF86AudioPlay allow-when-locked=true { spawn "@noctalia@" "ipc" "call" "media" "playPause"; }
-    XF86AudioPause allow-when-locked=true { spawn "@noctalia@" "ipc" "call" "media" "playPause"; }
-    XF86AudioNext allow-when-locked=true { spawn "@noctalia@" "ipc" "call" "media" "next"; }
-    XF86AudioPrev allow-when-locked=true { spawn "@noctalia@" "ipc" "call" "media" "previous"; }
+    XF86AudioPlay allow-when-locked=true { spawn "@noctalia@" "msg" "media" "toggle"; }
+    XF86AudioPause allow-when-locked=true { spawn "@noctalia@" "msg" "media" "toggle"; }
+    XF86AudioNext allow-when-locked=true { spawn "@noctalia@" "msg" "media" "next"; }
+    XF86AudioPrev allow-when-locked=true { spawn "@noctalia@" "msg" "media" "previous"; }
 
     // ── Brightness ───────────────────────────────────────────────────
-    XF86MonBrightnessUp allow-when-locked=true { spawn "@noctalia@" "ipc" "call" "brightness" "increase"; }
-    XF86MonBrightnessDown allow-when-locked=true { spawn "@noctalia@" "ipc" "call" "brightness" "decrease"; }
+    XF86MonBrightnessUp allow-when-locked=true { spawn "@noctalia@" "msg" "brightness-up"; }
+    XF86MonBrightnessDown allow-when-locked=true { spawn "@noctalia@" "msg" "brightness-down"; }
 
     // ── Screenshots ──────────────────────────────────────────────────
     Print { screenshot; }

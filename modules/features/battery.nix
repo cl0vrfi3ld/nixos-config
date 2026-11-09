@@ -101,17 +101,9 @@
       ];
 
       # Lid-close suspend/hibernate is owned solely by logind
-      # (services.logind.settings.Login.HandleLidSwitch in hardware.nix); this only
-      # locks the screen before sleep so the two don't race (see niri.nix).
-      systemd.user.services.lock-before-sleep = lib.mkIf (config.features.niri.shell == "noctalia") {
-        description = "Lock screen before suspend/hibernate";
-        before = [ "sleep.target" ];
-        wantedBy = [ "sleep.target" ];
-        serviceConfig = {
-          Type = "oneshot";
-          ExecStart = "${lib.getExe self.packages.${pkgs.stdenv.hostPlatform.system}.myNoctalia} ipc call lockScreen lock";
-        };
-      };
+      # (services.logind.settings.Login.HandleLidSwitch in hardware.nix). Locking
+      # before sleep is Noctalia's job: it holds a logind delay inhibitor and
+      # locks on PrepareForSleep ([lockscreen].lock_before_suspend).
 
       systemd.user.services.auto-rr-throttle =
         let

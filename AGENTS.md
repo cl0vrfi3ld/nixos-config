@@ -22,7 +22,7 @@ nix flake show
 
 # Build a perSystem package
 nix build .#myNiri                            # wrapped Niri compositor
-nix build .#myNoctalia                        # wrapped Noctalia shell
+nix build .#myNoctalia                        # wrapped Noctalia v5 shell (config baked in)
 nix build .#openwork                          # Openwork AppImage wrapper
 nix build .#flake-update                      # flake-update CLI
 
@@ -109,8 +109,8 @@ modules/
     ├── nh.nix                # nh CLI helper & auto-clean
     ├── niri.nix              # Niri Wayland compositor wrapper
     ├── noctalia/             # Noctalia desktop shell
-    │   ├── default.nix       # noctalia package wrapper & niri shell hook
-    │   ├── dependencies.nix  # cliphist, wl-clip-persist
+    │   ├── default.nix       # noctalia v5 wrapper, programs.noctalia & niri shell hook
+    │   ├── _settings.nix     # Noctalia settings attrset (underscore: skipped by import-tree)
     │   └── theming.nix       # adw-gtk3-dark, cursor, qt6ct & nwg-look
     ├── pam.nix               # Fingerprint (fprintd) & fine-grained PAM services
     ├── security.nix          # Polkit & GNOME Keyring
@@ -169,16 +169,18 @@ Exported under `flake.lib` (available as `self.lib` across modules):
 - Packaged via `inputs.wrapper-modules` in [`modules/features/niri.nix`](file:///home/coucoucl0vr/nixos-config/modules/features/niri.nix) as `perSystem.packages.myNiri` (`pkgs.lib.makeOverridable`).
 - When `features.niri.shell = "noctalia"`:
   - Keybindings are sourced from [`dotfiles/niri/noctalia-binds.kdl`](file:///home/coucoucl0vr/nixos-config/dotfiles/niri/noctalia-binds.kdl) via `pkgs.replaceVars` (substituting `@noctalia@` and `@ghostty@`).
-  - Configures rounded window corners (20), layout gaps (8), autostarts Noctalia shell, and sets lid-close action to lock/suspend via Noctalia IPC.
+  - Configures rounded window corners (20), layout gaps (8), autostarts Noctalia, floats its settings window (`dev.noctalia.Noctalia`), places the `noctalia-backdrop` layer in the overview backdrop, and sets `debug.honor-xdg-activation-with-invalid-serial`. Lid close is left to logind; Noctalia locks on `PrepareForSleep` itself.
 - When `features.niri.raltCompose = true` (set in `configuration.nix`), xkb `compose:ralt` makes Right Alt the Compose key (e.g. RAlt s s → ß, RAlt " a → ä). This takes RAlt away from applications entirely — Wine games see the key as dead, not merely unmodified — so Star Citizen's RAlt binds need rebinding onto LAlt.
 - When `features.niri.configPath` is set (e.g. for legacy DMS), build-time `niri validate` is bypassed to allow dynamic runtime `$HOME` Matugen theme includes.
 
 ### Noctalia Desktop Shell
 
-- Wrapped in [`modules/features/noctalia/default.nix`](file:///home/coucoucl0vr/nixos-config/modules/features/noctalia/default.nix) via `inputs.wrapper-modules.wrappers.noctalia-shell.wrap` (`perSystem.packages.myNoctalia`).
+- Noctalia **v5** (the native C++ rewrite, nixpkgs `noctalia`; v4 `noctalia-shell` is gone from nixpkgs). Wrapped in [`modules/features/noctalia/default.nix`](file:///home/coucoucl0vr/nixos-config/modules/features/noctalia/default.nix) via `inputs.wrapper-modules.wrappers.noctalia.wrap` (`perSystem.packages.myNoctalia`), which renders `_settings.nix` to TOML and sets `NOCTALIA_CONFIG_HOME` to the store, so `~/.config/noctalia` is **not** read. GUI changes persist in `~/.local/state/noctalia/settings.toml` and override the Nix layer; check it when a value in `_settings.nix` seems ignored. Validate with `noctalia config validate <generated settings.toml>` (plugin widget types warn as unrecognised outside a running shell; that is expected).
+- `programs.noctalia` (nixpkgs NixOS module) is enabled with the wrapped package so `noctalia msg ...` works from a shell. IPC is `noctalia msg <command>` (v4's `ipc call` is gone).
+- The lock screen authenticates passwords against the `login` PAM service (hardcoded) and drives fprintd itself over D-Bus, so `login.fprintAuth` must stay `false` (see `pam.nix`).
 - Submodules:
   - `theming.nix`: Sets Adwaita cursor (size 24), `adw-gtk3-dark` theme with window headerbar buttons hidden (`gtk-decoration-layout = ":"` for clean tiling), and Qt6CT theming.
-  - `dependencies.nix`: Installs `cliphist` and `wl-clip-persist`.
+- Clipboard history and keep-alive are built into v5; `cliphist`/`wl-clip-persist` are no longer installed.
 
 ### Display Managers & Greeters
 

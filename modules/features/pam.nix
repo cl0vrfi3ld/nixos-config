@@ -36,10 +36,12 @@
         #
         #   Password ONLY (no fingerprint):
         #     • ly          – greeter at boot / first login
+        #     • login       – TTY login; also Noctalia's lock screen password
+        #                     path (see below)
         #
         #   Fingerprint OR password:
-        #     • noctalia-lock – dedicated lock-screen service (see below)
-        #     • login       – TTY login
+        #     • Noctalia lock screen – password via `login`, fingerprint driven
+        #                     by Noctalia itself over fprintd's D-Bus API
         #     • polkit-1    – GUI privilege-escalation prompts
         #     • systemd-run0 – run0 CLI privilege escalation (used by nh)
         #     • sudo        – sudo, if ever re-enabled
@@ -50,6 +52,8 @@
           # ── Password only ──────────────────────────────────────────────
           # Note: ly delegates to the `login` PAM service (`auth substack login`),
           # so `login.fprintAuth` must be false for ly to be password-only.
+          # Noctalia v5 hardcodes `login` for its lock screen and needs
+          # pam_fprintd kept out of it, since it claims the reader itself.
           login.fprintAuth = false;
           ly.fprintAuth = false;
 
@@ -57,26 +61,7 @@
           polkit-1.fprintAuth = true;
           systemd-run0.fprintAuth = true;
           sudo.fprintAuth = true;
-
-          # ── Lock screen ────────────────────────────────────────────────
-          # Dedicated service for Noctalia's lock screen. Using `login`
-          # causes gnome-keyring's PAM entries to interfere with the
-          # conversation flow, requiring both fingerprint AND password.
-          # We disable the 30s timeout and 3-try limit on pam_fprintd so
-          # fingerprint auth remains continuously available while locked.
-          noctalia-lock = {
-            fprintAuth = true;
-            rules.auth.fprintd.args = [
-              "timeout=-1"
-              "max-tries=-1"
-            ];
-          };
         };
-
-        # Point the noctalia lock screen at our dedicated PAM service
-        # instead of `login`, which has gnome-keyring entries that interfere.
-        environment.sessionVariables.NOCTALIA_PAM_SERVICE = "noctalia-lock";
       };
     };
 }
-

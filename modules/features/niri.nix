@@ -162,6 +162,26 @@
                     geometry-corner-radius = 20;
                     clip-to-geometry = true;
                   };
+                  # Noctalia's settings window opens floating at its intended size.
+                  window-rules = [
+                    {
+                      matches = [ { app-id = "^dev\\.noctalia\\.Noctalia$"; } ];
+                      open-floating = true;
+                      default-column-width.fixed = 1080;
+                      default-window-height.fixed = 920;
+                    }
+                  ];
+                  # Blurred wallpaper copy behind the overview ([backdrop] in
+                  # noctalia's settings).
+                  layer-rules = [
+                    {
+                      matches = [ { namespace = "^noctalia-backdrop"; } ];
+                      place-within-backdrop = true;
+                    }
+                  ];
+                  # Lets notification actions and window activation from
+                  # Noctalia focus the target window.
+                  debug.honor-xdg-activation-with-invalid-serial = _: { };
                   layout = {
                     gaps = 8;
                   };

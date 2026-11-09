@@ -1,4 +1,5 @@
-{ self, inputs, ... }: {
+{ self, inputs, ... }:
+{
   flake.nixosModules.noctalia =
     {
       config,
@@ -16,13 +17,25 @@
 
       imports = [
         self.nixosModules.noctalia-theming
-        self.nixosModules.noctalia-dependencies
       ];
+
+      # Puts the wrapped `noctalia` on PATH (for `noctalia msg ...` by hand) and
+      # enables the freedesktop sound theme it expects at runtime.
+      programs.noctalia = {
+        enable = true;
+        package = self.packages.${pkgs.stdenv.hostPlatform.system}.myNoctalia;
+      };
     };
-  perSystem = { pkgs, ... }: {
-    packages.myNoctalia = inputs.wrapper-modules.wrappers.noctalia-shell.wrap {
-      inherit pkgs;
-      # settings = (builtins.fromJSON (builtins.readFile ./noctalia.json)).settings;
+
+  perSystem =
+    { pkgs, ... }:
+    {
+      # Noctalia v5. The wrapper points NOCTALIA_CONFIG_HOME at a generated
+      # store directory, so ~/.config/noctalia (v4 leftovers included) is not
+      # read; GUI changes still persist in ~/.local/state/noctalia/settings.toml.
+      packages.myNoctalia = inputs.wrapper-modules.wrappers.noctalia.wrap {
+        inherit pkgs;
+        settings = import ./_settings.nix;
+      };
     };
-  };
 }
