@@ -30,19 +30,19 @@
 
         vr.enable = lib.mkOption {
           type = lib.types.bool;
-          default = true;
+          default = false;
           description = "Enable VR support via ALVR.";
         };
 
         streaming.enable = lib.mkOption {
           type = lib.types.bool;
-          default = true;
+          default = false;
           description = "Enable game streaming via Sunshine (with moondeck-buddy firewall rules).";
         };
 
         starCitizen.enable = lib.mkOption {
           type = lib.types.bool;
-          default = true;
+          default = false;
           description = "Enable the Star Citizen (rsi-launcher) module.";
         };
       };
