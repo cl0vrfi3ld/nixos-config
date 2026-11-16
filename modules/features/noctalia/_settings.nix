@@ -23,6 +23,7 @@
     # Tab still toggles it while the launcher is open. Set compact = true
     # for single-line rows without descriptions.
     launcher.categories = false;
+    launcher.default_view = "pinned";
     launcher.pinned = [
       "zen-twilight"
       "dev.zed.Zed"
