@@ -4,12 +4,12 @@
     { pkgs, lib, ... }:
     let
       pname = "buzz-desktop";
-      version = "0.5.28";
+      version = "0.5.30";
 
       # Upstream only publishes a Linux build for x86_64.
       src = pkgs.fetchurl {
         url = "https://github.com/block/buzz/releases/download/desktop-v${version}/Buzz_${version}_amd64.AppImage";
-        hash = "sha256-YCI6wn2HQiJqC149teH5dEGyZ/9jq7kFeTsz/mVoh0w=";
+        hash = "sha256-AAZc110TQPDucGamgOUgimlXw4mjquzBgvTwc6oWzZo=";
       };
 
       appimageContents = pkgs.appimageTools.extract { inherit pname version src; };
