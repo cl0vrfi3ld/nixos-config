@@ -22,7 +22,7 @@
           kdePackages.partitionmanager
           ghostty
           easyeffects
-          dgop
+          dux-gop
 
           # File managers
           kdePackages.dolphin
