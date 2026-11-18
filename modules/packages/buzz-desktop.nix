@@ -4,12 +4,12 @@
     { pkgs, lib, ... }:
     let
       pname = "buzz-desktop";
-      version = "0.5.30";
+      version = "1.0.5";
 
       # Upstream only publishes a Linux build for x86_64.
       src = pkgs.fetchurl {
-        url = "https://github.com/block/buzz/releases/download/desktop-v${version}/Buzz_${version}_amd64.AppImage";
-        hash = "sha256-AAZc110TQPDucGamgOUgimlXw4mjquzBgvTwc6oWzZo=";
+        url = "https://github.com/block/buzz-app/releases/download/v${version}/Buzz_${version}_x86_64.AppImage";
+        hash = "sha256-5Wftgzt0jzNdAgUtiQ012/4aafC5fudvTckoA3LU9G0=";
       };
 
       appimageContents = pkgs.appimageTools.extract { inherit pname version src; };
@@ -37,10 +37,11 @@
             gst_all_1.gst-plugins-bad
           ];
 
-        # Buzz's launcher unsets GST_PLUGIN_SYSTEM_PATH_1_0, so GStreamer falls
-        # back to its compiled-in store path, which holds only the core
-        # plugins. GST_PLUGIN_PATH_1_0 is searched in addition to that, and
-        # the launcher leaves it alone because it points outside the AppImage.
+        # Buzz's launcher (usr/bin/Buzz) unsets GST_PLUGIN_SYSTEM_PATH_1_0, so
+        # GStreamer falls back to its compiled-in store path, which holds only
+        # the core plugins. GST_PLUGIN_PATH_1_0 is searched in addition to that,
+        # and the launcher leaves it alone because it points outside the
+        # AppImage.
         profile = ''
           export GST_PLUGIN_PATH_1_0=/usr/lib64/gstreamer-1.0''${GST_PLUGIN_PATH_1_0:+:$GST_PLUGIN_PATH_1_0}
         '';
@@ -48,12 +49,12 @@
         # Unique desktop file and icon names, so this can sit next to
         # buzz-source without colliding.
         extraInstallCommands = ''
-          install -m 444 -D ${appimageContents}/Buzz.desktop \
+          install -m 444 -D "${appimageContents}/Buzz Foundation.desktop" \
             $out/share/applications/${pname}.desktop
           substituteInPlace $out/share/applications/${pname}.desktop \
-            --replace-fail 'Exec=buzz-desktop' 'Exec=buzz-desktop %u' \
-            --replace-fail 'Icon=buzz-desktop' 'Icon=${pname}'
-          for icon in ${appimageContents}/usr/share/icons/hicolor/*/apps/buzz-desktop.png; do
+            --replace-fail 'Exec=Buzz' 'Exec=buzz-desktop %u' \
+            --replace-fail 'Icon=Buzz' 'Icon=${pname}'
+          for icon in ${appimageContents}/usr/share/icons/hicolor/*/apps/Buzz.png; do
             size=$(basename "$(dirname "$(dirname "$icon")")")
             install -m 444 -D "$icon" $out/share/icons/hicolor/$size/apps/${pname}.png
           done
@@ -61,7 +62,7 @@
 
         meta = {
           description = "Hive mind communication platform for humans and agents (upstream AppImage)";
-          homepage = "https://github.com/block/buzz";
+          homepage = "https://github.com/block/buzz-app";
           license = lib.licenses.asl20;
           sourceProvenance = [ lib.sourceTypes.binaryNativeCode ];
           platforms = [ "x86_64-linux" ];
