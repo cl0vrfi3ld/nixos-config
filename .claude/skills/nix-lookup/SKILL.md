@@ -75,11 +75,13 @@ For anything renamed, deprecated, or suspicious, grep the locked source. This
 resolves the *exact* rev in `flake.lock`, not whatever your channel points at:
 
 ```sh
-NIXPKGS=$(nix eval --raw .#inputs.nixpkgs.outPath)
+# The flake has no `inputs` output, so `.#inputs.<x>.outPath` fails; use getFlake
+inputPath() { nix eval --raw --impure --expr "(builtins.getFlake \"git+file://$PWD\").inputs.$1.outPath"; }
+NIXPKGS=$(inputPath nixpkgs)
 grep -rn "mkRenamedOptionModule\|mkRemovedOptionModule" "$NIXPKGS/nixos/modules/rename.nix" | grep -i <term>
 grep -rn "<optionName>" "$NIXPKGS/nixos/modules/" | head
 
-HM=$(nix eval --raw .#inputs.home-manager.outPath)
+HM=$(inputPath home-manager)
 grep -rn "<optionName>" "$HM/modules/" | head
 ```
 
