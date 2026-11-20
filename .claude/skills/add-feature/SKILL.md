@@ -61,6 +61,12 @@ Only declare `options.features.<name>` when a host needs to configure it.
 Modules that just install things (`browser.nix`, `user-apps.nix`) have `config`
 alone.
 
+**Importing a feature enables it.** Never add a root `features.<name>.enable` or
+wrap the whole `config` in `mkIf cfg.enable`: the host turns a feature on by
+listing `self.nixosModules.<name>` and off by commenting it out. `enable` options
+are only for optional sub-features (`features.ai.cua-driver.enable`,
+`features.gaming.vr.enable`).
+
 Unfree packages go through `features.core.unfreePackages` (see
 `modules/features/core.nix`), not a bare `allowUnfree`.
 

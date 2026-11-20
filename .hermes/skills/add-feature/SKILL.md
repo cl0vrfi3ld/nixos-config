@@ -78,3 +78,4 @@ home-manager.users = self.lib.applyDesktopHome config (username: {
 
 - Untracked files fail silently during flake evaluation — build will pass without applying the new module. Always `git add`.
 - Only declare `options.features.<name>` if the host needs to configure it. Pure installation modules need only `config`.
+- Importing a feature enables it. Never add a root `features.<name>.enable` or wrap the whole `config` in `mkIf cfg.enable`: the host enables a feature by listing `self.nixosModules.<name>` and disables it by commenting it out. `enable` options are only for optional sub-features (`features.ai.cua-driver.enable`, `features.gaming.vr.enable`).
