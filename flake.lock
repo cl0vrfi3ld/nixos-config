@@ -802,11 +802,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1789748211,
-        "narHash": "sha256-EyMGeCZIMa/5s4Ev0i+bD80ouklAXloWg04ZLgHFKhU=",
+        "lastModified": 1791299772,
+        "narHash": "sha256-LK7hmnuW84IDBq50EwMZ5lLdkELU0U56EH4MDRcLXPE=",
         "owner": "kawaiiDango",
         "repo": "pano-scrobbler-flake",
-        "rev": "6a8d6db2e680b00f6f7fb200285d5751fa228ed2",
+        "rev": "0e59e5bf70ecde0b2fcd43c0514109e3bd0839d5",
         "type": "github"
       },
       "original": {
