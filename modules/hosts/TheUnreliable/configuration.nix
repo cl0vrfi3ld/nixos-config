@@ -67,6 +67,9 @@
       # CUA Driver computer-use automation
       features.ai.cua-driver.enable = false;
 
+      # syncthing
+      features.syncthing.tray.enable = true;
+
       # SSH host configurations
       features.ssh.hosts = {
         "clovergit" = {

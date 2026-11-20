@@ -35,6 +35,7 @@
         # home
         self.nixosModules.dev
         self.nixosModules.ssh
+        self.nixosModules.syncthing
         self.nixosModules.browser
         self.nixosModules.user-apps
         self.nixosModules.ai
